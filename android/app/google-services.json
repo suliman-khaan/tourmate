@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "574379667156",
+    "project_id": "tour-mate-b9337",
+    "storage_bucket": "tour-mate-b9337.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:574379667156:android:7d917fcab88ba1caaa9541",
+        "android_client_info": {
+          "package_name": "com.example.tourmate2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "574379667156-0g24g0ed91hiaks2lhi716ndj390lgg3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tourmate2",
+            "certificate_hash": "4221b79b54ed8030baa16962b5b0d44674598abb"
+          }
+        },
+        {
+          "client_id": "574379667156-oqi1ccrdgdsv13pntnua3b02asc4rhnp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSQGcdKuByxoGUsOj6D9gkMTvCHFdaBWM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "574379667156-oqi1ccrdgdsv13pntnua3b02asc4rhnp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

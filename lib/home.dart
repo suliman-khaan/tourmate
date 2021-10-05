@@ -7,6 +7,7 @@ import 'package:tourmate1/allResturent.dart';
 import 'package:tourmate1/allTransport.dart';
 import 'package:tourmate1/all_distination.dart';
 import 'package:tourmate1/login.dart';
+import 'package:tourmate1/routes.dart';
 import 'package:tourmate1/search_page.dart';
 import 'allHotel.dart';
 import 'hotel_view.dart';
@@ -31,7 +32,7 @@ class home extends StatefulWidget {
 // ignore: camel_case_types
 class _homeState extends State<home> {
   // final FirebaseAuth auth = FirebaseAuth.instance;
-  String userId = "";
+  String userId = "hello";
 
   var user;
   @override
@@ -70,8 +71,8 @@ class _homeState extends State<home> {
               backgroundColor: Colors.white.withAlpha(200),
               title: Text("Tour Mate", style: TextStyle(color: Colors.black)),
               actions: [
-                userId == ""
-                    ? Container(
+                if(FirebaseAuth.instance.currentUser == null)...[
+                  Container(
                         child: Row(
                         children: [
                           TextButton(
@@ -96,15 +97,18 @@ class _homeState extends State<home> {
                               )),
                         ],
                       ))
-                    : TextButton(
+                ]else...[
+                   TextButton(
                         onPressed: () {
                           print("Log Out");
                           FirebaseAuth.instance.signOut();
-                          // Navigator.pushNamed(context, MyRoute.login);
+                          Navigator.pushNamed(context, MyRoute.home);
                         },
                         child: Text(
                           "LogOut",
                         )),
+                ],
+                         
                 Builder(
                     builder: (context) => IconButton(
                         onPressed: () {
@@ -810,5 +814,40 @@ class _homeState extends State<home> {
               ),
             ),
             bottomNavigationBar: footer(tabIndex: 0)));
+  }
+}
+
+class test extends StatelessWidget {
+  const test({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+         child: Row(
+         children: [
+           TextButton(
+               onPressed: () {
+                 Navigator.push(
+                     context,
+                     MaterialPageRoute(
+                         builder: (context) => login()));
+               },
+               child: Text(
+                 "Login",
+               )),
+           TextButton(
+               onPressed: () {
+                 Navigator.push(
+                     context,
+                     MaterialPageRoute(
+                         builder: (context) => register()));
+               },
+               child: Text(
+                 "Sign Up",
+               )),
+         ],
+       ));
   }
 }

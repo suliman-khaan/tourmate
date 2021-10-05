@@ -162,7 +162,8 @@ class _MyDrawerState extends State<MyDrawer> {
                           title: Text("Hello Sir Please Logged in"),
                           content: TextButton(
                               onPressed: () {
-                                Navigator.pushNamed(context, MyRoute.login);
+                                Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => login()));
                               },
                               child: Text("Sign In")),
                         );

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tourmate1/home.dart';
 import 'routes.dart';
 
 class UserProfile extends StatefulWidget {
@@ -161,8 +162,11 @@ class _UserProfileState extends State<UserProfile> {
                                       ElevatedButton(
                                           onPressed: () {
                                             firebaseAuth.signOut();
-                                            Navigator.pushNamed(
-                                                context, MyRoute.home);
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        home()));
                                           },
                                           child: Row(children: [
                                             Text("Sign Out"),

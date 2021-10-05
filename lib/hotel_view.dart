@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:tourmate1/Register.dart';
+import 'package:tourmate1/login.dart';
 import 'drawer.dart';
 import 'routes.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +42,10 @@ class _HotelViewState extends State<HotelView> {
                     SizedBox(height: 10),
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, MyRoute.signup);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => register()));
                       },
                       child: const Text('Sign Up'),
                     ),
@@ -50,7 +55,10 @@ class _HotelViewState extends State<HotelView> {
                         Text("or", style: TextStyle(color: Colors.grey)),
                         TextButton(
                             onPressed: () {
-                              Navigator.pushNamed(context, MyRoute.login);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => login()));
                             },
                             child: Text("Login",
                                 style: TextStyle(color: Colors.blue))),

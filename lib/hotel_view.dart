@@ -129,7 +129,7 @@ class _HotelViewState extends State<HotelView> {
                     )),
                 title: Text(
                   storeHotel[0]['name'],
-                  style: GoogleFonts.roboto(),
+                  style: GoogleFonts.roboto(color: Colors.black),
                 ),
                 centerTitle: true,
                 elevation: 0,
@@ -158,7 +158,7 @@ class _HotelViewState extends State<HotelView> {
                               child: Title(
                                   color: Colors.black,
                                   child: Text(storeHotel[0]['name'],
-                                      style: GoogleFonts.oswald(
+                                      style: GoogleFonts.roboto(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold))),
                             ),

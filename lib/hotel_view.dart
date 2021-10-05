@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'drawer.dart';
 import 'routes.dart';
 import 'package:flutter/material.dart';
@@ -279,7 +280,8 @@ class _HotelViewState extends State<HotelView> {
                                         // Icon(Icons.call),
                                         Text(
                                           //if login is true then show number
-                                          login
+                                          FirebaseAuth.instance.currentUser !=
+                                                  null
                                               ? storeHotel[0]['contact_no']
                                               : ("Phone number"),
                                           style: TextStyle(
@@ -289,7 +291,8 @@ class _HotelViewState extends State<HotelView> {
                                         // ignore: deprecated_member_use
                                         RaisedButton.icon(
                                           onPressed: () async {
-                                            login
+                                            FirebaseAuth.instance.currentUser !=
+                                                    null
                                                 ? FlutterPhoneDirectCaller
                                                     .callNumber(storeHotel[0]
                                                             ['contact_no']

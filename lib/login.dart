@@ -89,171 +89,172 @@ class _loginState extends State<login> {
         title: Center(child: Text("")),
       ),*/
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: MaterialButton(
-                child: const Icon(Icons.arrow_back),
-                color: Colors.blue,
-                textColor: Colors.white,
-                padding: EdgeInsets.all(10),
-                shape: CircleBorder(),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: MaterialButton(
+                  child: const Icon(Icons.arrow_back),
+                  color: Colors.blue,
+                  textColor: Colors.white,
+                  padding: EdgeInsets.all(10),
+                  shape: CircleBorder(),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
               ),
-            ),
-            Container(
-              child: Padding(
-                padding: const EdgeInsets.all(25.0),
-                child: Form(
-                    key: formkey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        SizedBox(
-                            //height: 160,
-                            ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text("Login",
-                              style: TextStyle(
-                                  color: Colors.blue[800],
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'RobotoMono-VariableFont_wght')),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                            controller: emailController,
-                            keyboardType: TextInputType.emailAddress,
-                            onChanged: (value) {
-                              setState(() {
-                                email = value;
-                              });
-                            },
-                            decoration: InputDecoration(
-                                labelText: "Email or Phone NO",
-                                hintText: "Enter Your Email or Phone NO",
-                                prefixIcon: Padding(
-                                    padding: EdgeInsets.all(0),
-                                    child: Icon(Icons.email))),
-                            validator: MultiValidator([
-                              RequiredValidator(errorText: "required"),
-                              EmailValidator(errorText: "Input Should be Email")
-                            ])),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          controller: passwordController,
-                          decoration: InputDecoration(
-                              labelText: "Password",
-                              hintText: "Enter Your Password",
-                              prefixIcon: Icon(Icons.lock),
-                              suffixIcon: InkWell(
-                                  onTap: _togglePasswordView,
-                                  child: Icon(Icons.visibility))),
-                          onChanged: (value) {
-                            setState(() {
-                              password = value;
-                            });
-                          },
-                          obscureText: isHiddenPassword,
-                          validator: (val) => val!.length < 6
-                              ? "Password Should be Greater Then 6 chars"
-                              : null,
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            InkWell(
-                              child: Text("Forget Your Password?"),
-                              onTap: () {},
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                          width: double.infinity,
-                          // ignore: deprecated_member_use
-                          child: RaisedButton(
-                            onPressed: () async {
-                              if (formkey.currentState!.validate()) {
-                                login();
-                              }
-                            },
-                            child: Text(
-                              "Login",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            color: Colors.blueAccent,
-                            splashColor: Colors.white,
-                            textColor: Colors.white,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("Not a Member?"),
-                            InkWell(
-                              child: Text(
-                                "Sign up",
-                                style: TextStyle(color: Colors.redAccent),
+              Container(
+                child: Padding(
+                  padding: const EdgeInsets.all(25.0),
+                  child: Form(
+                      key: formkey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          SizedBox(
+                              //height: 160,
                               ),
-                              onTap: () {
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text("Login",
+                                style: TextStyle(
+                                    color: Colors.blue[800],
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily:
+                                        'RobotoMono-VariableFont_wght')),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                              controller: emailController,
+                              keyboardType: TextInputType.emailAddress,
+                              onChanged: (value) {
+                                setState(() {
+                                  email = value;
+                                });
+                              },
+                              decoration: InputDecoration(
+                                  labelText: "Email or Phone",
+                                  hintText: "Email or Phone",
+                                  prefixIcon: Padding(
+                                      padding: EdgeInsets.all(0),
+                                      child: Icon(Icons.email))),
+                              validator: MultiValidator([
+                                RequiredValidator(
+                                    errorText: "Please enter your Email/Phone"),
+                                EmailValidator(
+                                    errorText: "Input Should be Email")
+                              ])),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                              controller: passwordController,
+                              decoration: InputDecoration(
+                                  labelText: "Password",
+                                  hintText: "Enter Your Password",
+                                  prefixIcon: Icon(Icons.lock),
+                                  suffixIcon: InkWell(
+                                      onTap: _togglePasswordView,
+                                      child: Icon(Icons.visibility))),
+                              onChanged: (value) {
+                                setState(() {
+                                  password = value;
+                                });
+                              },
+                              obscureText: isHiddenPassword,
+                              validator: RequiredValidator(
+                                  errorText: "Please Enter your Password!")),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              InkWell(
+                                child: Text("Forget Your Password?"),
+                                onTap: () {},
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            width: double.infinity,
+                            // ignore: deprecated_member_use
+                            child: RaisedButton(
+                              onPressed: () async {
+                                if (formkey.currentState!.validate()) {
+                                  login();
+                                }
+                              },
+                              child: Text(
+                                "Login",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              color: Colors.blueAccent,
+                              splashColor: Colors.white,
+                              textColor: Colors.white,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("Not a Member?"),
+                              SizedBox(width: 5.0),
+                              InkWell(
+                                child: Text(
+                                  "Sign up",
+                                  style: TextStyle(color: Colors.redAccent),
+                                ),
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => register()));
+                                },
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            width: double.infinity,
+                            // ignore: deprecated_member_use
+                            child: RaisedButton(
+                              onPressed: () {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => register()));
+                                        builder: (context) => home()));
                               },
+                              child: Text("Go Back to home"),
+                              color: Colors.redAccent,
+                              splashColor: Colors.white,
+                              textColor: Colors.white,
                             ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                          width: double.infinity,
-                          // ignore: deprecated_member_use
-                          child: RaisedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => home()));
-                            },
-                            child: Text("Go Back to home"),
-                            color: Colors.redAccent,
-                            splashColor: Colors.white,
-                            textColor: Colors.white,
                           ),
-                        ),
-                        SizedBox(height: 20.0),
-                        Text(
-                          error,
-                          style: TextStyle(color: Colors.green),
-                        ),
-                      ],
-                    )),
+                          SizedBox(height: 20.0),
+                          Text(
+                            error,
+                            style: TextStyle(color: Colors.green),
+                          ),
+                        ],
+                      )),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

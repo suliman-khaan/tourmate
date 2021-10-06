@@ -71,44 +71,43 @@ class _homeState extends State<home> {
               backgroundColor: Colors.white.withAlpha(200),
               title: Text("Tour Mate", style: TextStyle(color: Colors.black)),
               actions: [
-                if(FirebaseAuth.instance.currentUser == null)...[
+                if (FirebaseAuth.instance.currentUser == null) ...[
                   Container(
-                        child: Row(
-                        children: [
-                          TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => login()));
-                              },
-                              child: Text(
-                                "Login",
-                              )),
-                          TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => register()));
-                              },
-                              child: Text(
-                                "Sign Up",
-                              )),
-                        ],
-                      ))
-                ]else...[
-                   TextButton(
-                        onPressed: () {
-                          print("Log Out");
-                          FirebaseAuth.instance.signOut();
-                          Navigator.pushNamed(context, MyRoute.home);
-                        },
-                        child: Text(
-                          "LogOut",
-                        )),
+                      child: Row(
+                    children: [
+                      TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => login()));
+                          },
+                          child: Text(
+                            "Login",
+                          )),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => register()));
+                          },
+                          child: Text(
+                            "Sign Up",
+                          )),
+                    ],
+                  ))
+                ] else ...[
+                  TextButton(
+                      onPressed: () {
+                        print("Log Out");
+                        FirebaseAuth.instance.signOut();
+                        Navigator.pushNamed(context, MyRoute.home);
+                      },
+                      child: Text(
+                        "Log Out",
+                      )),
                 ],
-                         
                 Builder(
                     builder: (context) => IconButton(
                         onPressed: () {
@@ -825,29 +824,25 @@ class test extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-         child: Row(
-         children: [
-           TextButton(
-               onPressed: () {
-                 Navigator.push(
-                     context,
-                     MaterialPageRoute(
-                         builder: (context) => login()));
-               },
-               child: Text(
-                 "Login",
-               )),
-           TextButton(
-               onPressed: () {
-                 Navigator.push(
-                     context,
-                     MaterialPageRoute(
-                         builder: (context) => register()));
-               },
-               child: Text(
-                 "Sign Up",
-               )),
-         ],
-       ));
+        child: Row(
+      children: [
+        TextButton(
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => login()));
+            },
+            child: Text(
+              "Login",
+            )),
+        TextButton(
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => register()));
+            },
+            child: Text(
+              "Sign Up",
+            )),
+      ],
+    ));
   }
 }

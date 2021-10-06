@@ -16,6 +16,19 @@ class login extends StatefulWidget {
   _loginState createState() => _loginState();
 }
 
+dialogBox(BuildContext context, status, text) {
+  return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(status,
+              style: TextStyle(
+                  color: status == "Error" ? Colors.redAccent : Colors.green)),
+          content: Text(text),
+        );
+      });
+}
+
 // ignore: camel_case_types
 class _loginState extends State<login> {
   void initState() {
@@ -43,32 +56,14 @@ class _loginState extends State<login> {
           email: email, password: password);
       Navigator.push(context, MaterialPageRoute(builder: (context) => home()));
       print(userCredential);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        backgroundColor: Colors.blueAccent,
-        content: Text(
-          "Login successful",
-          style: TextStyle(fontSize: 20.0),
-        ),
-      ));
+      dialogBox(context, "Success", "Login Successful!");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for Given Email');
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          backgroundColor: Colors.redAccent,
-          content: Text(
-            "User Not Found",
-            style: TextStyle(fontSize: 20.0),
-          ),
-        ));
+        dialogBox(context, "Error", "Emial Is InValid!");
       } else if (e.code == 'wrong-password') {
         print('Wrong Password');
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          backgroundColor: Colors.redAccent,
-          content: Text(
-            "wrong Password",
-            style: TextStyle(fontSize: 20.0),
-          ),
-        ));
+        dialogBox(context, "Error", "Wrong Password");
       }
     }
   }
@@ -139,14 +134,14 @@ class _loginState extends State<login> {
                                 });
                               },
                               decoration: InputDecoration(
-                                  labelText: "Email or Phone",
-                                  hintText: "Email or Phone",
+                                  labelText: "Email",
+                                  hintText: "Email",
                                   prefixIcon: Padding(
                                       padding: EdgeInsets.all(0),
                                       child: Icon(Icons.email))),
                               validator: MultiValidator([
                                 RequiredValidator(
-                                    errorText: "Please enter your Email/Phone"),
+                                    errorText: "Please enter your Email"),
                                 EmailValidator(
                                     errorText: "Input Should be Email")
                               ])),

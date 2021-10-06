@@ -1,7 +1,9 @@
 // ignore: invalid_language_version_override
 //@dart=2.9;
 import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:tourmate1/auth.dart';
 import 'home.dart';
 import 'tearm_and_conditions.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -37,7 +39,7 @@ class _registerState extends State<register> {
   //  //_updateUser(user);
   //   }
 
-  //final Customer uid = Customer(uid: '');
+  final AuthService _auth = AuthService();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   final auth = FirebaseAuth.instance;
   final emailController = TextEditingController();
@@ -102,6 +104,7 @@ class _registerState extends State<register> {
                       TextFormField(
                           controller: nameController,
                           keyboardType: TextInputType.text,
+                          textCapitalization: TextCapitalization.sentences,
                           onChanged: (value) {
                             setState(() {
                               name = value;
@@ -114,7 +117,8 @@ class _registerState extends State<register> {
                                   padding: EdgeInsets.all(0),
                                   child: Icon(Icons.person))),
                           validator: MultiValidator([
-                            RequiredValidator(errorText: "required"),
+                            RequiredValidator(
+                                errorText: "Please Enter your name!"),
                           ])),
                       SizedBox(
                         height: 20,
@@ -128,13 +132,14 @@ class _registerState extends State<register> {
                             });
                           },
                           decoration: InputDecoration(
-                              labelText: "Email or Phone NO",
-                              hintText: "Enter Your Email or Phone NO",
+                              labelText: "Email",
+                              hintText: "Enter Your Email",
                               prefixIcon: Padding(
                                   padding: EdgeInsets.all(0),
                                   child: Icon(Icons.email))),
                           validator: MultiValidator([
-                            RequiredValidator(errorText: "required"),
+                            RequiredValidator(
+                                errorText: "Please Enter your Email"),
                             EmailValidator(errorText: "Input Should be Email")
                           ])),
                       SizedBox(
@@ -191,6 +196,7 @@ class _registerState extends State<register> {
                       TextFormField(
                         controller: addressController,
                         keyboardType: TextInputType.streetAddress,
+                        textCapitalization: TextCapitalization.sentences,
                         decoration: InputDecoration(
                             labelText: "Address",
                             hintText: "Address",
@@ -201,7 +207,7 @@ class _registerState extends State<register> {
                           });
                         },
                         validator: (val) => val!.length < 10
-                            ? " Should be Complet Address"
+                            ? "Address Should be Complete"
                             : null,
                       ),
                       SizedBox(
@@ -225,26 +231,6 @@ class _registerState extends State<register> {
                       SizedBox(
                         height: 20,
                       ),
-
-                      // CheckboxListTile(
-                      //   value: isChecked,
-                      //   onChanged: (bool? value) {
-                      //     setState(() {
-                      //       isChecked = value!;
-                      //     });
-                      //     // ignore: unused_label
-                      //     validator:
-                      //     (value) {
-                      //       if (!isChecked != true) {
-                      //         return 'You need to accept terms';
-                      //       } else {
-                      //         return null;
-                      //       }
-                      //     };
-                      //   },
-                      //   title: Text("Terms and Conditions"),
-                      //   controlAffinity: ListTileControlAffinity.leading,
-                      // ),
                       Row(
                         children: [
                           Checkbox(
@@ -288,6 +274,28 @@ class _registerState extends State<register> {
                             }
                             if (formkey.currentState!.validate() &&
                                 value == true) {
+                              dynamic result =
+                                  await _auth.RegisterWithEmailAndPassword(
+                                          email, password, context)
+                                      .then((value) async {
+                                User? user = FirebaseAuth.instance.currentUser;
+                                await FirebaseFirestore.instance
+                                    .collection("customer")
+                                    .doc(user!.uid)
+                                    .set({
+                                  'name': name,
+                                  'email': email,
+                                  'password': password,
+                                  'address': address,
+                                  'Contact': contact,
+                                  'uid': user.uid,
+                                  'image': "",
+                                  //'uid': uid
+                                });
+                                Navigator.pushNamed(context, '/login');
+                                //.doc(user.uid)
+                                // .set({});
+                              });
                               //registeration();
                             }
                           },

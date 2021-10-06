@@ -32,35 +32,39 @@ class AuthService {
           email: email, password: password);
 
       //Navigator.pushNamed(context, '/login');
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        backgroundColor: Colors.blueAccent,
-        content: Text(
-          "Registaration is Successful",
-          style: TextStyle(fontSize: 20.0),
-        ),
-      ));
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text("Success", style: TextStyle(color: Colors.green)),
+              content: Text("Registration Successful!"),
+            );
+          });
       return result;
       //UserCredential user = result;
       //return _userFromFirebaseUser(user);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('Provided Password is too weak');
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          backgroundColor: Colors.redAccent,
-          content: Text(
-            "Provided Password is Too Weak",
-            style: TextStyle(fontSize: 20.0),
-          ),
-        ));
+        showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: Text("Error", style: TextStyle(color: Colors.redAccent)),
+                content: Text("Provided Password is too weak"),
+              );
+            });
       } else if (e.code == 'email-already-in-use') {
         print("Account Already in Use");
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          backgroundColor: Colors.redAccent,
-          content: Text(
-            "Acoount Already in use",
-            style: TextStyle(fontSize: 20.0),
-          ),
-        ));
+        showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: Text("Error", style: TextStyle(color: Colors.redAccent)),
+                content:
+                    Text("Email Already Registered Please Try another Email."),
+              );
+            });
       }
     }
   }

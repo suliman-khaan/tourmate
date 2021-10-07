@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // Otherwise, show app
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            // home: tourMate(),
+            home: TeamMembers(),
             themeMode: ThemeMode.light,
             theme: ThemeData(
                 primaryIconTheme: IconThemeData(color: Colors.black),
@@ -89,6 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
             darkTheme: ThemeData(
               brightness: Brightness.dark,
             ),
+            /*
             initialRoute: MyRoute.home,
             routes: {
               "/": (context) => home(),
@@ -109,6 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
               MyRoute.aboutUs: (context) => AboutUS(),
               MyRoute.ourTeam: (context) => TeamMembers()
             },
+            */
           );
         },
       ),

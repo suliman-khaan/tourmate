@@ -1,4 +1,5 @@
 import 'package:dotted_line/dotted_line.dart';
+import 'package:tourmate1/teamMembersClass.dart';
 import 'footer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,9 +11,17 @@ class TeamMembers extends StatefulWidget {
 }
 
 class _TeamMembersState extends State<TeamMembers> {
-  List<dynamic> teamList = [
-    {"name": "Suliman Khan"},
-    {"name": "Suliman Sayed"}
+  List<Quotes> teamList = [
+    Quotes(
+        name: "Fahim Ullah",
+        email: "fahimullah@gmail.com",
+        image: 'assets/images/fahim.jpg',
+        rank: 'CEO',
+        contact: '03469794125',
+        description:
+            'What Is Chief Executive Officer (CEO)?A chief executive officer (CEO) is the highest-ranking executive in a company, whose primary responsibilities include making major corporate decisions, managing the overall operations and resources of a company, acting as the main point of communication between the board of directors (the board) and corporate operations and being the public face of the company. A CEO is elected by the board and its shareholders.',
+        facebook: 'Fahimullahofficial',
+         dashes: 40),
   ];
   @override
   Widget build(BuildContext context) {
@@ -39,9 +48,201 @@ class _TeamMembersState extends State<TeamMembers> {
               style: GoogleFonts.roboto(color: Colors.black, fontSize: 16),
             )),
         body: SingleChildScrollView(
-          child: Container(
-              decoration: BoxDecoration(color: Colors.white),
-              padding: EdgeInsets.all(8),
+            child: Container(
+                decoration: BoxDecoration(color: Colors.white),
+                padding: EdgeInsets.all(8),
+                child: Column(
+                  children: teamList.map((e) {
+                    return Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                      elevation: 5,
+                      color: Colors.grey[200],
+                      clipBehavior: Clip.antiAlias,
+                      child: Container(
+                        padding: EdgeInsets.all(8),
+                        child: Column(
+                          children: [
+                            Container(
+                              width: 200,
+                              height: 200,
+                              child: CircleAvatar(
+                                backgroundImage: AssetImage(e.image),
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(top: 15),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    e.name,
+                                    style: TextStyle(
+                                        fontSize: 18.0,
+                                        color: Colors.blue,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    "CEO",
+                                    style: TextStyle(
+                                        // decoration: TextDecoration.underline,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold
+
+                                        ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(top: 5),
+                                    child: DottedLine(
+                                      direction: Axis.horizontal,
+                                      dashLength: 10,
+                                      lineLength: e.dashes,
+                                      dashColor: Colors.black,
+                                      lineThickness: 4,
+                                      dashGapRadius: 10,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Container(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(e.description),
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.only(left: 8),
+                                    child: Column(
+                                        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              ElevatedButton(
+                                                onPressed: () {},
+                                                child: Icon(
+                                                    Icons.call_end_sharp,
+                                                    size: 24,
+                                                    color: Colors.green),
+                                                style: ButtonStyle(
+                                                  shape:
+                                                      MaterialStateProperty.all(
+                                                          CircleBorder()),
+                                                  padding:
+                                                      MaterialStateProperty.all(
+                                                          EdgeInsets.all(8)),
+                                                  backgroundColor:
+                                                      MaterialStateProperty.all(
+                                                          Colors
+                                                              .white), // <-- Button color
+                                                  overlayColor:
+                                                      MaterialStateProperty
+                                                          .resolveWith<Color?>(
+                                                              (states) {
+                                                    if (states.contains(
+                                                        MaterialState.pressed))
+                                                      return Colors
+                                                          .red; // <-- Splash color
+                                                  }),
+                                                ),
+                                              ),
+                                              SizedBox(width: 15),
+                                              Text(e.contact,
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                            ],
+                                          ),
+                                          SizedBox(height: 5),
+                                          Row(
+                                            children: [
+                                              ElevatedButton(
+                                                onPressed: () {},
+                                                child: Icon(
+                                                  Icons.mail,
+                                                  size: 18,
+                                                  color: Colors.red,
+                                                ),
+                                                style: ButtonStyle(
+                                                  shape:
+                                                      MaterialStateProperty.all(
+                                                          CircleBorder()),
+                                                  padding:
+                                                      MaterialStateProperty.all(
+                                                          EdgeInsets.all(8)),
+                                                  backgroundColor:
+                                                      MaterialStateProperty.all(
+                                                          Colors
+                                                              .white), // <-- Button color
+                                                  overlayColor:
+                                                      MaterialStateProperty
+                                                          .resolveWith<Color?>(
+                                                              (states) {
+                                                    if (states.contains(
+                                                        MaterialState.pressed))
+                                                      return Colors
+                                                          .red; // <-- Splash color
+                                                  }),
+                                                ),
+                                              ),
+                                              SizedBox(width: 15),
+                                              Text(e.email,
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                            ],
+                                          ),
+                                          SizedBox(height: 5),
+                                          Row(
+                                            children: [
+                                              ElevatedButton(
+                                                onPressed: () {},
+                                                child: Icon(Icons.facebook,
+                                                    size: 24,
+                                                    color: Colors.blue[900]),
+                                                style: ButtonStyle(
+                                                  shape:
+                                                      MaterialStateProperty.all(
+                                                          CircleBorder()),
+                                                  padding:
+                                                      MaterialStateProperty.all(
+                                                          EdgeInsets.all(8)),
+                                                  backgroundColor:
+                                                      MaterialStateProperty.all(
+                                                          Colors
+                                                              .white), // <-- Button color
+                                                  overlayColor:
+                                                      MaterialStateProperty
+                                                          .resolveWith<Color?>(
+                                                              (states) {
+                                                    if (states.contains(
+                                                        MaterialState.pressed))
+                                                      return Colors
+                                                          .red; // <-- Splash color
+                                                  }),
+                                                ),
+                                              ),
+                                              SizedBox(width: 15),
+                                              Text(e.facebook,
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                            ],
+                                          )
+                                        ]),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                )
+                /*          
               child: Column(children: [
                
                 Card(
@@ -220,7 +421,9 @@ class _TeamMembersState extends State<TeamMembers> {
                       ],
                     ),
                   ),
-                )).toList(),
+                )]),
+                
+                */
                 //   Card(
                 //     shape: RoundedRectangleBorder(
                 //         borderRadius: BorderRadius.circular(8)),
@@ -942,8 +1145,7 @@ class _TeamMembersState extends State<TeamMembers> {
                 //       ),
                 //     ),
                 //   ),
-              ])),
-        ),
+                )),
       ),
     );
 

@@ -50,8 +50,10 @@ class _homeState extends State<home> {
     });
   }
 
-  final Stream<QuerySnapshot> districtStream =
-      FirebaseFirestore.instance.collection("District").snapshots();
+  final Stream<QuerySnapshot> districtStream = FirebaseFirestore.instance
+      .collection("District")
+      .where("district", isEqualTo: true)
+      .snapshots();
   final Stream<QuerySnapshot> hotelStream =
       FirebaseFirestore.instance.collection("hotel").snapshots();
   final Stream<QuerySnapshot> attractiveStream = FirebaseFirestore.instance

@@ -40,7 +40,7 @@ class _MyDrawerState extends State<MyDrawer> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text("Hello Sir Please Logged in"),
+            title: Text("Hello Sir Please Log In"),
             content: TextButton(
                 onPressed: () {
                   Navigator.push(context,
@@ -159,11 +159,13 @@ class _MyDrawerState extends State<MyDrawer> {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          title: Text("Hello Sir Please Logged in"),
+                          title: Text("Hello Sir Please Log in"),
                           content: TextButton(
                               onPressed: () {
-                                Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => login()));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => login()));
                               },
                               child: Text("Sign In")),
                         );

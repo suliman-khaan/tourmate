@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tourmate1/Register.dart';
 import 'package:tourmate1/login.dart';
 import 'drawer.dart';
-import 'routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -78,7 +77,6 @@ class _HotelViewState extends State<HotelView> {
   @override
   Widget build(BuildContext context) {
     final Stream<QuerySnapshot> _stream;
-    var login = true;
     // var index = widget.index;
     switch (widget.index) {
       case 1:

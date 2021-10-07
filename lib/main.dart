@@ -60,7 +60,21 @@ class _MyHomePageState extends State<MyHomePage> {
           }
           //show something whilst waiting for initialization to complete
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return Material(
+                child: Scaffold(
+                    body: SafeArea(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(),
+                    SizedBox(height: 5),
+                    Text("Loading",
+                        style: TextStyle(color: Colors.blue, fontSize: 16.0))
+                  ],
+                ),
+              ),
+            )));
           }
           // Otherwise, show app
           return MaterialApp(
@@ -75,9 +89,9 @@ class _MyHomePageState extends State<MyHomePage> {
             darkTheme: ThemeData(
               brightness: Brightness.dark,
             ),
-            initialRoute: MyRoute.tourMate,
+            initialRoute: MyRoute.home,
             routes: {
-              "/": (context) => tourMate(),
+              "/": (context) => home(),
               MyRoute.review: (context) => Review(),
               MyRoute.login: (context) => login(),
               MyRoute.signup: (context) => register(),

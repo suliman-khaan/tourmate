@@ -40,7 +40,7 @@ class _homeState extends State<home> {
     super.initState();
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user == null) {
-        print('User is signed out!');
+        print('User is Currently signed out!');
         userId = "";
       } else {
         final User? user = FirebaseAuth.instance.currentUser;

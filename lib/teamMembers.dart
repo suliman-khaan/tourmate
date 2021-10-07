@@ -43,7 +43,7 @@ class _TeamMembersState extends State<TeamMembers> {
               decoration: BoxDecoration(color: Colors.white),
               padding: EdgeInsets.all(8),
               child: Column(children: [
-               
+               ListView.builder(itemBuilder: (context,int index)),
                 Card(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)),

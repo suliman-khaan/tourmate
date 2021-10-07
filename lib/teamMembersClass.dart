@@ -1,4 +1,5 @@
 class Quotes{
+  
   String name;
   String email;
   String image;

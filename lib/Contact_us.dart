@@ -136,64 +136,67 @@ class _ContactUsState extends State<ContactUs> {
                   "Contact Us",
                   style: GoogleFonts.roboto(color: Colors.black, fontSize: 16),
                 )),
-            body: Container(
-              margin: EdgeInsets.fromLTRB(40, 20, 40, 0),
-              child: Form(
-                  key: _formKey,
-                  child: Column(children: [
-                    _fullName(),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    _email(),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    _message(),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      // ignore: deprecated_member_use
-                      child: MaterialButton(
-                        minWidth: double.infinity,
-                        color: Colors.blue,
-                        child: Text(
-                          "Submit",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        onPressed: () async {
-                          // _formKey.currentState!.save();
-                          if (_formKey.currentState!.validate()) {
-                            await users.add({
-                              "name": name,
-                              "email": email,
-                              "message": message,
-                            }).then((value) =>
-                                print("user added" + value.toString()));
-
-                            // ignore: deprecated_member_use
-                            //   Scaffold.of(context)
-                            // .showSnackBar(SnackBar(content: Text('Data is in processing.')));
-                            // _formKey.currentState!.reset();
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              backgroundColor: Colors.blueAccent,
-                              content: Text(
-                                "Thank You for Your Feedback, Have a great time",
-                                style: TextStyle(fontSize: 20.0),
-                              ),
-                            ));
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => home()));
-                            print("your Data added Successfuly");
-                            // print(name);
-                          }
-                        },
+            body: SingleChildScrollView(
+              child: Container(
+                margin: EdgeInsets.fromLTRB(40, 20, 40, 0),
+                child: Form(
+                    key: _formKey,
+                    child: Column(children: [
+                      _fullName(),
+                      SizedBox(
+                        height: 20,
                       ),
-                    )
-                  ])),
+                      _email(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      _message(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        // ignore: deprecated_member_use
+                        child: MaterialButton(
+                          minWidth: double.infinity,
+                          color: Colors.blue,
+                          child: Text(
+                            "Submit",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          onPressed: () async {
+                            // _formKey.currentState!.save();
+                            if (_formKey.currentState!.validate()) {
+                              await users.add({
+                                "name": name,
+                                "email": email,
+                                "message": message,
+                              }).then((value) =>
+                                  print("user added" + value.toString()));
+
+                              // ignore: deprecated_member_use
+                              //   Scaffold.of(context)
+                              // .showSnackBar(SnackBar(content: Text('Data is in processing.')));
+                              // _formKey.currentState!.reset();
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                backgroundColor: Colors.blueAccent,
+                                content: Text(
+                                  "Thank You for Your Feedback, Have a great time",
+                                  style: TextStyle(fontSize: 20.0),
+                                ),
+                              ));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => home()));
+                              print("your Data added Successfuly");
+                              // print(name);
+                            }
+                          },
+                        ),
+                      )
+                    ])),
+              ),
             ),
           ),
         ),

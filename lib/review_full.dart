@@ -14,7 +14,7 @@ class Review extends StatefulWidget {
 class _ReviewState extends State<Review> {
   final FirebaseAuth auth = FirebaseAuth.instance;
   String userId = "";
-
+  final formKey = GlobalKey<FormState>();
   var user;
   @override
   void initState() {
@@ -30,7 +30,6 @@ class _ReviewState extends State<Review> {
     });
   }
 
-  final formKey = GlobalKey<FormState>();
   final TextEditingController commentController = TextEditingController();
   createAlertDialog(BuildContext context) {
     return showDialog(
@@ -231,7 +230,8 @@ class _ReviewState extends State<Review> {
                               return CommentBox(
                                 userImage:
                                     "https://firebasestorage.googleapis.com/v0/b/fir-prictice-81c0f.appspot.com/o/profile.png?alt=media&token=8fdf702b-8f5a-4a12-b46a-091758812a5d",
-                                child: commentChild(reviewList),
+                                child: commentChild(
+                                    reviewList), //display review of cusotmer....
                                 labelText: 'Write a breif review...',
                                 withBorder: false,
                                 errorText: 'Review cannot be blank',

@@ -1,5 +1,4 @@
 # Miscellaneous
-.vscode
 *.class
 *.log
 *.pyc
@@ -9,7 +8,6 @@
 .buildlog/
 .history
 .svn/
-/jspractice/
 
 # IntelliJ related
 *.iml

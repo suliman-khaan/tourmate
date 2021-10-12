@@ -71,9 +71,6 @@ class _HotelViewState extends State<HotelView> {
         });
   }
 
-  dynamic _lineLength = 3;
-
-  var bool = false;
   @override
   Widget build(BuildContext context) {
     final Stream<QuerySnapshot> _stream;
@@ -145,7 +142,7 @@ class _HotelViewState extends State<HotelView> {
               ),
               body: SingleChildScrollView(
                 child: Container(
-                  padding: EdgeInsets.fromLTRB(8, 0, 8, 8),
+                  // padding: EdgeInsets.fromLTRB(8, 0, 8, 8),
                   child: Column(
                     children: [
                       Container(
@@ -160,176 +157,158 @@ class _HotelViewState extends State<HotelView> {
                                     storeHotel[0]['image'],
                                   ),
                                 )),
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Title(
-                                  color: Colors.black,
-                                  child: Text(storeHotel[0]['name'],
-                                      style: GoogleFonts.roboto(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold))),
-                            ),
-                            Text(
-                              storeHotel[0]['description'],
 
-                              // overflow: bool?TextOverflow.visible: TextOverflow.ellipsis,
-                              maxLines: _lineLength,
-                            ),
-                            // BuildText()
-                            SizedBox(
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: InkWell(
-                                  child: bool
-                                      ? Text(
-                                          "Read Less..",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold),
-                                        )
-                                      : Text("Read More..",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold)),
-                                  onTap: () {
-                                    setState(() {
-                                      bool = !bool;
-                                    });
-                                    if (bool == true) {
-                                      _lineLength = null;
-                                    } else {
-                                      _lineLength = 3;
-                                    }
-                                  },
-                                ),
-                              ),
-                            ),
+                            //
                             Padding(
-                              padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
-                              child: Align(
-                                alignment: Alignment.centerLeft,
-                                // ignore: deprecated_member_use
-                                child: RaisedButton.icon(
-                                    color: Colors.blue,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(5.0)),
-                                    padding: EdgeInsets.fromLTRB(10, 5, 20, 5),
-                                    onPressed: () {},
-                                    icon: Icon(
-                                      Icons.place_outlined,
-                                      color: Colors.white,
-                                    ),
-                                    label: Text(
-                                      "Get Direction",
-                                      style: TextStyle(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(children: [
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Title(
+                                      color: Colors.black,
+                                      child: Text(storeHotel[0]['name'],
+                                          style: GoogleFonts.roboto(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold))),
+                                ),
+                                Text(
+                                  storeHotel[0]['description'],
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    // ignore: deprecated_member_use
+                                    child: RaisedButton.icon(
+                                        color: Colors.blue,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5.0)),
+                                        padding:
+                                            EdgeInsets.fromLTRB(10, 5, 20, 5),
+                                        onPressed: () {},
+                                        icon: Icon(
+                                          Icons.place_outlined,
                                           color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold),
-                                    )),
-                              ),
-                            ),
-
-                            // Facilities Container
-
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Container(
-                                width: MediaQuery.of(context).size.width,
-                                child: Column(children: [
-                                  Align(
-                                    alignment: Alignment.topLeft,
-                                    child: Text(
-                                      "Facilities",
-                                      style: TextStyle(
-                                          fontSize: 22,
-                                          color: Colors.blue,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                        ),
+                                        label: Text(
+                                          "Get Direction",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold),
+                                        )),
                                   ),
-                                  // New
-                                  widget.index == 1
-                                      ? HotelFacilites(id: storeHotel[0]['ID'])
-                                      : widget.index == 2
-                                          ? ResturentFacilites(
-                                              id: storeHotel[0]['ID'])
-                                          : ParkFacilites(
-                                              id: storeHotel[0]['ID']),
-                                ]),
-                              ),
-                            ),
-                            //Contact Button
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Container(
-                                margin: EdgeInsets.fromLTRB(10, 20, 10, 20),
-                                // decoration: BoxDecoration(
-                                //   border: Border.all(color: Colors.orange),
-                                // ),
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      child: Align(
+                                ),
+
+                                // Facilities Container
+
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    child: Column(children: [
+                                      Align(
                                         alignment: Alignment.topLeft,
                                         child: Text(
-                                          "Contact Us",
+                                          "Facilities",
                                           style: TextStyle(
                                               fontSize: 22,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.blue),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(height: 10),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        // Icon(Icons.call),
-                                        Text(
-                                          //if login is true then show number
-                                          FirebaseAuth.instance.currentUser !=
-                                                  null
-                                              ? storeHotel[0]['contact_no']
-                                              : ("Phone number"),
-                                          style: TextStyle(
-                                              fontSize: 18,
+                                              color: Colors.blue,
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        // ignore: deprecated_member_use
-                                        RaisedButton.icon(
-                                          onPressed: () async {
-                                            FirebaseAuth.instance.currentUser !=
-                                                    null
-                                                ? FlutterPhoneDirectCaller
-                                                    .callNumber(storeHotel[0]
-                                                            ['contact_no']
-                                                        .toString())
-                                                : createAlertDialog(context);
-                                          },
-                                          icon: Icon(Icons.call,
-                                              size: 15, color: Colors.green),
-                                          color: Colors.white,
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.zero,
-                                              side: BorderSide(
-                                                  color: Colors.green)),
-                                          label: Text(
-                                            "Call Us",
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                color: Colors.green),
-                                          ),
-                                        )
-                                        // RaisedButton.icon(
-                                        //   onPressed: (){},
-                                        //   label: Text("Call Us"),
-                                        //   icon: Icon(Icons.call),
-                                        //   )
-                                      ],
-                                    )
-                                  ],
+                                      ),
+                                      // New
+                                      widget.index == 1
+                                          ? HotelFacilites(
+                                              id: storeHotel[0]['ID'])
+                                          : widget.index == 2
+                                              ? ResturentFacilites(
+                                                  id: storeHotel[0]['ID'])
+                                              : ParkFacilites(
+                                                  id: storeHotel[0]['ID']),
+                                    ]),
+                                  ),
                                 ),
-                              ),
-                            )
+                                //Contact Button
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Container(
+                                    margin: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                                    // decoration: BoxDecoration(
+                                    //   border: Border.all(color: Colors.orange),
+                                    // ),
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          child: Align(
+                                            alignment: Alignment.topLeft,
+                                            child: Text(
+                                              "Contact Us",
+                                              style: TextStyle(
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.blue),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(height: 10),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            // Icon(Icons.call),
+                                            Text(
+                                              //if login is true then show number
+                                              FirebaseAuth.instance.currentUser !=
+                                                      null
+                                                  ? storeHotel[0]['contact_no']
+                                                  : ("Phone number"),
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            // ignore: deprecated_member_use
+                                            RaisedButton.icon(
+                                              onPressed: () async {
+                                                FirebaseAuth.instance
+                                                            .currentUser !=
+                                                        null
+                                                    ? FlutterPhoneDirectCaller
+                                                        .callNumber(storeHotel[0]
+                                                                ['contact_no']
+                                                            .toString())
+                                                    : createAlertDialog(context);
+                                              },
+                                              icon: Icon(Icons.call,
+                                                  size: 15, color: Colors.green),
+                                              color: Colors.white,
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.zero,
+                                                  side: BorderSide(
+                                                      color: Colors.green)),
+                                              label: Text(
+                                                "Call Us",
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    color: Colors.green),
+                                              ),
+                                            )
+                                            // RaisedButton.icon(
+                                            //   onPressed: (){},
+                                            //   label: Text("Call Us"),
+                                            //   icon: Icon(Icons.call),
+                                            //   )
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ]),
+                            ),
+
+                            //
                           ],
                         ),
 

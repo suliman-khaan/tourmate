@@ -234,7 +234,7 @@ class _ReviewState extends State<Review> {
                                 child: commentChild(
                                     reviewList), //display review of cusotmer....
                                 labelText: 'Write a breif review...',
-                                withBorder: false,
+                                withBorder: true,
                                 errorText: 'Review cannot be blank',
                                 sendButtonMethod: () {
                                   if (formKey.currentState!.validate()) {

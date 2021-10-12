@@ -228,8 +228,9 @@ class _ReviewState extends State<Review> {
                                 reviewDisplayList.add(dataList);
                               }).toList();
                               return CommentBox(
-                                userImage:
-                                    "https://firebasestorage.googleapis.com/v0/b/fir-prictice-81c0f.appspot.com/o/profile.png?alt=media&token=8fdf702b-8f5a-4a12-b46a-091758812a5d",
+                                userImage: reviewDisplayList[0]['image'] != ''
+                                    ? reviewDisplayList[0]['image']
+                                    : "https://firebasestorage.googleapis.com/v0/b/fir-prictice-81c0f.appspot.com/o/profile.png?alt=media&token=8fdf702b-8f5a-4a12-b46a-091758812a5d",
                                 child: commentChild(
                                     reviewList), //display review of cusotmer....
                                 labelText: 'Write a breif review...',
@@ -241,8 +242,10 @@ class _ReviewState extends State<Review> {
                                     setState(() {
                                       Map<String, dynamic> value = {
                                         'name': reviewDisplayList[0]['name'],
-                                        'pic':
-                                            'https://firebasestorage.googleapis.com/v0/b/fir-prictice-81c0f.appspot.com/o/profile.png?alt=media&token=8fdf702b-8f5a-4a12-b46a-091758812a5d',
+                                        'pic': reviewDisplayList[0]['image'] !=
+                                                ''
+                                            ? reviewDisplayList[0]['image']
+                                            : "https://firebasestorage.googleapis.com/v0/b/fir-prictice-81c0f.appspot.com/o/profile.png?alt=media&token=8fdf702b-8f5a-4a12-b46a-091758812a5d",
                                         'message': commentController.text
                                       };
                                       FirebaseFirestore.instance

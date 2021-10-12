@@ -58,9 +58,6 @@ dependencies:
   flutter_staggered_animations: ^1.0.0
   slide_to_act: ^2.0.1
 
-  
-  
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

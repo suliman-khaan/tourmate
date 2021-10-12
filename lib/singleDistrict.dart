@@ -305,7 +305,7 @@ class _singleDistrictState extends State<singleDistrict>
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5)),
                           color: Colors.blue,
-                          padding: EdgeInsets.only(left: 5.0),
+                          padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [

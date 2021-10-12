@@ -142,7 +142,6 @@ class _HotelViewState extends State<HotelView> {
               ),
               body: SingleChildScrollView(
                 child: Container(
-                  // padding: EdgeInsets.fromLTRB(8, 0, 8, 8),
                   child: Column(
                     children: [
                       Container(
@@ -157,8 +156,6 @@ class _HotelViewState extends State<HotelView> {
                                     storeHotel[0]['image'],
                                   ),
                                 )),
-
-                            //
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(children: [
@@ -185,7 +182,7 @@ class _HotelViewState extends State<HotelView> {
                                             borderRadius:
                                                 BorderRadius.circular(5.0)),
                                         padding:
-                                            EdgeInsets.fromLTRB(10, 5, 20, 5),
+                                            EdgeInsets.fromLTRB(10, 5, 10, 5),
                                         onPressed: () {},
                                         icon: Icon(
                                           Icons.place_outlined,
@@ -260,7 +257,8 @@ class _HotelViewState extends State<HotelView> {
                                             // Icon(Icons.call),
                                             Text(
                                               //if login is true then show number
-                                              FirebaseAuth.instance.currentUser !=
+                                              FirebaseAuth.instance
+                                                          .currentUser !=
                                                       null
                                                   ? storeHotel[0]['contact_no']
                                                   : ("Phone number"),
@@ -275,16 +273,19 @@ class _HotelViewState extends State<HotelView> {
                                                             .currentUser !=
                                                         null
                                                     ? FlutterPhoneDirectCaller
-                                                        .callNumber(storeHotel[0]
-                                                                ['contact_no']
+                                                        .callNumber(storeHotel[
+                                                                0]['contact_no']
                                                             .toString())
-                                                    : createAlertDialog(context);
+                                                    : createAlertDialog(
+                                                        context);
                                               },
                                               icon: Icon(Icons.call,
-                                                  size: 15, color: Colors.green),
+                                                  size: 15,
+                                                  color: Colors.green),
                                               color: Colors.white,
                                               shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.zero,
+                                                  borderRadius:
+                                                      BorderRadius.zero,
                                                   side: BorderSide(
                                                       color: Colors.green)),
                                               label: Text(

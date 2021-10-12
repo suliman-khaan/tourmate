@@ -93,7 +93,6 @@ class _ViewDistinationState extends State<ViewDistination> {
                 body: SingleChildScrollView(
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    margin: EdgeInsets.all(10),
                     // decoration: BoxDecoration(border: Border.all(color: Colors.red)),
                     child: Column(
                       children: [
@@ -110,6 +109,7 @@ class _ViewDistinationState extends State<ViewDistination> {
                           height: 20,
                         ),
                         Container(
+                          margin: EdgeInsets.symmetric(horizontal: 10),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -178,14 +178,18 @@ class _ViewDistinationState extends State<ViewDistination> {
                               return Container(width: 0, height: 0);
                             } else {
                               return Container(
-                                  margin: EdgeInsets.only(bottom: 20),
+                                  margin: EdgeInsets.symmetric(horizontal: 10),
                                   child: Column(
                                     children: [
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text("Restaurants"),
+                                          Text("Restaurants",
+                                              style: GoogleFonts.roboto(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 18,
+                                              )),
                                           TextButton(
                                               onPressed: () {
                                                 Navigator.push(
@@ -301,6 +305,7 @@ class _ViewDistinationState extends State<ViewDistination> {
                             }
                           },
                         ),
+                        SizedBox(height: 10),
                         // Hotels
                         StreamBuilder(
                           stream: viewHotels,
@@ -329,7 +334,7 @@ class _ViewDistinationState extends State<ViewDistination> {
                               );
                             } else {
                               return Container(
-                                  margin: EdgeInsets.only(bottom: 20),
+                                  margin: EdgeInsets.symmetric(horizontal: 10),
                                   child: Column(
                                     children: [
                                       //
@@ -337,7 +342,11 @@ class _ViewDistinationState extends State<ViewDistination> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text("Hotels"),
+                                          Text("Hotels",
+                                              style: GoogleFonts.roboto(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 18,
+                                              )),
                                           TextButton(
                                               onPressed: () {
                                                 Navigator.push(
@@ -453,6 +462,7 @@ class _ViewDistinationState extends State<ViewDistination> {
                           },
                         ),
                         // Events
+                        SizedBox(height: 10),
                         StreamBuilder<QuerySnapshot>(
                           stream: viewEvents,
                           builder: (BuildContext context,
@@ -488,7 +498,11 @@ class _ViewDistinationState extends State<ViewDistination> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text("Events"),
+                                          Text("Events",
+                                              style: GoogleFonts.roboto(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 18,
+                                              )),
                                           TextButton(
                                               onPressed: () {
                                                 Navigator.push(
@@ -611,6 +625,7 @@ class _ViewDistinationState extends State<ViewDistination> {
                           },
                         ),
                         //  Entertainments
+                        SizedBox(height: 10),
                         StreamBuilder<QuerySnapshot>(
                           stream: viewEntertainments,
                           builder: (BuildContext context,
@@ -645,7 +660,11 @@ class _ViewDistinationState extends State<ViewDistination> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text("Entertainments"),
+                                      Text("Entertainments",
+                                          style: GoogleFonts.roboto(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 18,
+                                          )),
                                       TextButton(
                                           onPressed: () {
                                             Navigator.push(
@@ -764,6 +783,7 @@ class _ViewDistinationState extends State<ViewDistination> {
                           },
                         ),
                         // parks
+                        SizedBox(height: 10),
                         StreamBuilder<QuerySnapshot>(
                           stream: viewParks,
                           builder: (BuildContext context,
@@ -799,7 +819,11 @@ class _ViewDistinationState extends State<ViewDistination> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text("Parks"),
+                                          Text("Parks",
+                                              style: GoogleFonts.roboto(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 18,
+                                              )),
                                           TextButton(
                                               onPressed: () {
                                                 Navigator.push(

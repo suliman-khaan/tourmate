@@ -19,6 +19,7 @@ class _ReviewState extends State<Review> {
     Response response =
         await get(Uri.http('worldtimeapi.org', '/api/timezone/Asia/Karachi'));
     await (data = jsonDecode(response.body));
+    print(data['datetime'].substring(0, 10));
     return data['datetime'].substring(0, 10);
   }
 
@@ -147,7 +148,10 @@ class _ReviewState extends State<Review> {
                       borderRadius: new BorderRadius.all(Radius.circular(50))),
                   child: CircleAvatar(
                       radius: 50,
-                      backgroundImage: NetworkImage(data[i]['pic'])),
+                      backgroundImage: NetworkImage(data[i]['pic'] == '' ||
+                              data[i]['pic'] == null
+                          ? "https://firebasestorage.googleapis.com/v0/b/fir-prictice-81c0f.appspot.com/o/profile.png?alt=media&token=8fdf702b-8f5a-4a12-b46a-091758812a5d"
+                          : data[i]['pic'])),
                 ),
               ),
               title: Text(

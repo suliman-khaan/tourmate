@@ -5,6 +5,8 @@ import 'package:tourmate1/Register.dart';
 import 'package:tourmate1/login.dart';
 import 'footer.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'dart:convert';
 
 class Review extends StatefulWidget {
   @override
@@ -12,6 +14,14 @@ class Review extends StatefulWidget {
 }
 
 class _ReviewState extends State<Review> {
+  getData() async {
+    Map data;
+    Response response =
+        await get(Uri.http('worldtimeapi.org', '/api/timezone/Asia/Karachi'));
+    await (data = jsonDecode(response.body));
+    return data['datetime'].substring(0, 10);
+  }
+
   final FirebaseAuth auth = FirebaseAuth.instance;
   String userId = "";
   final formKey = GlobalKey<FormState>();
@@ -100,7 +110,10 @@ class _ReviewState extends State<Review> {
                       borderRadius: new BorderRadius.all(Radius.circular(50))),
                   child: CircleAvatar(
                       radius: 50,
-                      backgroundImage: NetworkImage(data[i]['pic'])),
+                      backgroundImage: NetworkImage(data[i]['pic'] == '' ||
+                              data[i]['pic'] == null
+                          ? "https://firebasestorage.googleapis.com/v0/b/fir-prictice-81c0f.appspot.com/o/profile.png?alt=media&token=8fdf702b-8f5a-4a12-b46a-091758812a5d"
+                          : data[i]['pic'])),
                 ),
               ),
               title: Text(
@@ -193,81 +206,90 @@ class _ReviewState extends State<Review> {
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
-        body: StreamBuilder(
-            stream: reviewStream,
-            builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: CircularProgressIndicator());
-              }
-              final List reviewList = [];
-              snapshot.data!.docs.map((DocumentSnapshot e) {
-                Map dataList = e.data() as Map<String, dynamic>;
-                reviewList.add(dataList);
-              }).toList();
-              final Stream<QuerySnapshot> reviewDisplayStream =
-                  FirebaseFirestore.instance
-                      .collection("customer")
-                      .where("uid", isEqualTo: userId)
-                      .snapshots();
-              return SafeArea(
-                child: Container(
-                    child: userId == ""
-                        ? logincommentChild(reviewList)
-                        : StreamBuilder(
-                            stream: reviewDisplayStream,
-                            builder: (context,
-                                AsyncSnapshot<QuerySnapshot> snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return Center(
-                                    child: CircularProgressIndicator());
-                              }
-                              final List reviewDisplayList = [];
-                              snapshot.data!.docs.map((DocumentSnapshot e) {
-                                Map dataList = e.data() as Map<String, dynamic>;
-                                reviewDisplayList.add(dataList);
-                              }).toList();
-                              return CommentBox(
-                                userImage: reviewDisplayList[0]['image'] != ''
-                                    ? reviewDisplayList[0]['image']
-                                    : "https://firebasestorage.googleapis.com/v0/b/fir-prictice-81c0f.appspot.com/o/profile.png?alt=media&token=8fdf702b-8f5a-4a12-b46a-091758812a5d",
-                                child: commentChild(
-                                    reviewList), //display review of cusotmer....
-                                labelText: 'Write a breif review...',
-                                withBorder: true,
-                                errorText: 'Review cannot be blank',
-                                sendButtonMethod: () {
-                                  if (formKey.currentState!.validate()) {
-                                    print(commentController.text);
-                                    setState(() {
-                                      Map<String, dynamic> value = {
-                                        'name': reviewDisplayList[0]['name'],
-                                        'pic': reviewDisplayList[0]['image'] !=
-                                                ''
-                                            ? reviewDisplayList[0]['image']
-                                            : "https://firebasestorage.googleapis.com/v0/b/fir-prictice-81c0f.appspot.com/o/profile.png?alt=media&token=8fdf702b-8f5a-4a12-b46a-091758812a5d",
-                                        'message': commentController.text
-                                      };
-                                      FirebaseFirestore.instance
-                                          .collection("Review")
-                                          .add(value);
-                                    });
-                                    commentController.clear();
-                                    FocusScope.of(context).unfocus();
-                                  } else {
-                                    print("Not validated");
-                                  }
-                                },
-                                formKey: formKey,
-                                commentController: commentController,
-                                backgroundColor: Colors.blue,
-                                textColor: Colors.white,
-                                sendWidget: Icon(Icons.send_sharp,
-                                    size: 24, color: Colors.white),
-                              );
-                            })),
-              );
-            }),
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(new FocusNode());
+            getData();
+          },
+          child: StreamBuilder(
+              stream: reviewStream,
+              builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
+                }
+                final List reviewList = [];
+                snapshot.data!.docs.map((DocumentSnapshot e) {
+                  Map dataList = e.data() as Map<String, dynamic>;
+                  reviewList.add(dataList);
+                }).toList();
+                final Stream<QuerySnapshot> reviewDisplayStream =
+                    FirebaseFirestore.instance
+                        .collection("customer")
+                        .where("uid", isEqualTo: userId)
+                        .snapshots();
+                return SafeArea(
+                  child: Container(
+                      child: userId == ""
+                          ? logincommentChild(reviewList)
+                          : StreamBuilder(
+                              stream: reviewDisplayStream,
+                              builder: (context,
+                                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return Center(
+                                      child: CircularProgressIndicator());
+                                }
+                                final List reviewDisplayList = [];
+                                snapshot.data!.docs.map((DocumentSnapshot e) {
+                                  Map dataList =
+                                      e.data() as Map<String, dynamic>;
+                                  reviewDisplayList.add(dataList);
+                                }).toList();
+                                return CommentBox(
+                                  userImage: reviewDisplayList[0]['image'] != ''
+                                      ? reviewDisplayList[0]['image']
+                                      : "https://firebasestorage.googleapis.com/v0/b/fir-prictice-81c0f.appspot.com/o/profile.png?alt=media&token=8fdf702b-8f5a-4a12-b46a-091758812a5d",
+                                  child: commentChild(
+                                      reviewList), //display review of cusotmer....
+                                  labelText: 'Write a breif review...',
+                                  withBorder: true,
+                                  errorText: 'Review cannot be blank',
+                                  sendButtonMethod: () {
+                                    if (formKey.currentState!.validate()) {
+                                      print(commentController.text);
+                                      setState(() {
+                                        Map<String, dynamic> value = {
+                                          'name': reviewDisplayList[0]['name'],
+                                          'pic': reviewDisplayList[0]
+                                                      ['image'] !=
+                                                  ''
+                                              ? reviewDisplayList[0]['image']
+                                              : "https://firebasestorage.googleapis.com/v0/b/fir-prictice-81c0f.appspot.com/o/profile.png?alt=media&token=8fdf702b-8f5a-4a12-b46a-091758812a5d",
+                                          'message': commentController.text,
+                                          'date': getData()
+                                        };
+                                        FirebaseFirestore.instance
+                                            .collection("Review")
+                                            .add(value);
+                                      });
+                                      commentController.clear();
+                                      FocusScope.of(context).unfocus();
+                                    } else {
+                                      print("Not validated");
+                                    }
+                                  },
+                                  formKey: formKey,
+                                  commentController: commentController,
+                                  backgroundColor: Colors.blue,
+                                  textColor: Colors.white,
+                                  sendWidget: Icon(Icons.send_sharp,
+                                      size: 24, color: Colors.white),
+                                );
+                              })),
+                );
+              }),
+        ),
         bottomNavigationBar: footer(
           tabIndex: 2,
         ),

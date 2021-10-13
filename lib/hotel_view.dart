@@ -156,6 +156,9 @@ class _HotelViewState extends State<HotelView> {
                                     storeHotel[0]['image'],
                                   ),
                                 )),
+                            SizedBox(
+                              height: 10,
+                            ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(children: [

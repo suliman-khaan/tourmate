@@ -83,7 +83,7 @@ class _HotelState extends State<Hotel> {
                                     tabIndex: 1, district: swatID)));
                       },
                       child: Text(
-                        "Swat Hotel",
+                        "Swat Hotels",
                         style: TextStyle(color: Colors.blue),
                       )),
                   InkWell(
@@ -95,7 +95,7 @@ class _HotelState extends State<Hotel> {
                                     tabIndex: 1, district: kumratID)));
                       },
                       child: Text(
-                        "Kumrat Hotel",
+                        "Kumrat Hotels",
                         style: TextStyle(color: Colors.blue),
                       )),
                   InkWell(
@@ -107,7 +107,7 @@ class _HotelState extends State<Hotel> {
                                     tabIndex: 1, district: chitralID)));
                       },
                       child: Text(
-                        "Chitrol Hotel",
+                        "Chitral Hotels",
                         style: TextStyle(color: Colors.blue),
                       ))
                 ],
@@ -118,7 +118,7 @@ class _HotelState extends State<Hotel> {
                 Row(
                   children: [
                     SizedBox(width: 10),
-                    Text("Top Hotel In Swat",
+                    Text("Top Hotels In Swat",
                         style: GoogleFonts.roboto(
                           fontWeight: FontWeight.w600,
                           fontSize: 18,
@@ -263,7 +263,7 @@ class _HotelState extends State<Hotel> {
                 Row(
                   children: [
                     SizedBox(width: 10),
-                    Text("Top Hotel In Kumrat",
+                    Text("Top Hotels In Kumrat",
                         style: GoogleFonts.roboto(
                           fontWeight: FontWeight.w600,
                           fontSize: 18,
@@ -408,7 +408,7 @@ class _HotelState extends State<Hotel> {
                 Row(
                   children: [
                     SizedBox(width: 10),
-                    Text("Top Hotel In Chitral",
+                    Text("Top Hotels In Chitral",
                         style: GoogleFonts.roboto(
                           fontWeight: FontWeight.w600,
                           fontSize: 18,

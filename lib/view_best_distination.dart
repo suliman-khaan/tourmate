@@ -106,7 +106,7 @@ class _ViewDistinationState extends State<ViewDistination> {
                           ),
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 10,
                         ),
                         Container(
                           margin: EdgeInsets.symmetric(horizontal: 10),

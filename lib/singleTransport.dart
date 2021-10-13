@@ -66,19 +66,21 @@ class _singleTransportState extends State<singleTransport> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Image(image: NetworkImage(transport[0]['image'])),
-                      SizedBox(height: 20),
+                      SizedBox(height: 10),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: Text(transport[0]['name'],
                             style: GoogleFonts.roboto(
-                                fontSize: 24, color: Colors.blue)),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 24,
+                            )),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
                             left: 8.0, right: 8.0, top: 10),
                         child: Text(
                           transport[0]['description'],
-                          style: TextStyle(color: Colors.grey),
+                          style: TextStyle(color: Colors.black),
                         ),
                       ),
                       Align(

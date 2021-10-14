@@ -1,6 +1,7 @@
 // import 'dart:html';
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'attribute_view.dart';
@@ -240,13 +241,29 @@ class _singleDistrictState extends State<singleDistrict>
                         items: List.generate(
                             ImageList.length,
                             (int index) => Container(
-                                  child: Image(
-                                    image:
-                                        NetworkImage(ImageList[index]['image']),
-                                    fit: BoxFit.cover,
-                                    width: 1000,
+                                    child:
+                                        // Image(
+                                        //   image:
+                                        //       NetworkImage(ImageList[index]['image']),
+                                        //   fit: BoxFit.cover,
+                                        //   width: 1000,
+                                        // ),
+                                        CachedNetworkImage(
+                                  imageUrl: ImageList[index]['image'],
+                                  imageBuilder: (context, imageProvider) =>
+                                      Container(
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: imageProvider,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
                                   ),
-                                )),
+                                  placeholder: (context, url) =>
+                                      CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
+                                ))),
                       ),
                     );
                   }),
@@ -838,11 +855,29 @@ class streamList extends StatelessWidget {
                                       child: Stack(
                                         alignment: Alignment.bottomLeft,
                                         children: [
-                                          Ink.image(
-                                              image: NetworkImage(
-                                                  db_data[index]['image']),
-                                              // height: 180,
-                                              fit: BoxFit.cover),
+                                          // Ink.image(
+                                          //     image: NetworkImage(
+                                          //         db_data[index]['image']),
+                                          //     // height: 180,
+                                          //     fit: BoxFit.cover),
+                                          CachedNetworkImage(
+                                            imageUrl: db_data[index]['image'],
+                                            imageBuilder:
+                                                (context, imageProvider) =>
+                                                    Container(
+                                              decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                  image: imageProvider,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            ),
+                                            placeholder: (context, url) =>
+                                                CircularProgressIndicator(),
+                                            errorWidget:
+                                                (context, url, error) =>
+                                                    Icon(Icons.error),
+                                          ),
                                           Positioned(
                                             bottom: 10,
                                             left: 10,

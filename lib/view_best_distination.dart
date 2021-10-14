@@ -1,6 +1,8 @@
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tourmate1/allResturent.dart';
 import 'attribute_view.dart';
 import 'best_distination_attribute_container.dart';
 import 'footer.dart';
@@ -96,18 +98,29 @@ class _ViewDistinationState extends State<ViewDistination> {
                     // decoration: BoxDecoration(border: Border.all(color: Colors.red)),
                     child: Column(
                       children: [
-                        Hero(
-                          tag: "hero-${widget.areaID.toString()}",
-                          child: Image.network(
-                            viewDistination[0]['image'],
-                            height: 200,
-                            fit: BoxFit.fitWidth,
-                            width: double.infinity,
+                        // Image.network(
+                        //   viewDistination[0]['image'],
+                        //   height: 200,
+                        //   fit: BoxFit.fitWidth,
+                        //   width: double.infinity,
+                        // ),
+                        CachedNetworkImage(
+                          imageUrl: viewDistination[0]['image'],
+                          height: 200,
+                          imageBuilder: (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
+                          placeholder: (context, url) =>
+                              CircularProgressIndicator(),
+                          errorWidget: (context, url, error) =>
+                              Icon(Icons.error),
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
+                        SizedBox(height: 20),
                         Container(
                           margin: EdgeInsets.symmetric(horizontal: 10),
                           child: Column(
@@ -136,10 +149,7 @@ class _ViewDistinationState extends State<ViewDistination> {
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(5)),
                                     padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                                    onPressed: () {
-                                      print(viewDistination);
-                                      // print(viewHotels);
-                                    },
+                                    onPressed: () {},
                                     icon: Icon(
                                       Icons.place_outlined,
                                       color: Colors.white,
@@ -172,7 +182,6 @@ class _ViewDistinationState extends State<ViewDistination> {
                                 .map((DocumentSnapshot document) {
                               Map aa = document.data() as Map<String, dynamic>;
                               restaurantList.add(aa);
-                              print(restaurantList);
                             }).toList();
                             if (restaurantList.isEmpty) {
                               return Container(width: 0, height: 0);
@@ -245,15 +254,48 @@ class _ViewDistinationState extends State<ViewDistination> {
                                                           alignment: Alignment
                                                               .bottomLeft,
                                                           children: [
-                                                            Image.network(
-                                                              restaurantList[
-                                                                      index]
-                                                                  ['image'],
-                                                              fit: BoxFit.cover,
+                                                            // Image.network(
+                                                            //   restaurantList[
+                                                            //           index]
+                                                            //       ['image'],
+                                                            //   fit: BoxFit.cover,
+                                                            //   height: double
+                                                            //       .infinity,
+                                                            //   width: double
+                                                            //       .infinity,
+                                                            // ),
+                                                            CachedNetworkImage(
+                                                              imageUrl:
+                                                                  restaurantList[
+                                                                          index]
+                                                                      ['image'],
                                                               height: double
                                                                   .infinity,
                                                               width: double
                                                                   .infinity,
+                                                              imageBuilder:
+                                                                  (context,
+                                                                          imageProvider) =>
+                                                                      Container(
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  image:
+                                                                      DecorationImage(
+                                                                    image:
+                                                                        imageProvider,
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              placeholder: (context,
+                                                                      url) =>
+                                                                  CircularProgressIndicator(),
+                                                              errorWidget: (context,
+                                                                      url,
+                                                                      error) =>
+                                                                  Icon(Icons
+                                                                      .error),
                                                             ),
                                                             Container(
                                                               margin: EdgeInsets
@@ -325,7 +367,6 @@ class _ViewDistinationState extends State<ViewDistination> {
                                 .map((DocumentSnapshot document) {
                               Map aa = document.data() as Map<String, dynamic>;
                               hotelsList.add(aa);
-                              print(hotelsList);
                             }).toList();
                             if (hotelsList.isEmpty) {
                               return Container(
@@ -402,14 +443,47 @@ class _ViewDistinationState extends State<ViewDistination> {
                                                           alignment: Alignment
                                                               .bottomLeft,
                                                           children: [
-                                                            Image.network(
-                                                              hotelsList[index]
-                                                                  ['image'],
-                                                              fit: BoxFit.cover,
+                                                            // Image.network(
+                                                            //   hotelsList[index]
+                                                            //       ['image'],
+                                                            //   fit: BoxFit.cover,
+                                                            //   height: double
+                                                            //       .infinity,
+                                                            //   width: double
+                                                            //       .infinity,
+                                                            // ),
+                                                            CachedNetworkImage(
+                                                              imageUrl:
+                                                                  hotelsList[
+                                                                          index]
+                                                                      ['image'],
                                                               height: double
                                                                   .infinity,
                                                               width: double
                                                                   .infinity,
+                                                              imageBuilder:
+                                                                  (context,
+                                                                          imageProvider) =>
+                                                                      Container(
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  image:
+                                                                      DecorationImage(
+                                                                    image:
+                                                                        imageProvider,
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              placeholder: (context,
+                                                                      url) =>
+                                                                  CircularProgressIndicator(),
+                                                              errorWidget: (context,
+                                                                      url,
+                                                                      error) =>
+                                                                  Icon(Icons
+                                                                      .error),
                                                             ),
                                                             Container(
                                                               margin: EdgeInsets
@@ -481,7 +555,6 @@ class _ViewDistinationState extends State<ViewDistination> {
                                 .map((QueryDocumentSnapshot document) {
                               Map a = document.data() as Map<String, dynamic>;
                               eventsList.add(a);
-                              print(eventsList);
                             }).toList();
                             if (eventsList.isEmpty) {
                               return Container(
@@ -490,7 +563,7 @@ class _ViewDistinationState extends State<ViewDistination> {
                               );
                             } else {
                               return Container(
-                                  margin: EdgeInsets.only(bottom: 20),
+                                  margin: EdgeInsets.symmetric(horizontal: 10),
                                   child: Column(
                                     children: [
                                       //
@@ -560,14 +633,47 @@ class _ViewDistinationState extends State<ViewDistination> {
                                                           alignment: Alignment
                                                               .bottomLeft,
                                                           children: [
-                                                            Image.network(
-                                                              eventsList[index]
-                                                                  ['image'],
-                                                              fit: BoxFit.cover,
+                                                            // Image.network(
+                                                            //   eventsList[index]
+                                                            //       ['image'],
+                                                            //   fit: BoxFit.cover,
+                                                            //   height: double
+                                                            //       .infinity,
+                                                            //   width: double
+                                                            //       .infinity,
+                                                            // ),
+                                                            CachedNetworkImage(
+                                                              imageUrl:
+                                                                  eventsList[
+                                                                          index]
+                                                                      ['image'],
                                                               height: double
                                                                   .infinity,
                                                               width: double
                                                                   .infinity,
+                                                              imageBuilder:
+                                                                  (context,
+                                                                          imageProvider) =>
+                                                                      Container(
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  image:
+                                                                      DecorationImage(
+                                                                    image:
+                                                                        imageProvider,
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              placeholder: (context,
+                                                                      url) =>
+                                                                  CircularProgressIndicator(),
+                                                              errorWidget: (context,
+                                                                      url,
+                                                                      error) =>
+                                                                  Icon(Icons
+                                                                      .error),
                                                             ),
                                                             Container(
                                                               margin: EdgeInsets
@@ -644,7 +750,6 @@ class _ViewDistinationState extends State<ViewDistination> {
                                 .map((QueryDocumentSnapshot document) {
                               Map a = document.data() as Map<String, dynamic>;
                               entertainmentsList.add(a);
-                              print(entertainmentsList);
                             }).toList();
                             if (entertainmentsList.isEmpty) {
                               return Container(
@@ -653,132 +758,166 @@ class _ViewDistinationState extends State<ViewDistination> {
                               );
                             } else {
                               return Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 10),
                                   child: Column(
-                                children: [
-                                  //
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text("Entertainments",
-                                          style: GoogleFonts.roboto(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 18,
-                                          )),
-                                      TextButton(
-                                          onPressed: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        BestDistinationAttributeContainer(
-                                                            areaIndex: 4,
-                                                            id: area)));
-                                          },
-                                          child: Text("See All")),
-                                    ],
-                                  ),
-                                  Container(
-                                    height: 200,
-                                    // width: 300,
-                                    child: ListView(
-                                      scrollDirection: Axis.horizontal,
-                                      children: List.generate(
-                                          entertainmentsList.length,
-                                          (int index) => Container(
-                                                width: 250,
-                                                margin:
-                                                    EdgeInsets.only(right: 10),
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                  // border: Border.all(color: Colors.grey)
-                                                ),
-                                                child: GestureDetector(
-                                                  onTap: () {
-                                                    Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                DistrictAttributeContainer(
+                                      //
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("Entertainments",
+                                              style: GoogleFonts.roboto(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 18,
+                                              )),
+                                          TextButton(
+                                              onPressed: () {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            BestDistinationAttributeContainer(
+                                                                areaIndex: 4,
+                                                                id: area)));
+                                              },
+                                              child: Text("See All")),
+                                        ],
+                                      ),
+                                      Container(
+                                        height: 200,
+                                        // width: 300,
+                                        child: ListView(
+                                          scrollDirection: Axis.horizontal,
+                                          children: List.generate(
+                                              entertainmentsList.length,
+                                              (int index) => Container(
+                                                    width: 250,
+                                                    margin: EdgeInsets.only(
+                                                        right: 10),
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      // border: Border.all(color: Colors.grey)
+                                                    ),
+                                                    child: GestureDetector(
+                                                      onTap: () {
+                                                        Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder: (context) => DistrictAttributeContainer(
                                                                     areaIndex:
                                                                         7,
                                                                     a_id: entertainmentsList[
                                                                             index]
                                                                         [
                                                                         'ID'])));
-                                                  },
-                                                  child: Card(
-                                                    elevation: 4,
-                                                    clipBehavior:
-                                                        Clip.antiAlias,
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5.0),
-                                                    ),
-                                                    child: Stack(
-                                                      alignment:
-                                                          Alignment.bottomLeft,
-                                                      children: [
-                                                        Image.network(
-                                                          entertainmentsList[
-                                                              index]['image'],
-                                                          fit: BoxFit.cover,
-                                                          height:
-                                                              double.infinity,
-                                                          width:
-                                                              double.infinity,
+                                                      },
+                                                      child: Card(
+                                                        elevation: 4,
+                                                        clipBehavior:
+                                                            Clip.antiAlias,
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      5.0),
                                                         ),
-                                                        Container(
-                                                          margin: EdgeInsets
-                                                              .fromLTRB(
-                                                                  10, 0, 0, 10),
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        4.8),
-                                                            child:
-                                                                BackdropFilter(
-                                                              filter: ImageFilter
-                                                                  .blur(
+                                                        child: Stack(
+                                                          alignment: Alignment
+                                                              .bottomLeft,
+                                                          children: [
+                                                            // Image.network(
+                                                            //   entertainmentsList[
+                                                            //       index]['image'],
+                                                            //   fit: BoxFit.cover,
+                                                            //   height:
+                                                            //       double.infinity,
+                                                            //   width:
+                                                            //       double.infinity,
+                                                            // ),
+                                                            CachedNetworkImage(
+                                                              imageUrl:
+                                                                  entertainmentsList[
+                                                                          index]
+                                                                      ['image'],
+                                                              height: double
+                                                                  .infinity,
+                                                              width: double
+                                                                  .infinity,
+                                                              imageBuilder:
+                                                                  (context,
+                                                                          imageProvider) =>
+                                                                      Container(
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  image:
+                                                                      DecorationImage(
+                                                                    image:
+                                                                        imageProvider,
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              placeholder: (context,
+                                                                      url) =>
+                                                                  CircularProgressIndicator(),
+                                                              errorWidget: (context,
+                                                                      url,
+                                                                      error) =>
+                                                                  Icon(Icons
+                                                                      .error),
+                                                            ),
+                                                            Container(
+                                                              margin: EdgeInsets
+                                                                  .fromLTRB(10,
+                                                                      0, 0, 10),
+                                                              child: ClipRRect(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            4.8),
+                                                                child:
+                                                                    BackdropFilter(
+                                                                  filter: ImageFilter.blur(
                                                                       sigmaX:
                                                                           19.2,
                                                                       sigmaY:
                                                                           19.2),
-                                                              child: Container(
-                                                                child: Padding(
-                                                                  padding:
-                                                                      const EdgeInsets
-                                                                              .all(
-                                                                          8.0),
-                                                                  child: Text(
-                                                                    entertainmentsList[
-                                                                            index]
-                                                                        [
-                                                                        'name'],
-                                                                    style: TextStyle(
-                                                                        color: Colors
-                                                                            .white,
-                                                                        fontWeight:
-                                                                            FontWeight.w500),
+                                                                  child:
+                                                                      Container(
+                                                                    child:
+                                                                        Padding(
+                                                                      padding:
+                                                                          const EdgeInsets.all(
+                                                                              8.0),
+                                                                      child:
+                                                                          Text(
+                                                                        entertainmentsList[index]
+                                                                            [
+                                                                            'name'],
+                                                                        style: TextStyle(
+                                                                            color:
+                                                                                Colors.white,
+                                                                            fontWeight: FontWeight.w500),
+                                                                      ),
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
-                                                            ),
-                                                          ),
-                                                        )
-                                                      ],
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
                                                     ),
-                                                  ),
-                                                ),
-                                              )),
-                                    ),
-                                  ),
-                                ],
-                              ));
+                                                  )),
+                                        ),
+                                      ),
+                                    ],
+                                  ));
                             }
                           },
                         ),
@@ -802,7 +941,6 @@ class _ViewDistinationState extends State<ViewDistination> {
                                 .map((QueryDocumentSnapshot document) {
                               Map a = document.data() as Map<String, dynamic>;
                               parksList.add(a);
-                              print(parksList);
                             }).toList();
                             if (parksList.isEmpty) {
                               return Container(
@@ -811,7 +949,7 @@ class _ViewDistinationState extends State<ViewDistination> {
                               );
                             } else {
                               return Container(
-                                  margin: EdgeInsets.only(bottom: 20),
+                                  margin: EdgeInsets.symmetric(horizontal: 10),
                                   child: Column(
                                     children: [
                                       //
@@ -883,14 +1021,47 @@ class _ViewDistinationState extends State<ViewDistination> {
                                                           alignment: Alignment
                                                               .bottomLeft,
                                                           children: [
-                                                            Image.network(
-                                                              parksList[index]
-                                                                  ["image"],
-                                                              fit: BoxFit.cover,
+                                                            // Image.network(
+                                                            //   parksList[index]
+                                                            //       ["image"],
+                                                            //   fit: BoxFit.cover,
+                                                            //   height: double
+                                                            //       .infinity,
+                                                            //   width: double
+                                                            //       .infinity,
+                                                            // ),
+                                                            CachedNetworkImage(
+                                                              imageUrl:
+                                                                  parksList[
+                                                                          index]
+                                                                      ['image'],
                                                               height: double
                                                                   .infinity,
                                                               width: double
                                                                   .infinity,
+                                                              imageBuilder:
+                                                                  (context,
+                                                                          imageProvider) =>
+                                                                      Container(
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  image:
+                                                                      DecorationImage(
+                                                                    image:
+                                                                        imageProvider,
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              placeholder: (context,
+                                                                      url) =>
+                                                                  CircularProgressIndicator(),
+                                                              errorWidget: (context,
+                                                                      url,
+                                                                      error) =>
+                                                                  Icon(Icons
+                                                                      .error),
                                                             ),
                                                             Container(
                                                               margin: EdgeInsets

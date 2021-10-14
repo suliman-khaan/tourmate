@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tourmate1/Register.dart';
@@ -150,12 +151,29 @@ class _HotelViewState extends State<HotelView> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                                width: MediaQuery.of(context).size.width,
-                                child: Image(
-                                  image: NetworkImage(
-                                    storeHotel[0]['image'],
+                              width: MediaQuery.of(context).size.width,
+                              child:
+                                  // Image(image: NetworkImage(
+                                  //     storeHotel[0]['image'],
+                                  //   ))
+                                  CachedNetworkImage(
+                                imageUrl: storeHotel[0]['image'],
+                                height: 200,
+                                imageBuilder: (context, imageProvider) =>
+                                    Container(
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: imageProvider,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
-                                )),
+                                ),
+                                placeholder: (context, url) =>
+                                    CircularProgressIndicator(),
+                                errorWidget: (context, url, error) =>
+                                    Icon(Icons.error),
+                              ),
+                            ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(children: [
@@ -346,243 +364,247 @@ class HotelFacilites extends StatelessWidget {
             Map list = e.data() as Map<String, dynamic>;
             facilities.add(list);
           }).toList();
-          return Container(
-            padding: EdgeInsets.all(8),
-            width: MediaQuery.of(context).size.width,
-            color: Colors.grey[50],
-            child: Wrap(
-              children: [
-                Wrap(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      width: MediaQuery.of(context).size.width / 2 - 16,
-                      child: RichText(
-                        text: TextSpan(
-                            // ignore: deprecated_member_use
-                            style: Theme.of(context).textTheme.bodyText2,
-                            children: [
-                              WidgetSpan(
-                                  child: Icon(
-                                Icons.local_dining_outlined,
-                                size: 16,
-                                color: facilities[0]['breakfast'] == true
-                                    ? Colors.black
-                                    : Colors.grey,
-                              )),
-                              TextSpan(
-                                  text: "  Break Fast",
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: facilities[0]['breakfast'] == true
-                                        ? Colors.black
-                                        : Colors.grey,
-                                  )),
-                              // TextSpan(text:" "),
-                            ]),
+          if (facilities.isNotEmpty) {
+            return Container(
+              padding: EdgeInsets.all(8),
+              width: MediaQuery.of(context).size.width,
+              color: Colors.grey[50],
+              child: Wrap(
+                children: [
+                  Wrap(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        width: MediaQuery.of(context).size.width / 2 - 16,
+                        child: RichText(
+                          text: TextSpan(
+                              // ignore: deprecated_member_use
+                              style: Theme.of(context).textTheme.bodyText2,
+                              children: [
+                                WidgetSpan(
+                                    child: Icon(
+                                  Icons.local_dining_outlined,
+                                  size: 16,
+                                  color: facilities[0]['breakfast'] == true
+                                      ? Colors.black
+                                      : Colors.grey,
+                                )),
+                                TextSpan(
+                                    text: "  Break Fast",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: facilities[0]['breakfast'] == true
+                                          ? Colors.black
+                                          : Colors.grey,
+                                    )),
+                                // TextSpan(text:" "),
+                              ]),
+                        ),
                       ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      width: MediaQuery.of(context).size.width / 2 - 16,
-                      child: RichText(
-                        text: TextSpan(
-                            // ignore: deprecated_member_use
-                            style: Theme.of(context).textTheme.bodyText2,
-                            children: [
-                              WidgetSpan(
-                                  child: Icon(
-                                Icons.restaurant,
-                                size: 16,
-                                color: facilities[0]['resturent'] == true
-                                    ? Colors.black
-                                    : Colors.grey,
-                              )),
-                              TextSpan(
-                                  text: "  Resturant",
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: facilities[0]['resturent'] == true
-                                        ? Colors.black
-                                        : Colors.grey,
-                                  )),
-                            ]),
+                      Container(
+                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        width: MediaQuery.of(context).size.width / 2 - 16,
+                        child: RichText(
+                          text: TextSpan(
+                              // ignore: deprecated_member_use
+                              style: Theme.of(context).textTheme.bodyText2,
+                              children: [
+                                WidgetSpan(
+                                    child: Icon(
+                                  Icons.restaurant,
+                                  size: 16,
+                                  color: facilities[0]['resturent'] == true
+                                      ? Colors.black
+                                      : Colors.grey,
+                                )),
+                                TextSpan(
+                                    text: "  Resturant",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: facilities[0]['resturent'] == true
+                                          ? Colors.black
+                                          : Colors.grey,
+                                    )),
+                              ]),
+                        ),
                       ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      width: MediaQuery.of(context).size.width / 2 - 16,
-                      child: RichText(
-                        text: TextSpan(
-                            // ignore: deprecated_member_use
-                            style: Theme.of(context).textTheme.bodyText2,
-                            children: [
-                              WidgetSpan(
-                                  child: Icon(
-                                Icons.local_parking_sharp,
-                                size: 16,
-                                color: facilities[0]['parking'] == true
-                                    ? Colors.black
-                                    : Colors.grey,
-                              )),
-                              TextSpan(
-                                  text: "  Parking",
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: facilities[0]['parking'] == true
-                                        ? Colors.black
-                                        : Colors.grey,
-                                  )),
-                              // TextSpan(text:" "),
-                            ]),
+                      Container(
+                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        width: MediaQuery.of(context).size.width / 2 - 16,
+                        child: RichText(
+                          text: TextSpan(
+                              // ignore: deprecated_member_use
+                              style: Theme.of(context).textTheme.bodyText2,
+                              children: [
+                                WidgetSpan(
+                                    child: Icon(
+                                  Icons.local_parking_sharp,
+                                  size: 16,
+                                  color: facilities[0]['parking'] == true
+                                      ? Colors.black
+                                      : Colors.grey,
+                                )),
+                                TextSpan(
+                                    text: "  Parking",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: facilities[0]['parking'] == true
+                                          ? Colors.black
+                                          : Colors.grey,
+                                    )),
+                                // TextSpan(text:" "),
+                              ]),
+                        ),
                       ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      width: MediaQuery.of(context).size.width / 2 - 16,
-                      child: RichText(
-                        text: TextSpan(
-                            // ignore: deprecated_member_use
-                            style: Theme.of(context).textTheme.bodyText2,
-                            children: [
-                              WidgetSpan(
-                                  child: Icon(
-                                Icons.ac_unit_outlined,
-                                size: 16,
-                                color: facilities[0]['ac'] == true
-                                    ? Colors.black
-                                    : Colors.grey,
-                              )),
-                              TextSpan(
-                                  text: "  Air Condition",
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: facilities[0]['ac'] == true
-                                        ? Colors.black
-                                        : Colors.grey,
-                                  )),
-                              // TextSpan(text:" "),
-                            ]),
+                      Container(
+                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        width: MediaQuery.of(context).size.width / 2 - 16,
+                        child: RichText(
+                          text: TextSpan(
+                              // ignore: deprecated_member_use
+                              style: Theme.of(context).textTheme.bodyText2,
+                              children: [
+                                WidgetSpan(
+                                    child: Icon(
+                                  Icons.ac_unit_outlined,
+                                  size: 16,
+                                  color: facilities[0]['ac'] == true
+                                      ? Colors.black
+                                      : Colors.grey,
+                                )),
+                                TextSpan(
+                                    text: "  Air Condition",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: facilities[0]['ac'] == true
+                                          ? Colors.black
+                                          : Colors.grey,
+                                    )),
+                                // TextSpan(text:" "),
+                              ]),
+                        ),
                       ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      width: MediaQuery.of(context).size.width / 2 - 16,
-                      child: RichText(
-                        text: TextSpan(
-                            // ignore: deprecated_member_use
-                            style: Theme.of(context).textTheme.bodyText2,
-                            children: [
-                              WidgetSpan(
-                                  child: Icon(
-                                Icons.dining,
-                                size: 16,
-                                color: facilities[0]['indoor_dining'] == true
-                                    ? Colors.black
-                                    : Colors.grey,
-                              )),
-                              TextSpan(
-                                  text: "  Indoor Dining",
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color:
-                                        facilities[0]['indoor_dining'] == true
-                                            ? Colors.black
-                                            : Colors.grey,
-                                  )),
-                              // TextSpan(text:" "),
-                            ]),
+                      Container(
+                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        width: MediaQuery.of(context).size.width / 2 - 16,
+                        child: RichText(
+                          text: TextSpan(
+                              // ignore: deprecated_member_use
+                              style: Theme.of(context).textTheme.bodyText2,
+                              children: [
+                                WidgetSpan(
+                                    child: Icon(
+                                  Icons.dining,
+                                  size: 16,
+                                  color: facilities[0]['indoor_dining'] == true
+                                      ? Colors.black
+                                      : Colors.grey,
+                                )),
+                                TextSpan(
+                                    text: "  Indoor Dining",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color:
+                                          facilities[0]['indoor_dining'] == true
+                                              ? Colors.black
+                                              : Colors.grey,
+                                    )),
+                                // TextSpan(text:" "),
+                              ]),
+                        ),
                       ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      width: MediaQuery.of(context).size.width / 2 - 16,
-                      child: RichText(
-                        text: TextSpan(
-                            // ignore: deprecated_member_use
-                            style: Theme.of(context).textTheme.bodyText2,
-                            children: [
-                              WidgetSpan(
-                                  child: Icon(
-                                Icons.shower,
-                                size: 16,
-                                color: facilities[0]['hot_shower'] == true
-                                    ? Colors.black
-                                    : Colors.grey,
-                              )),
-                              TextSpan(
-                                  text: "  Hot Shower",
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: facilities[0]['hot_shower'] == true
-                                        ? Colors.black
-                                        : Colors.grey,
-                                  )),
-                              // TextSpan(text:" "),
-                            ]),
+                      Container(
+                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        width: MediaQuery.of(context).size.width / 2 - 16,
+                        child: RichText(
+                          text: TextSpan(
+                              // ignore: deprecated_member_use
+                              style: Theme.of(context).textTheme.bodyText2,
+                              children: [
+                                WidgetSpan(
+                                    child: Icon(
+                                  Icons.shower,
+                                  size: 16,
+                                  color: facilities[0]['hot_shower'] == true
+                                      ? Colors.black
+                                      : Colors.grey,
+                                )),
+                                TextSpan(
+                                    text: "  Hot Shower",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: facilities[0]['hot_shower'] == true
+                                          ? Colors.black
+                                          : Colors.grey,
+                                    )),
+                                // TextSpan(text:" "),
+                              ]),
+                        ),
                       ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      width: MediaQuery.of(context).size.width / 2 - 16,
-                      child: RichText(
-                        text: TextSpan(
-                            // ignore: deprecated_member_use
-                            style: Theme.of(context).textTheme.bodyText2,
-                            children: [
-                              WidgetSpan(
-                                  child: Icon(
-                                Icons.microwave_outlined,
-                                size: 16,
-                                color: facilities[0]['heater'] == true
-                                    ? Colors.black
-                                    : Colors.grey,
-                              )),
-                              TextSpan(
-                                  text: "  Hreter",
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: facilities[0]['heater'] == true
-                                        ? Colors.black
-                                        : Colors.grey,
-                                  )),
-                              // TextSpan(text:" "),
-                            ]),
+                      Container(
+                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        width: MediaQuery.of(context).size.width / 2 - 16,
+                        child: RichText(
+                          text: TextSpan(
+                              // ignore: deprecated_member_use
+                              style: Theme.of(context).textTheme.bodyText2,
+                              children: [
+                                WidgetSpan(
+                                    child: Icon(
+                                  Icons.microwave_outlined,
+                                  size: 16,
+                                  color: facilities[0]['heater'] == true
+                                      ? Colors.black
+                                      : Colors.grey,
+                                )),
+                                TextSpan(
+                                    text: "  Hreter",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: facilities[0]['heater'] == true
+                                          ? Colors.black
+                                          : Colors.grey,
+                                    )),
+                                // TextSpan(text:" "),
+                              ]),
+                        ),
                       ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      width: MediaQuery.of(context).size.width / 2 - 16,
-                      child: RichText(
-                        text: TextSpan(
-                            // ignore: deprecated_member_use
-                            style: Theme.of(context).textTheme.bodyText2,
-                            children: [
-                              WidgetSpan(
-                                  child: Icon(
-                                Icons.tv_outlined,
-                                size: 16,
-                                color: facilities[0]['lcd'] == true
-                                    ? Colors.black
-                                    : Colors.grey,
-                              )),
-                              TextSpan(
-                                  text: "  LCD",
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: facilities[0]['lcd'] == true
-                                        ? Colors.black
-                                        : Colors.grey,
-                                  )),
-                              // TextSpan(text:" "),
-                            ]),
+                      Container(
+                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        width: MediaQuery.of(context).size.width / 2 - 16,
+                        child: RichText(
+                          text: TextSpan(
+                              // ignore: deprecated_member_use
+                              style: Theme.of(context).textTheme.bodyText2,
+                              children: [
+                                WidgetSpan(
+                                    child: Icon(
+                                  Icons.tv_outlined,
+                                  size: 16,
+                                  color: facilities[0]['lcd'] == true
+                                      ? Colors.black
+                                      : Colors.grey,
+                                )),
+                                TextSpan(
+                                    text: "  LCD",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: facilities[0]['lcd'] == true
+                                          ? Colors.black
+                                          : Colors.grey,
+                                    )),
+                                // TextSpan(text:" "),
+                              ]),
+                        ),
                       ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-          );
+                    ],
+                  )
+                ],
+              ),
+            );
+          } else {
+            return Container(child: Text("Facilities Database is empty"));
+          }
         });
   }
 }

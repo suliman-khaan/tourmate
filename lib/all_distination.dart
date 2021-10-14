@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'view_best_distination.dart';
 import 'package:flutter/foundation.dart';
@@ -92,12 +93,41 @@ class _AllDistinationsState extends State<AllDistinations> {
                                   children: [
                                     Hero(
                                       tag: "hero-${index.toString()}",
-                                      child: Ink.image(
-                                          image: NetworkImage(
-                                              allDistinationData[index]
-                                                  ['image']),
-                                          // height: 180,
-                                          fit: BoxFit.cover),
+                                      child: 
+                                      // Ink.image(
+                                      //     image: NetworkImage(
+                                      //         allDistinationData[index]
+                                      //             ['image']),
+                                      //     // height: 180,
+                                      //     fit: BoxFit.cover),
+                                      CachedNetworkImage(
+                                                                  imageUrl: allDistinationData[
+                                                                          index]
+                                                                      ['image'],
+                                                                  imageBuilder:
+                                                                      (context,
+                                                                              imageProvider) =>
+                                                                          Container(
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      image:
+                                                                          DecorationImage(
+                                                                        image:
+                                                                            imageProvider,
+                                                                        fit: BoxFit
+                                                                            .cover,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  placeholder: (context,
+                                                                          url) =>
+                                                                      CircularProgressIndicator(),
+                                                                  errorWidget: (context,
+                                                                          url,
+                                                                          error) =>
+                                                                      Icon(Icons
+                                                                          .error),
+                                                                ),
                                     ),
                                     Positioned(
                                       bottom: 10,

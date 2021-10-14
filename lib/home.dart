@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tourmate1/Register.dart';
@@ -322,12 +323,31 @@ class _homeState extends State<home> {
                                             child: Stack(
                                               alignment: Alignment.bottomCenter,
                                               children: [
-                                                Ink.image(
-                                                    image: NetworkImage(
-                                                        district[index]
-                                                            ['image']),
-                                                    // height: 180,
-                                                    fit: BoxFit.cover),
+                                                //   Ink.image(
+                                                //       image: NetworkImage(
+                                                //           district[index]
+                                                //               ['image']),
+                                                //       // height: 180,
+                                                //       fit: BoxFit.cover),
+                                                CachedNetworkImage(
+                                                  imageUrl: district[index]
+                                                      ['image'],
+                                                  imageBuilder: (context,
+                                                          imageProvider) =>
+                                                      Container(
+                                                    decoration: BoxDecoration(
+                                                      image: DecorationImage(
+                                                        image: imageProvider,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  placeholder: (context, url) =>
+                                                      CircularProgressIndicator(),
+                                                  errorWidget:
+                                                      (context, url, error) =>
+                                                          Icon(Icons.error),
+                                                ),
                                                 Center(
                                                     child: DecoratedBox(
                                                   decoration: BoxDecoration(
@@ -458,14 +478,42 @@ class _homeState extends State<home> {
                                                               alignment: Alignment
                                                                   .bottomLeft,
                                                               children: [
-                                                                Ink.image(
-                                                                    image: NetworkImage(
-                                                                        hotel[index]
-                                                                            [
-                                                                            'image']),
-                                                                    // height: 180,
-                                                                    fit: BoxFit
-                                                                        .cover),
+                                                                // Ink.image(
+                                                                //     image: NetworkImage(
+                                                                //         hotel[index]
+                                                                //             [
+                                                                //             'image']),
+                                                                //     // height: 180,
+                                                                //     fit: BoxFit
+                                                                //         .cover),
+                                                                CachedNetworkImage(
+                                                                  imageUrl: hotel[
+                                                                          index]
+                                                                      ['image'],
+                                                                  imageBuilder:
+                                                                      (context,
+                                                                              imageProvider) =>
+                                                                          Container(
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      image:
+                                                                          DecorationImage(
+                                                                        image:
+                                                                            imageProvider,
+                                                                        fit: BoxFit
+                                                                            .cover,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  placeholder: (context,
+                                                                          url) =>
+                                                                      CircularProgressIndicator(),
+                                                                  errorWidget: (context,
+                                                                          url,
+                                                                          error) =>
+                                                                      Icon(Icons
+                                                                          .error),
+                                                                ),
                                                                 Positioned(
                                                                   bottom: 10,
                                                                   left: 10,
@@ -606,14 +654,42 @@ class _homeState extends State<home> {
                                                               alignment: Alignment
                                                                   .bottomLeft,
                                                               children: [
-                                                                Ink.image(
-                                                                    image: NetworkImage(
-                                                                        destination[index]
-                                                                            [
-                                                                            'image']),
-                                                                    // height: 180,
-                                                                    fit: BoxFit
-                                                                        .cover),
+                                                                // Ink.image(
+                                                                //     image: NetworkImage(
+                                                                //         destination[index]
+                                                                //             [
+                                                                //             'image']),
+                                                                //     // height: 180,
+                                                                //     fit: BoxFit
+                                                                //         .cover),
+                                                                CachedNetworkImage(
+                                                                  imageUrl: destination[
+                                                                          index]
+                                                                      ['image'],
+                                                                  imageBuilder:
+                                                                      (context,
+                                                                              imageProvider) =>
+                                                                          Container(
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      image:
+                                                                          DecorationImage(
+                                                                        image:
+                                                                            imageProvider,
+                                                                        fit: BoxFit
+                                                                            .cover,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  placeholder: (context,
+                                                                          url) =>
+                                                                      CircularProgressIndicator(),
+                                                                  errorWidget: (context,
+                                                                          url,
+                                                                          error) =>
+                                                                      Icon(Icons
+                                                                          .error),
+                                                                ),
                                                                 Positioned(
                                                                   bottom: 10,
                                                                   left: 10,
@@ -756,14 +832,42 @@ class _homeState extends State<home> {
                                                               alignment: Alignment
                                                                   .bottomLeft,
                                                               children: [
-                                                                Ink.image(
-                                                                    image: NetworkImage(
-                                                                        resturant[index]
-                                                                            [
-                                                                            'image']),
-                                                                    // height: 180,
-                                                                    fit: BoxFit
-                                                                        .cover),
+                                                                // Ink.image(
+                                                                //     image: NetworkImage(
+                                                                //         resturant[index]
+                                                                //             [
+                                                                //             'image']),
+                                                                //     // height: 180,
+                                                                //     fit: BoxFit
+                                                                //         .cover),
+                                                                CachedNetworkImage(
+                                                                  imageUrl: resturant[
+                                                                          index]
+                                                                      ['image'],
+                                                                  imageBuilder:
+                                                                      (context,
+                                                                              imageProvider) =>
+                                                                          Container(
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      image:
+                                                                          DecorationImage(
+                                                                        image:
+                                                                            imageProvider,
+                                                                        fit: BoxFit
+                                                                            .cover,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  placeholder: (context,
+                                                                          url) =>
+                                                                      CircularProgressIndicator(),
+                                                                  errorWidget: (context,
+                                                                          url,
+                                                                          error) =>
+                                                                      Icon(Icons
+                                                                          .error),
+                                                                ),
                                                                 Positioned(
                                                                   bottom: 10,
                                                                   left: 10,
@@ -818,6 +922,7 @@ class _homeState extends State<home> {
   }
 }
 
+// ignore: camel_case_types
 class test extends StatelessWidget {
   const test({
     Key? key,

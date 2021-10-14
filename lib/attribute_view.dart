@@ -1,6 +1,7 @@
 // ignore: import_of_legacy_library_into_null_safe
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'footer.dart';
 import 'package:flutter/material.dart';
@@ -167,13 +168,31 @@ class _DistrictAttributeContainerState
                     // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                          // decoration: BoxDecoration(border: Border.all(color: Colors.blue)),
-                          width: double.infinity,
-                          child: Image(
-                            image: NetworkImage(
-                              storeArea[0]['image'],
+                        // decoration: BoxDecoration(border: Border.all(color: Colors.blue)),
+                        width: double.infinity,
+                        child:
+                            // Image(
+                            //   image: NetworkImage(
+                            //     storeArea[0]['image'],
+                            //   ),
+                            // )
+                            CachedNetworkImage(
+                          imageUrl: storeArea[0]['image'],
+                          height: 200,
+                          imageBuilder: (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                          )),
+                          ),
+                          placeholder: (context, url) =>
+                              CircularProgressIndicator(),
+                          errorWidget: (context, url, error) =>
+                              Icon(Icons.error),
+                        ),
+                      ),
                       SizedBox(
                         height: 20,
                       ),

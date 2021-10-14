@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'footer.dart';
 import 'package:flutter/material.dart';
@@ -183,14 +184,32 @@ class _AreasState extends State<Areas> {
                                 alignment: Alignment.bottomLeft,
                                 children: <Widget>[
                                   Container(
-                                      width: MediaQuery.of(context).size.width /
-                                              2 -
-                                          10,
-                                      height: 200,
-                                      child: Image(
-                                          image: NetworkImage(
-                                              storeArea[index]['image']),
-                                          fit: BoxFit.cover)),
+                                    width:
+                                        MediaQuery.of(context).size.width / 2 -
+                                            10,
+                                    height: 200,
+                                    child:
+                                        // Image(
+                                        //     image: NetworkImage(
+                                        //         storeArea[index]['image']),
+                                        //     fit: BoxFit.cover)
+                                        CachedNetworkImage(
+                                      imageUrl: storeArea[index]['image'],
+                                      imageBuilder: (context, imageProvider) =>
+                                          Container(
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            image: imageProvider,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                      placeholder: (context, url) =>
+                                          CircularProgressIndicator(),
+                                      errorWidget: (context, url, error) =>
+                                          Icon(Icons.error),
+                                    ),
+                                  ),
                                   Container(
                                     margin: EdgeInsets.fromLTRB(10, 0, 0, 10),
                                     child: ClipRect(

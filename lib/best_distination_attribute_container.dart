@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'footer.dart';
 import 'package:flutter/foundation.dart';
@@ -161,11 +162,28 @@ class _BestDistinationAttributeContainerState
                                 ),
                                 child: Hero(
                                   tag: "hero-${index.toString()}",
-                                  child: Image.network(
-                                    // "assets/images/${imageData[index].imageName}",
-                                    storeAttribute[index]["image"],
-                                    fit: BoxFit.cover,
-                                    height: MediaQuery.of(context).size.height,
+                                  child:
+                                      // Image.network(
+                                      //   // "assets/images/${imageData[index].imageName}",
+                                      //   storeAttribute[index]["image"],
+                                      //   fit: BoxFit.cover,
+                                      //   height: MediaQuery.of(context).size.height,
+                                      // ),
+                                      CachedNetworkImage(
+                                    imageUrl: storeAttribute[index]['image'],
+                                    imageBuilder: (context, imageProvider) =>
+                                        Container(
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: imageProvider,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    placeholder: (context, url) =>
+                                        CircularProgressIndicator(),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
                                   ),
                                 ),
                               ),

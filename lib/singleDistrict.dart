@@ -237,7 +237,7 @@ class _singleDistrictState extends State<singleDistrict>
                             //     _current = index;
                             //   });
                             // },
-                            autoPlayCurve: Curves.fastOutSlowIn),
+                            autoPlayCurve: Curves.easeInToLinear),
                         items: List.generate(
                             ImageList.length,
                             (int index) => Container(
@@ -371,7 +371,6 @@ class _singleDistrictState extends State<singleDistrict>
             /********Hotel********/
             Column(
               children: [
-                SizedBox(height: 40),
                 Row(
                   children: [
                     SizedBox(width: 10),
@@ -398,7 +397,6 @@ class _singleDistrictState extends State<singleDistrict>
             /******Transportation******/
             Column(
               children: [
-                SizedBox(height: 40),
                 Row(
                   children: [
                     SizedBox(width: 10),
@@ -476,12 +474,36 @@ class _singleDistrictState extends State<singleDistrict>
                                                     alignment:
                                                         Alignment.bottomLeft,
                                                     children: [
-                                                      Ink.image(
-                                                          image: NetworkImage(
-                                                              db_data[index]
-                                                                  ['image']),
-                                                          // height: 180,
-                                                          fit: BoxFit.cover),
+                                                      // Ink.image(
+                                                      //     image: NetworkImage(
+                                                      //         db_data[index]
+                                                      //             ['image']),
+                                                      //     // height: 180,
+                                                      //     fit: BoxFit.cover),
+                                                      CachedNetworkImage(
+                                                        imageUrl: db_data[index]
+                                                            ['image'],
+                                                        // height: 180,
+                                                        imageBuilder: (context,
+                                                                imageProvider) =>
+                                                            Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            image:
+                                                                DecorationImage(
+                                                              image:
+                                                                  imageProvider,
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        placeholder: (context,
+                                                                url) =>
+                                                            CircularProgressIndicator(),
+                                                        errorWidget: (context,
+                                                                url, error) =>
+                                                            Icon(Icons.error),
+                                                      ),
                                                       Positioned(
                                                         bottom: 10,
                                                         left: 10,
@@ -541,7 +563,6 @@ class _singleDistrictState extends State<singleDistrict>
             /***********Explored Area***********/
             Column(
               children: [
-                SizedBox(height: 40),
                 Row(
                   children: [
                     SizedBox(width: 10),
@@ -574,7 +595,6 @@ class _singleDistrictState extends State<singleDistrict>
             /************Hiking Area************/
             Column(
               children: [
-                SizedBox(height: 40),
                 Row(
                   children: [
                     SizedBox(width: 10),
@@ -604,7 +624,6 @@ class _singleDistrictState extends State<singleDistrict>
             /************Resturant***************/
             Column(
               children: [
-                SizedBox(height: 40),
                 Row(
                   children: [
                     SizedBox(width: 10),
@@ -631,7 +650,6 @@ class _singleDistrictState extends State<singleDistrict>
             /*********Parks********/
             Column(
               children: [
-                SizedBox(height: 40),
                 Row(
                   children: [
                     SizedBox(width: 10),
@@ -661,7 +679,6 @@ class _singleDistrictState extends State<singleDistrict>
             /***********Historical Places*************/
             Column(
               children: [
-                SizedBox(height: 40),
                 Row(
                   children: [
                     SizedBox(width: 10),
@@ -691,7 +708,6 @@ class _singleDistrictState extends State<singleDistrict>
             /***********Events*************/
             Column(
               children: [
-                SizedBox(height: 40),
                 Row(
                   children: [
                     SizedBox(width: 10),
@@ -721,7 +737,6 @@ class _singleDistrictState extends State<singleDistrict>
             /***********Entertainment*************/
             Column(
               children: [
-                SizedBox(height: 40),
                 Row(
                   children: [
                     SizedBox(width: 10),
@@ -802,13 +817,35 @@ class streamList extends StatelessWidget {
                                   child: GestureDetector(
                                     onTap: () {
                                       if (areaIndex == 1) {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    ViewDistination(
-                                                        areaID: db_data[index]
-                                                            ['ID'])));
+                                        print(db_data[index]['ID']);
+                                        // Navigator.push(
+                                        //     context,
+                                        //     MaterialPageRoute(
+                                        //         builder: (context) =>
+                                        //             ViewDistination(
+                                        //                 areaID: db_data[index]
+                                        //                     ['ID'])));
+                                        Navigator.of(context).push(
+                                            PageRouteBuilder(
+                                                transitionDuration: Duration(
+                                                    milliseconds: 1000),
+                                                reverseTransitionDuration:
+                                                    Duration(
+                                                        milliseconds: 1000),
+                                                pageBuilder: (context,
+                                                    animation,
+                                                    secondaryAnimation) {
+                                                  final curvedAnimatino =
+                                                      CurvedAnimation(
+                                                          parent: animation,
+                                                          curve:
+                                                              Interval(0, 0.5));
+                                                  return FadeTransition(
+                                                      opacity: curvedAnimatino,
+                                                      child: ViewDistination(
+                                                          areaID: db_data[index]
+                                                              ['ID']));
+                                                }));
                                       } else if (areaIndex == 0) {
                                         //hotel
                                         Navigator.push(
@@ -860,23 +897,27 @@ class streamList extends StatelessWidget {
                                           //         db_data[index]['image']),
                                           //     // height: 180,
                                           //     fit: BoxFit.cover),
-                                          CachedNetworkImage(
-                                            imageUrl: db_data[index]['image'],
-                                            imageBuilder:
-                                                (context, imageProvider) =>
-                                                    Container(
-                                              decoration: BoxDecoration(
-                                                image: DecorationImage(
-                                                  image: imageProvider,
-                                                  fit: BoxFit.cover,
+                                          Hero(
+                                            tag:
+                                                "background:${db_data[index]['ID'].toString()}",
+                                            child: CachedNetworkImage(
+                                              imageUrl: db_data[index]['image'],
+                                              imageBuilder:
+                                                  (context, imageProvider) =>
+                                                      Container(
+                                                decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                    image: imageProvider,
+                                                    fit: BoxFit.cover,
+                                                  ),
                                                 ),
                                               ),
+                                              placeholder: (context, url) =>
+                                                  CircularProgressIndicator(),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      Icon(Icons.error),
                                             ),
-                                            placeholder: (context, url) =>
-                                                CircularProgressIndicator(),
-                                            errorWidget:
-                                                (context, url, error) =>
-                                                    Icon(Icons.error),
                                           ),
                                           Positioned(
                                             bottom: 10,

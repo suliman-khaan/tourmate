@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'attribute_view.dart';
 import 'package:flutter/cupertino.dart';
@@ -41,6 +42,7 @@ Widget singleResturent(dist) {
               db_data.add(dataList);
             }).toList();
             return Container(
+              margin: EdgeInsets.symmetric(horizontal: 5),
               child: GridView.builder(
                   itemCount: db_data.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -71,10 +73,29 @@ Widget singleResturent(dist) {
                                   child: Stack(
                                     alignment: Alignment.bottomLeft,
                                     children: [
-                                      Ink.image(
-                                          image: NetworkImage(
-                                              db_data[index]['image']),
-                                          fit: BoxFit.cover),
+                                      // Ink.image(
+                                      //     image: NetworkImage(
+                                      //         db_data[index]['image']),
+                                      //     fit: BoxFit.cover),
+                                      CachedNetworkImage(
+                                        imageUrl: db_data[index]['image'],
+                                        width: double.infinity,
+                                        height: double.infinity,
+                                        imageBuilder:
+                                            (context, imageProvider) =>
+                                                Container(
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                              image: imageProvider,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                        placeholder: (context, url) =>
+                                            CircularProgressIndicator(),
+                                        errorWidget: (context, url, error) =>
+                                            Icon(Icons.error),
+                                      ),
                                       Positioned(
                                         bottom: 10,
                                         left: 10,

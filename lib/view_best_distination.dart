@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:tourmate1/allResturent.dart';
 import 'attribute_view.dart';
 import 'best_distination_attribute_container.dart';
 import 'footer.dart';
@@ -104,21 +103,30 @@ class _ViewDistinationState extends State<ViewDistination> {
                         //   fit: BoxFit.fitWidth,
                         //   width: double.infinity,
                         // ),
-                        CachedNetworkImage(
-                          imageUrl: viewDistination[0]['image'],
-                          height: 200,
-                          imageBuilder: (context, imageProvider) => Container(
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: imageProvider,
-                                fit: BoxFit.cover,
+                        Hero(
+                          tag:
+                              "background:${viewDistination[0]['ID'].toString()}",
+                          child: GestureDetector(
+                            onTap: () =>
+                                print(viewDistination[0]['ID'].toString()),
+                            child: CachedNetworkImage(
+                              imageUrl: viewDistination[0]['image'],
+                              height: 200,
+                              imageBuilder: (context, imageProvider) =>
+                                  Container(
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: imageProvider,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
                               ),
+                              placeholder: (context, url) =>
+                                  CircularProgressIndicator(),
+                              errorWidget: (context, url, error) =>
+                                  Icon(Icons.error),
                             ),
                           ),
-                          placeholder: (context, url) =>
-                              CircularProgressIndicator(),
-                          errorWidget: (context, url, error) =>
-                              Icon(Icons.error),
                         ),
                         SizedBox(height: 20),
                         Container(

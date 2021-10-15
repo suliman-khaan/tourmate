@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -43,6 +44,7 @@ Widget singleHotel(dist) {
               print(dist);
             }
             return Container(
+              margin: EdgeInsets.symmetric(horizontal: 5),
               child: GridView.builder(
                   itemCount: hotel.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -72,10 +74,28 @@ Widget singleHotel(dist) {
                                   child: Stack(
                                     alignment: Alignment.bottomLeft,
                                     children: [
-                                      Ink.image(
-                                          image: NetworkImage(
-                                              hotel[index]['image']),
-                                          fit: BoxFit.cover),
+                                      // Ink.image(
+                                      //     image: NetworkImage(
+                                      //         hotel[index]['image']),
+                                      //     fit: BoxFit.cover),
+                                      CachedNetworkImage(
+                                        imageUrl: hotel[index]['image'],
+                                        width: double.infinity,
+                                        imageBuilder:
+                                            (context, imageProvider) =>
+                                                Container(
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                              image: imageProvider,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                        placeholder: (context, url) =>
+                                            CircularProgressIndicator(),
+                                        errorWidget: (context, url, error) =>
+                                            Icon(Icons.error),
+                                      ),
                                       Positioned(
                                         bottom: 10,
                                         left: 10,

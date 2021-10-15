@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -65,7 +66,21 @@ class _singleTransportState extends State<singleTransport> {
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image(image: NetworkImage(transport[0]['image'])),
+                      // Image(image: NetworkImage(transport[0]['image'])),
+                      CachedNetworkImage(
+                        imageUrl: transport[0]['image'],
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        placeholder: (context, url) =>
+                            CircularProgressIndicator(),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                      ),
                       SizedBox(height: 10),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),

@@ -234,7 +234,7 @@ class _HotelViewState extends State<HotelView> {
                                 Align(
                                   alignment: Alignment.topLeft,
                                   child: Container(
-                                    margin: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                                    margin: EdgeInsets.fromLTRB(5, 20, 10, 20),
                                     // decoration: BoxDecoration(
                                     //   border: Border.all(color: Colors.orange),
                                     // ),
@@ -293,6 +293,60 @@ class _HotelViewState extends State<HotelView> {
                                                       color: Colors.green)),
                                               label: Text(
                                                 "Call Us",
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    color: Colors.green),
+                                              ),
+                                            ),
+
+                                            // RaisedButton.icon(
+                                            //   onPressed: (){},
+                                            //   label: Text("Call Us"),
+                                            //   icon: Icon(Icons.call),
+                                            //   )
+                                          ],
+                                        ),
+                                        SizedBox(height: 10),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            // Icon(Icons.call),
+                                            Text(
+                                              //if login is true then show number
+                                              FirebaseAuth.instance
+                                                          .currentUser !=
+                                                      null
+                                                  ? storeHotel[0]['contact_no']
+                                                  : ("Phone number"),
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            // ignore: deprecated_member_use
+                                            RaisedButton.icon(
+                                              onPressed: () async {
+                                                FirebaseAuth.instance
+                                                            .currentUser !=
+                                                        null
+                                                    ? FlutterPhoneDirectCaller
+                                                        .callNumber(storeHotel[
+                                                                0]['contact_no']
+                                                            .toString())
+                                                    : createAlertDialog(
+                                                        context);
+                                              },
+                                              icon: Icon(Icons.navigation,
+                                                  size: 15,
+                                                  color: Colors.green),
+                                              color: Colors.white,
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.zero,
+                                                  side: BorderSide(
+                                                      color: Colors.green)),
+                                              label: Text(
+                                                "WhatsApp Us",
                                                 style: TextStyle(
                                                     fontSize: 15,
                                                     color: Colors.green),

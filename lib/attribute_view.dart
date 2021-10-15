@@ -61,6 +61,7 @@ class _DistrictAttributeContainerState
         _stream = FirebaseFirestore.instance
             .collection("Parks")
             // .where('district', isEqualTo: district)
+            .where('ID', isEqualTo: id)
             .snapshots();
         _stream1 = FirebaseFirestore.instance
             .collection("Gallery")
@@ -82,6 +83,7 @@ class _DistrictAttributeContainerState
         _stream = FirebaseFirestore.instance
             .collection("Events")
             //.where("district", isEqualTo: district)
+            .where('ID', isEqualTo: id)
             .where("present", isEqualTo: true)
             .snapshots();
         _stream1 = FirebaseFirestore.instance
@@ -93,6 +95,7 @@ class _DistrictAttributeContainerState
         _stream = FirebaseFirestore.instance
             .collection("Entertainment")
             //.where("district", isEqualTo: district)
+            .where('ID', isEqualTo: id)
             .snapshots();
         _stream1 = FirebaseFirestore.instance
             .collection("Gallery")
@@ -114,6 +117,7 @@ class _DistrictAttributeContainerState
             .collection(area)
             //.where("district", isEqualTo: district)
             .where("hiking_and_tracking", isEqualTo: true)
+            .where('ID', isEqualTo: id)
             .snapshots();
         _stream1 = FirebaseFirestore.instance
             .collection("Gallery")
@@ -160,7 +164,6 @@ class _DistrictAttributeContainerState
             body: SafeArea(
               child: SingleChildScrollView(
                 child: Container(
-                  margin: EdgeInsets.all(10),
                   width: MediaQuery.of(context).size.width,
                   // decoration: BoxDecoration(border: Border.all(color: Colors.blue)),
                   child: Column(
@@ -178,6 +181,7 @@ class _DistrictAttributeContainerState
                         height: 20,
                       ),
                       Container(
+                        margin: EdgeInsets.all(10),
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -198,28 +202,32 @@ class _DistrictAttributeContainerState
                       // get direction
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          // ignore: deprecated_member_use
-                          child: RaisedButton.icon(
-                              color: Colors.blue,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5)),
-                              padding: EdgeInsets.fromLTRB(10, 5, 20, 5),
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.place_outlined,
-                                color: Colors.white,
-                              ),
-                              label: Text(
-                                "Get Direction",
-                                style: TextStyle(
+                        child: Container(
+                          margin: EdgeInsets.all(10),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            // ignore: deprecated_member_use
+                            child: RaisedButton.icon(
+                                color: Colors.blue,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5)),
+                                padding: EdgeInsets.fromLTRB(10, 5, 20, 5),
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.place_outlined,
                                   color: Colors.white,
                                 ),
-                              )),
+                                label: Text(
+                                  "Get Direction",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                )),
+                          ),
                         ),
                       ),
                       Container(
+                        margin: EdgeInsets.all(10),
                         child: Column(children: [
                           // padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                           Row(

@@ -490,7 +490,7 @@ class _ViewDistinationState extends State<ViewDistination> {
                               );
                             } else {
                               return Container(
-                                  margin: EdgeInsets.only(bottom: 20),
+                                  margin: EdgeInsets.symmetric(horizontal: 10),
                                   child: Column(
                                     children: [
                                       //
@@ -653,132 +653,134 @@ class _ViewDistinationState extends State<ViewDistination> {
                               );
                             } else {
                               return Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 10),
                                   child: Column(
-                                children: [
-                                  //
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text("Entertainments",
-                                          style: GoogleFonts.roboto(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 18,
-                                          )),
-                                      TextButton(
-                                          onPressed: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        BestDistinationAttributeContainer(
-                                                            areaIndex: 4,
-                                                            id: area)));
-                                          },
-                                          child: Text("See All")),
-                                    ],
-                                  ),
-                                  Container(
-                                    height: 200,
-                                    // width: 300,
-                                    child: ListView(
-                                      scrollDirection: Axis.horizontal,
-                                      children: List.generate(
-                                          entertainmentsList.length,
-                                          (int index) => Container(
-                                                width: 250,
-                                                margin:
-                                                    EdgeInsets.only(right: 10),
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                  // border: Border.all(color: Colors.grey)
-                                                ),
-                                                child: GestureDetector(
-                                                  onTap: () {
-                                                    Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                DistrictAttributeContainer(
+                                      //
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("Entertainments",
+                                              style: GoogleFonts.roboto(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 18,
+                                              )),
+                                          TextButton(
+                                              onPressed: () {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            BestDistinationAttributeContainer(
+                                                                areaIndex: 4,
+                                                                id: area)));
+                                              },
+                                              child: Text("See All")),
+                                        ],
+                                      ),
+                                      Container(
+                                        height: 200,
+                                        // width: 300,
+                                        child: ListView(
+                                          scrollDirection: Axis.horizontal,
+                                          children: List.generate(
+                                              entertainmentsList.length,
+                                              (int index) => Container(
+                                                    width: 250,
+                                                    margin: EdgeInsets.only(
+                                                        right: 10),
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      // border: Border.all(color: Colors.grey)
+                                                    ),
+                                                    child: GestureDetector(
+                                                      onTap: () {
+                                                        Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder: (context) => DistrictAttributeContainer(
                                                                     areaIndex:
                                                                         7,
                                                                     a_id: entertainmentsList[
                                                                             index]
                                                                         [
                                                                         'ID'])));
-                                                  },
-                                                  child: Card(
-                                                    elevation: 4,
-                                                    clipBehavior:
-                                                        Clip.antiAlias,
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5.0),
-                                                    ),
-                                                    child: Stack(
-                                                      alignment:
-                                                          Alignment.bottomLeft,
-                                                      children: [
-                                                        Image.network(
-                                                          entertainmentsList[
-                                                              index]['image'],
-                                                          fit: BoxFit.cover,
-                                                          height:
-                                                              double.infinity,
-                                                          width:
-                                                              double.infinity,
+                                                      },
+                                                      child: Card(
+                                                        elevation: 4,
+                                                        clipBehavior:
+                                                            Clip.antiAlias,
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      5.0),
                                                         ),
-                                                        Container(
-                                                          margin: EdgeInsets
-                                                              .fromLTRB(
-                                                                  10, 0, 0, 10),
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        4.8),
-                                                            child:
-                                                                BackdropFilter(
-                                                              filter: ImageFilter
-                                                                  .blur(
+                                                        child: Stack(
+                                                          alignment: Alignment
+                                                              .bottomLeft,
+                                                          children: [
+                                                            Image.network(
+                                                              entertainmentsList[
+                                                                      index]
+                                                                  ['image'],
+                                                              fit: BoxFit.cover,
+                                                              height: double
+                                                                  .infinity,
+                                                              width: double
+                                                                  .infinity,
+                                                            ),
+                                                            Container(
+                                                              margin: EdgeInsets
+                                                                  .fromLTRB(10,
+                                                                      0, 0, 10),
+                                                              child: ClipRRect(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            4.8),
+                                                                child:
+                                                                    BackdropFilter(
+                                                                  filter: ImageFilter.blur(
                                                                       sigmaX:
                                                                           19.2,
                                                                       sigmaY:
                                                                           19.2),
-                                                              child: Container(
-                                                                child: Padding(
-                                                                  padding:
-                                                                      const EdgeInsets
-                                                                              .all(
-                                                                          8.0),
-                                                                  child: Text(
-                                                                    entertainmentsList[
-                                                                            index]
-                                                                        [
-                                                                        'name'],
-                                                                    style: TextStyle(
-                                                                        color: Colors
-                                                                            .white,
-                                                                        fontWeight:
-                                                                            FontWeight.w500),
+                                                                  child:
+                                                                      Container(
+                                                                    child:
+                                                                        Padding(
+                                                                      padding:
+                                                                          const EdgeInsets.all(
+                                                                              8.0),
+                                                                      child:
+                                                                          Text(
+                                                                        entertainmentsList[index]
+                                                                            [
+                                                                            'name'],
+                                                                        style: TextStyle(
+                                                                            color:
+                                                                                Colors.white,
+                                                                            fontWeight: FontWeight.w500),
+                                                                      ),
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
-                                                            ),
-                                                          ),
-                                                        )
-                                                      ],
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
                                                     ),
-                                                  ),
-                                                ),
-                                              )),
-                                    ),
-                                  ),
-                                ],
-                              ));
+                                                  )),
+                                        ),
+                                      ),
+                                    ],
+                                  ));
                             }
                           },
                         ),
@@ -811,7 +813,7 @@ class _ViewDistinationState extends State<ViewDistination> {
                               );
                             } else {
                               return Container(
-                                  margin: EdgeInsets.only(bottom: 20),
+                                  margin: EdgeInsets.symmetric(horizontal: 10),
                                   child: Column(
                                     children: [
                                       //

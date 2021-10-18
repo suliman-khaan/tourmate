@@ -34,7 +34,7 @@ class _TeamMembersState extends State<TeamMembers> {
         rank: 'CO-Founder',
         contact: '03409340543',
         description:
-            'I am Saad Ali Student of BS  Software Engineering and Co-Founder of TourMate Company. Working As Project Manager  and Flutter Developer TourMate Company. I have 6 Months Experience in Mobile Application development and 1 year experience in Web Development(Full Stake Developer).',
+            'I am Saad Ali Student of BS  Software Engineering and Co-Founder of TourMate Company. Working As Project Manager  and Flutter Developer TourMate Company. I have 6 Months Experience in Mobile Application development and 1 year experience in Web Development(Full Stack).',
         facebook: 'Itz Saad khanz',
         facebookLink: 'https://www.facebook.com/profile.php?id=100010622133903',
         dashes: 40),
@@ -56,7 +56,7 @@ class _TeamMembersState extends State<TeamMembers> {
         rank: 'App Developer',
         contact: '03489358689',
         description:
-            'Hi! I am Suliman Khan student of BS Software Engineering at University of Swat. Working as App Developer(Full Stack) at TourMate Company. Also I have 3 years of Experience in Web Development, 2 years of Experience in WordPress and one year of Experience in Flutter Development.',
+            'Web Developer with 3 years of experience in designing and developing user interfaces, testing, debugging, and training staff within eCommerce technologies. Proven ability in optimizing web functionality that improve data retrieval and workflow efficiencies.Using Flutter, Firebase, to create complex mobile applications from the prototype stage to the launch and ongoing maintenance phases',
         facebook: 'Suliman Khan',
         facebookLink: 'https://www.facebook.com/profile.php?id=100007348177845',
         dashes: 40),

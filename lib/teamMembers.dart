@@ -56,7 +56,7 @@ class _TeamMembersState extends State<TeamMembers> {
         rank: 'App Developer',
         contact: '03489358689',
         description:
-            'Web Developer with 3 years of experience in designing and developing user interfaces, testing, debugging, and training staff within eCommerce technologies. Proven ability in optimizing web functionality that improve data retrieval and workflow efficiencies.Using Flutter, Firebase, to create complex mobile applications from the prototype stage to the launch and ongoing maintenance phases',
+            'Web Developer with 3 years of experience in designing and developing user interfaces, testing, debugging, and training staff within eCommerce technologies. Proven ability in optimizing web functionality that improve data retrieval and workflow efficiencies.Using Flutter, Firebase to create complex mobile applications from the prototype stage to the launch and ongoing maintenance phases.',
         facebook: 'Suliman Khan',
         facebookLink: 'https://www.facebook.com/profile.php?id=100007348177845',
         dashes: 40),

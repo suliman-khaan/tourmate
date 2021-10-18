@@ -18,12 +18,12 @@ class _TeamMembersState extends State<TeamMembers> {
     Quotes(
         name: "Mr. Fahim Ullah",
         email: "fahimullah1888@gmail.com",
-        image: 'assets/images/fahim.jpg',
+        image: 'assets/images/fahim1.jpg',
         rank: 'CEO',
         contact: '03428270869',
         description:
-            'What Is Chief Executive Officer (CEO)?A chief executive officer (CEO) is the highest-ranking executive in a company, whose primary responsibilities include making major corporate decisions, managing the overall operations and resources of a company, acting as the main point of communication between the board of directors (the board) and corporate operations and being the public face of the company. A CEO is elected by the board and its shareholders.',
-        facebook: 'Fahim Ullah official',
+            'Fahim Ullah is an entrepreneur , speaker and YouTuber  . He is the founder and CEO at TourMate',
+        facebook: 'Fahim Ullah Official',
         facebookLink: 'https://www.facebook.com/fahimullah.fahmy',
         dashes: 40),
     Quotes(

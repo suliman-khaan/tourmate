@@ -126,7 +126,7 @@ class _singleTransportState extends State<singleTransport> {
                                     return Container(
                                       padding: EdgeInsets.all(8),
                                       width: MediaQuery.of(context).size.width,
-                                      color: Colors.grey[200],
+                                      color: Colors.grey[50],
                                       child: Wrap(
                                         children: [
                                           Wrap(

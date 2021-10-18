@@ -215,38 +215,6 @@ class _SearchPageState extends State<SearchPage> {
                         }).toList()),
                 ),
 
-                //  Container for Recent Search
-
-                Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 40,
-                        ),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            "Your Recent Searches",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 15),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 40,
-                        ),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text("kalam"),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
                 SizedBox(
                   height: 10,
                 ),

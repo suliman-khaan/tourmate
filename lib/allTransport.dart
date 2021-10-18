@@ -85,7 +85,7 @@ class _transportState extends State<transport> {
                                     tabIndex: 3, district: swatID)));
                       },
                       child: Text(
-                        "Swat Transport",
+                        "Swat Transports",
                         style: TextStyle(color: Colors.blue),
                       )),
                   InkWell(
@@ -97,7 +97,7 @@ class _transportState extends State<transport> {
                                     tabIndex: 3, district: kumratID)));
                       },
                       child: Text(
-                        "Kumrat Transport",
+                        "Kumrat Transports",
                         style: TextStyle(color: Colors.blue),
                       )),
                   InkWell(
@@ -109,7 +109,7 @@ class _transportState extends State<transport> {
                                     tabIndex: 3, district: chitralID)));
                       },
                       child: Text(
-                        "Chitrol Transport",
+                        "Chitral Transports",
                         style: TextStyle(color: Colors.blue),
                       ))
                 ],

@@ -596,7 +596,7 @@ class HotelFacilites extends StatelessWidget {
                                     : Colors.grey,
                               )),
                               TextSpan(
-                                  text: "  Hreter",
+                                  text: "  Heater",
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: facilities[0]['heater'] == true
@@ -667,7 +667,7 @@ class ResturentFacilites extends StatelessWidget {
           return Container(
             padding: EdgeInsets.all(8),
             width: MediaQuery.of(context).size.width,
-            color: Colors.grey[200],
+            color: Colors.grey[50],
             child: Wrap(
               children: [
                 Wrap(

@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tourmate1/singleTraspComp.dart';
 import 'attribute_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -441,9 +442,9 @@ class _singleDistrictState extends State<singleDistrict>
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              singleTransport(
-                                                                  id: db_data[
-                                                                          index]
+                                                              compSingle(
+                                                                  local: false,
+                                                                  dist: dist[0]
                                                                       ['ID'])));
                                                 },
                                                 child: Card(

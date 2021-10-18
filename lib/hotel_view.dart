@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -5,11 +7,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tourmate1/Register.dart';
 import 'package:tourmate1/login.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'socialLuncher.dart';
 
 // ignore: must_be_immutable
 class HotelView extends StatefulWidget {
@@ -35,7 +40,7 @@ class _HotelViewState extends State<HotelView> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "To make a Call, you need to be Logged In",
+                      "To make a Call or WhatsApp, you need to be Logged In",
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.grey),
                     ),
@@ -76,6 +81,8 @@ class _HotelViewState extends State<HotelView> {
   Widget build(BuildContext context) {
     final Stream<QuerySnapshot> _stream;
     // var index = widget.index;
+    final Stream<QuerySnapshot> contact =
+        FirebaseFirestore.instance.collection("about-us").snapshots();
     switch (widget.index) {
       case 1:
         _stream = FirebaseFirestore.instance
@@ -193,7 +200,6 @@ class _HotelViewState extends State<HotelView> {
                                   padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
                                   child: Align(
                                     alignment: Alignment.centerLeft,
-                                    // ignore: deprecated_member_use
                                     child: RaisedButton.icon(
                                         color: Colors.blue,
                                         shape: RoundedRectangleBorder(
@@ -246,84 +252,176 @@ class _HotelViewState extends State<HotelView> {
                                   ),
                                 ),
                                 //Contact Button
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Container(
-                                    margin: EdgeInsets.fromLTRB(10, 20, 10, 20),
-                                    // decoration: BoxDecoration(
-                                    //   border: Border.all(color: Colors.orange),
-                                    // ),
-                                    child: Column(
-                                      children: [
-                                        SizedBox(
-                                          child: Align(
-                                            alignment: Alignment.topLeft,
-                                            child: Text(
-                                              "Contact Us",
-                                              style: TextStyle(
-                                                  fontSize: 22,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.blue),
-                                            ),
+                                StreamBuilder<Object>(
+                                    stream: contact,
+                                    builder: (context, AsyncSnapshot snapshot) {
+                                      if (snapshot.connectionState ==
+                                          ConnectionState.waiting) {
+                                        return Center(
+                                          child: CircularProgressIndicator(
+                                            color: Colors.black,
+                                          ),
+                                        );
+                                      }
+                                      final List contact = [];
+                                      snapshot.data!.docs
+                                          .map((DocumentSnapshot e) {
+                                        Map dis =
+                                            e.data() as Map<String, dynamic>;
+                                        contact.add(dis);
+                                      }).toList();
+                                      return Align(
+                                        alignment: Alignment.topLeft,
+                                        child: Container(
+                                          margin: EdgeInsets.fromLTRB(
+                                              10, 20, 10, 20),
+                                          // decoration: BoxDecoration(
+                                          //   border: Border.all(color: Colors.orange),
+                                          // ),
+                                          child: Column(
+                                            children: [
+                                              SizedBox(
+                                                child: Align(
+                                                  alignment: Alignment.topLeft,
+                                                  child: Text(
+                                                    "Contact Us",
+                                                    style: TextStyle(
+                                                        fontSize: 22,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.blue),
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(height: 10),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                // ignore: duplicate_ignore
+                                                children: [
+                                                  // Icon(Icons.call),
+                                                  Text(
+                                                    //if login is true then show number
+                                                    FirebaseAuth.instance
+                                                                .currentUser !=
+                                                            null
+                                                        ? contact[0]['phone']
+                                                        : ("Phone number"),
+                                                    style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  Expanded(child: Center()),
+                                                  Wrap(children: [
+                                                    ButtonTheme(
+                                                      minWidth: 40,
+                                                      child: SizedBox(
+                                                        width: 40,
+                                                        child: ElevatedButton(
+                                                          onPressed: () async {
+                                                            FirebaseAuth.instance
+                                                                        .currentUser !=
+                                                                    null
+                                                                ? FlutterPhoneDirectCaller
+                                                                    .callNumber(contact[0]
+                                                                            [
+                                                                            'phone']
+                                                                        .toString())
+                                                                : createAlertDialog(
+                                                                    context);
+                                                          },
+                                                          style: ElevatedButton.styleFrom(
+                                                              shape:
+                                                                  RoundedRectangleBorder(),
+                                                              padding: EdgeInsets
+                                                                  .symmetric(
+                                                                      vertical:
+                                                                          5),
+                                                              primary:
+                                                                  Colors.blue),
+                                                          child: FaIcon(
+                                                            FontAwesomeIcons
+                                                                .phone,
+                                                            size: 18,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 5),
+                                                    ButtonTheme(
+                                                      minWidth: 40,
+                                                      child: SizedBox(
+                                                        width: 40,
+                                                        child: ElevatedButton(
+                                                            onPressed: () {
+                                                              FirebaseAuth.instance
+                                                                          .currentUser !=
+                                                                      null
+                                                                  ? whatsAppLaunch(
+                                                                      phone: contact[
+                                                                              0]
+                                                                          [
+                                                                          'phone'])
+                                                                  : createAlertDialog(
+                                                                      context);
+                                                            },
+                                                            style: ElevatedButton.styleFrom(
+                                                                shape:
+                                                                    RoundedRectangleBorder(),
+                                                                primary: Colors
+                                                                    .green,
+                                                                padding: EdgeInsets
+                                                                    .symmetric(
+                                                                        vertical:
+                                                                            5)),
+                                                            child: FaIcon(
+                                                              FontAwesomeIcons
+                                                                  .whatsapp,
+                                                              color:
+                                                                  Colors.white,
+                                                              // size: 18,
+                                                            )),
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 5),
+                                                    ButtonTheme(
+                                                      minWidth: 40,
+                                                      child: SizedBox(
+                                                        width: 40,
+                                                        child: ElevatedButton(
+                                                            onPressed: () =>
+                                                                emailLaunch(
+                                                                    toEmail: contact[
+                                                                            0][
+                                                                        'email']),
+                                                            style: ElevatedButton.styleFrom(
+                                                                shape:
+                                                                    RoundedRectangleBorder(),
+                                                                primary: Color(
+                                                                    0xFFEA4335),
+                                                                padding: EdgeInsets
+                                                                    .symmetric(
+                                                                        vertical:
+                                                                            5)),
+                                                            child: FaIcon(
+                                                              FontAwesomeIcons
+                                                                  .envelope,
+                                                              color:
+                                                                  Colors.white,
+                                                              size: 20,
+                                                            )),
+                                                      ),
+                                                    )
+                                                  ])
+                                                ],
+                                              )
+                                            ],
                                           ),
                                         ),
-                                        SizedBox(height: 10),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            // Icon(Icons.call),
-                                            Text(
-                                              //if login is true then show number
-                                              FirebaseAuth.instance
-                                                          .currentUser !=
-                                                      null
-                                                  ? storeHotel[0]['contact_no']
-                                                  : ("Phone number"),
-                                              style: TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            // ignore: deprecated_member_use
-                                            RaisedButton.icon(
-                                              onPressed: () async {
-                                                FirebaseAuth.instance
-                                                            .currentUser !=
-                                                        null
-                                                    ? FlutterPhoneDirectCaller
-                                                        .callNumber(storeHotel[
-                                                                0]['contact_no']
-                                                            .toString())
-                                                    : createAlertDialog(
-                                                        context);
-                                              },
-                                              icon: Icon(Icons.call,
-                                                  size: 15,
-                                                  color: Colors.green),
-                                              color: Colors.white,
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.zero,
-                                                  side: BorderSide(
-                                                      color: Colors.green)),
-                                              label: Text(
-                                                "Call Us",
-                                                style: TextStyle(
-                                                    fontSize: 15,
-                                                    color: Colors.green),
-                                              ),
-                                            )
-                                            // RaisedButton.icon(
-                                            //   onPressed: (){},
-                                            //   label: Text("Call Us"),
-                                            //   icon: Icon(Icons.call),
-                                            //   )
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                )
+                                      );
+                                    })
                               ]),
                             ),
 
@@ -378,7 +476,6 @@ class HotelFacilites extends StatelessWidget {
                         width: MediaQuery.of(context).size.width / 2 - 16,
                         child: RichText(
                           text: TextSpan(
-                              // ignore: deprecated_member_use
                               style: Theme.of(context).textTheme.bodyText2,
                               children: [
                                 WidgetSpan(
@@ -406,7 +503,6 @@ class HotelFacilites extends StatelessWidget {
                         width: MediaQuery.of(context).size.width / 2 - 16,
                         child: RichText(
                           text: TextSpan(
-                              // ignore: deprecated_member_use
                               style: Theme.of(context).textTheme.bodyText2,
                               children: [
                                 WidgetSpan(
@@ -433,7 +529,6 @@ class HotelFacilites extends StatelessWidget {
                         width: MediaQuery.of(context).size.width / 2 - 16,
                         child: RichText(
                           text: TextSpan(
-                              // ignore: deprecated_member_use
                               style: Theme.of(context).textTheme.bodyText2,
                               children: [
                                 WidgetSpan(
@@ -461,7 +556,6 @@ class HotelFacilites extends StatelessWidget {
                         width: MediaQuery.of(context).size.width / 2 - 16,
                         child: RichText(
                           text: TextSpan(
-                              // ignore: deprecated_member_use
                               style: Theme.of(context).textTheme.bodyText2,
                               children: [
                                 WidgetSpan(
@@ -489,7 +583,6 @@ class HotelFacilites extends StatelessWidget {
                         width: MediaQuery.of(context).size.width / 2 - 16,
                         child: RichText(
                           text: TextSpan(
-                              // ignore: deprecated_member_use
                               style: Theme.of(context).textTheme.bodyText2,
                               children: [
                                 WidgetSpan(
@@ -518,7 +611,6 @@ class HotelFacilites extends StatelessWidget {
                         width: MediaQuery.of(context).size.width / 2 - 16,
                         child: RichText(
                           text: TextSpan(
-                              // ignore: deprecated_member_use
                               style: Theme.of(context).textTheme.bodyText2,
                               children: [
                                 WidgetSpan(
@@ -546,7 +638,6 @@ class HotelFacilites extends StatelessWidget {
                         width: MediaQuery.of(context).size.width / 2 - 16,
                         child: RichText(
                           text: TextSpan(
-                              // ignore: deprecated_member_use
                               style: Theme.of(context).textTheme.bodyText2,
                               children: [
                                 WidgetSpan(
@@ -574,7 +665,6 @@ class HotelFacilites extends StatelessWidget {
                         width: MediaQuery.of(context).size.width / 2 - 16,
                         child: RichText(
                           text: TextSpan(
-                              // ignore: deprecated_member_use
                               style: Theme.of(context).textTheme.bodyText2,
                               children: [
                                 WidgetSpan(
@@ -642,7 +732,6 @@ class ResturentFacilites extends StatelessWidget {
                       width: MediaQuery.of(context).size.width / 2 - 16,
                       child: RichText(
                         text: TextSpan(
-                            // ignore: deprecated_member_use
                             style: Theme.of(context).textTheme.bodyText2,
                             children: [
                               WidgetSpan(
@@ -670,7 +759,6 @@ class ResturentFacilites extends StatelessWidget {
                       width: MediaQuery.of(context).size.width / 2 - 16,
                       child: RichText(
                         text: TextSpan(
-                            // ignore: deprecated_member_use
                             style: Theme.of(context).textTheme.bodyText2,
                             children: [
                               WidgetSpan(
@@ -697,7 +785,6 @@ class ResturentFacilites extends StatelessWidget {
                       width: MediaQuery.of(context).size.width / 2 - 16,
                       child: RichText(
                         text: TextSpan(
-                            // ignore: deprecated_member_use
                             style: Theme.of(context).textTheme.bodyText2,
                             children: [
                               WidgetSpan(
@@ -725,7 +812,6 @@ class ResturentFacilites extends StatelessWidget {
                       width: MediaQuery.of(context).size.width / 2 - 16,
                       child: RichText(
                         text: TextSpan(
-                            // ignore: deprecated_member_use
                             style: Theme.of(context).textTheme.bodyText2,
                             children: [
                               WidgetSpan(
@@ -753,7 +839,6 @@ class ResturentFacilites extends StatelessWidget {
                       width: MediaQuery.of(context).size.width / 2 - 16,
                       child: RichText(
                         text: TextSpan(
-                            // ignore: deprecated_member_use
                             style: Theme.of(context).textTheme.bodyText2,
                             children: [
                               WidgetSpan(
@@ -781,7 +866,6 @@ class ResturentFacilites extends StatelessWidget {
                       width: MediaQuery.of(context).size.width / 2 - 16,
                       child: RichText(
                         text: TextSpan(
-                            // ignore: deprecated_member_use
                             style: Theme.of(context).textTheme.bodyText2,
                             children: [
                               WidgetSpan(
@@ -848,7 +932,6 @@ class ParkFacilites extends StatelessWidget {
                       width: MediaQuery.of(context).size.width / 2 - 16,
                       child: RichText(
                         text: TextSpan(
-                            // ignore: deprecated_member_use
                             style: Theme.of(context).textTheme.bodyText2,
                             children: [
                               WidgetSpan(
@@ -876,7 +959,6 @@ class ParkFacilites extends StatelessWidget {
                       width: MediaQuery.of(context).size.width / 2 - 16,
                       child: RichText(
                         text: TextSpan(
-                            // ignore: deprecated_member_use
                             style: Theme.of(context).textTheme.bodyText2,
                             children: [
                               WidgetSpan(
@@ -903,7 +985,6 @@ class ParkFacilites extends StatelessWidget {
                       width: MediaQuery.of(context).size.width / 2 - 16,
                       child: RichText(
                         text: TextSpan(
-                            // ignore: deprecated_member_use
                             style: Theme.of(context).textTheme.bodyText2,
                             children: [
                               WidgetSpan(
@@ -931,7 +1012,6 @@ class ParkFacilites extends StatelessWidget {
                       width: MediaQuery.of(context).size.width / 2 - 16,
                       child: RichText(
                         text: TextSpan(
-                            // ignore: deprecated_member_use
                             style: Theme.of(context).textTheme.bodyText2,
                             children: [
                               WidgetSpan(
@@ -959,7 +1039,6 @@ class ParkFacilites extends StatelessWidget {
                       width: MediaQuery.of(context).size.width / 2 - 16,
                       child: RichText(
                         text: TextSpan(
-                            // ignore: deprecated_member_use
                             style: Theme.of(context).textTheme.bodyText2,
                             children: [
                               WidgetSpan(
@@ -987,7 +1066,6 @@ class ParkFacilites extends StatelessWidget {
                       width: MediaQuery.of(context).size.width / 2 - 16,
                       child: RichText(
                         text: TextSpan(
-                            // ignore: deprecated_member_use
                             style: Theme.of(context).textTheme.bodyText2,
                             children: [
                               WidgetSpan(
@@ -1017,7 +1095,6 @@ class ParkFacilites extends StatelessWidget {
                       width: MediaQuery.of(context).size.width / 2 - 16,
                       child: RichText(
                         text: TextSpan(
-                            // ignore: deprecated_member_use
                             style: Theme.of(context).textTheme.bodyText2,
                             children: [
                               WidgetSpan(
@@ -1045,7 +1122,6 @@ class ParkFacilites extends StatelessWidget {
                       width: MediaQuery.of(context).size.width / 2 - 16,
                       child: RichText(
                         text: TextSpan(
-                            // ignore: deprecated_member_use
                             style: Theme.of(context).textTheme.bodyText2,
                             children: [
                               WidgetSpan(

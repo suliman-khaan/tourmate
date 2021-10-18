@@ -67,7 +67,7 @@ class _TeamMembersState extends State<TeamMembers> {
         rank: 'Graphic Designer',
         contact: '03470191817',
         description:
-            'What Is Chief Executive Officer (CEO)?A chief executive officer (CEO) is the highest-ranking executive in a company, whose primary responsibilities include making major corporate decisions, managing the overall operations and resources of a company, acting as the main point of communication between the board of directors (the board) and corporate operations and being the public face of the company. A CEO is elected by the board and its shareholders.',
+            'Graphic designer with 3+ years of experience in the management of the complete design process, from conceptualization to delivery. Expert at interdepartmental coordination and communication. Skilled with Adobe Creative Suite (Photoshop, Illustrator), Video Editing, Microsoft Office Suite, and Web design applications (HTML, CSS, JavaScript). Able to stretch the boundaries of web design and digital storytelling to help my client’s brands stand out',
         facebook: 'Bashir ShamaKhail',
         facebookLink: 'https://www.facebook.com/bashir.shamakhail',
         dashes: 40),

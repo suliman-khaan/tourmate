@@ -1,7 +1,9 @@
+import 'dart:html';
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tourmate1/singleTraspComp.dart';
 import 'footer.dart';
 import 'singleTransport.dart';
 import 'package:flutter/cupertino.dart';
@@ -183,7 +185,16 @@ class _transportState extends State<transport> {
                                                 width: 250,
                                                 child: GestureDetector(
                                                   onTap: () {
-                                                    Navigator.push(
+                                                    if(swatTransportList[index]["local"] == false){
+                                                      Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                compSingle(local: false, dist: swatID)
+                                                        )
+                                                    );
+                                                    }else{
+                                                      Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
                                                             builder: (context) =>
@@ -191,7 +202,11 @@ class _transportState extends State<transport> {
                                                                     id: swatTransportList[
                                                                             index]
                                                                         [
-                                                                        'ID'])));
+                                                                        'ID'])
+                                                        )
+                                                    );
+                                                    }
+                                                    
                                                   },
                                                   child: Card(
                                                     margin: EdgeInsets.only(
@@ -531,7 +546,16 @@ class _transportState extends State<transport> {
                                                 width: 250,
                                                 child: GestureDetector(
                                                   onTap: () {
-                                                    Navigator.push(
+                                                     if(swatTransportList[index]["local"] == false){
+                                                               Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                            compSingle(local: false, dist: chitralID)
+                                                        )
+                                                    );
+                                                            }else{
+                                                               Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
                                                             builder: (context) =>
@@ -539,7 +563,11 @@ class _transportState extends State<transport> {
                                                                     id: swatTransportList[
                                                                             index]
                                                                         [
-                                                                        'ID'])));
+                                                                        'ID'])
+                                                        )
+                                                    );
+                                                            }
+                                                   
                                                   },
                                                   child: Card(
                                                     margin: EdgeInsets.only(

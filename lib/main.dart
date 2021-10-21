@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tourmate1/Register.dart';
 import 'about.dart';
@@ -17,7 +16,6 @@ import 'all_distination.dart';
 import 'home.dart';
 import 'routes.dart';
 import 'search_page.dart';
-import 'tour_startPage.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -98,18 +96,15 @@ class _MyHomePageState extends State<MyHomePage> {
               MyRoute.login: (context) => login(),
               MyRoute.signup: (context) => register(),
               MyRoute.home: (context) => home(),
-              //MyRoute.swatHotel: (context) => hotelSingle(),
               MyRoute.hotel: (context) => Hotel(),
               MyRoute.transport: (context) => transport(),
               MyRoute.resturent: (context) => resturent(),
               MyRoute.searchPage: (context) => SearchPage(),
-              //MyRoute.explore_area_swat: (context) => ExploreAreasSwat(),
-              //MyRoute.historicalAreas: (context) => HistorialAreas(),
-              //MyRoute.parks: (context) => ParksSwat(),
               MyRoute.allDistinations: (context) => AllDistinations(),
               MyRoute.contactUs: (context) => ContactUs(),
               MyRoute.aboutUs: (context) => AboutUS(),
-              MyRoute.ourTeam: (context) => TeamMembers()
+              MyRoute.ourTeam: (context) => TeamMembers(),
+              MyRoute.review: (context) => Review()
             },
           );
         },

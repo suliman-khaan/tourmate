@@ -1,4 +1,4 @@
-import 'dart:html';
+// import 'dart:html';
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -185,28 +185,29 @@ class _transportState extends State<transport> {
                                                 width: 250,
                                                 child: GestureDetector(
                                                   onTap: () {
-                                                    if(swatTransportList[index]["local"] == false){
+                                                    if (swatTransportList[index]
+                                                            ["local"] ==
+                                                        false) {
                                                       Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                compSingle(local: false, dist: swatID)
-                                                        )
-                                                    );
-                                                    }else{
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  compSingle(
+                                                                      local:
+                                                                          false,
+                                                                      dist:
+                                                                          swatID)));
+                                                    } else {
                                                       Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                singleTransport(
-                                                                    id: swatTransportList[
-                                                                            index]
-                                                                        [
-                                                                        'ID'])
-                                                        )
-                                                    );
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  singleTransport(
+                                                                      id: swatTransportList[
+                                                                              index]
+                                                                          [
+                                                                          'ID'])));
                                                     }
-                                                    
                                                   },
                                                   child: Card(
                                                     margin: EdgeInsets.only(
@@ -546,28 +547,29 @@ class _transportState extends State<transport> {
                                                 width: 250,
                                                 child: GestureDetector(
                                                   onTap: () {
-                                                     if(swatTransportList[index]["local"] == false){
-                                                               Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                            compSingle(local: false, dist: chitralID)
-                                                        )
-                                                    );
-                                                            }else{
-                                                               Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                singleTransport(
-                                                                    id: swatTransportList[
-                                                                            index]
-                                                                        [
-                                                                        'ID'])
-                                                        )
-                                                    );
-                                                            }
-                                                   
+                                                    if (swatTransportList[index]
+                                                            ["local"] ==
+                                                        false) {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  compSingle(
+                                                                      local:
+                                                                          false,
+                                                                      dist:
+                                                                          chitralID)));
+                                                    } else {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  singleTransport(
+                                                                      id: swatTransportList[
+                                                                              index]
+                                                                          [
+                                                                          'ID'])));
+                                                    }
                                                   },
                                                   child: Card(
                                                     margin: EdgeInsets.only(

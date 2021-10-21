@@ -14,8 +14,9 @@ class Review extends StatefulWidget {
 }
 
 class _ReviewState extends State<Review> {
+  final TextEditingController commentController = TextEditingController();
   late String date;
-   getData() async {
+  getData() async {
     Map data;
     Response response =
         await get(Uri.http('worldtimeapi.org', '/api/timezone/Asia/Karachi'));
@@ -24,6 +25,7 @@ class _ReviewState extends State<Review> {
     // time = data['datetime'].substring(11, 19);
     return data['datetime'].substring(0, 10);
   }
+
   final FirebaseAuth auth = FirebaseAuth.instance;
   String userId = "";
   final formKey = GlobalKey<FormState>();
@@ -43,7 +45,6 @@ class _ReviewState extends State<Review> {
     });
   }
 
-  final TextEditingController commentController = TextEditingController();
   createAlertDialog(BuildContext context) {
     return showDialog(
         context: context,
@@ -183,8 +184,10 @@ class _ReviewState extends State<Review> {
 
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> reviewStream =
-        FirebaseFirestore.instance.collection("Review").orderBy("date and time",descending: false).snapshots();
+    final Stream<QuerySnapshot> reviewStream = FirebaseFirestore.instance
+        .collection("Review")
+        .orderBy("date and time", descending: false)
+        .snapshots();
     // if (FirebaseAuth.instance.currentUser == null) {
     //   bool login = false;
     // } else
@@ -230,65 +233,61 @@ class _ReviewState extends State<Review> {
                         .where("uid", isEqualTo: userId)
                         .snapshots();
                 return SafeArea(
-                  child: Container(
-                      child: userId == ""
-                          ? logincommentChild(reviewList)
-                          : StreamBuilder(
-                              stream: reviewDisplayStream,
-                              builder: (context,
-                                  AsyncSnapshot<QuerySnapshot> snapshot) {
-                                if (snapshot.connectionState ==
-                                    ConnectionState.waiting) {
-                                  return Center(
-                                      child: CircularProgressIndicator());
+                  child: userId == ""
+                      ? logincommentChild(reviewList)
+                      : StreamBuilder(
+                          stream: reviewDisplayStream,
+                          builder:
+                              (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return Center(child: CircularProgressIndicator());
+                            }
+                            final List reviewDisplayList = [];
+                            snapshot.data!.docs.map((DocumentSnapshot e) {
+                              Map dataList = e.data() as Map<String, dynamic>;
+                              reviewDisplayList.add(dataList);
+                            }).toList();
+                            return Container(
+                                child: CommentBox(
+                              userImage: reviewDisplayList[0]['image'] != ''
+                                  ? reviewDisplayList[0]['image']
+                                  : "https://firebasestorage.googleapis.com/v0/b/fir-prictice-81c0f.appspot.com/o/profile.png?alt=media&token=8fdf702b-8f5a-4a12-b46a-091758812a5d",
+                              child: commentChild(
+                                  reviewList), //display review of cusotmer....
+                              labelText: 'Write a breif review...',
+                              withBorder: true,
+                              errorText: 'Review cannot be blank',
+                              sendButtonMethod: () {
+                                if (formKey.currentState!.validate()) {
+                                  print(commentController.text);
+                                  setState(() async {
+                                    Map<String, dynamic> value = {
+                                      'name': reviewDisplayList[0]['name'],
+                                      'pic': reviewDisplayList[0]['image'] != ''
+                                          ? reviewDisplayList[0]['image']
+                                          : "https://firebasestorage.googleapis.com/v0/b/fir-prictice-81c0f.appspot.com/o/profile.png?alt=media&token=8fdf702b-8f5a-4a12-b46a-091758812a5d",
+                                      'message': commentController.text,
+                                      'date and time': date
+                                    };
+                                    FirebaseFirestore.instance
+                                        .collection("Review")
+                                        .add(value);
+                                  });
+                                  commentController.clear();
+                                  FocusScope.of(context).unfocus();
+                                } else {
+                                  print("Not validated");
                                 }
-                                final List reviewDisplayList = [];
-                                snapshot.data!.docs.map((DocumentSnapshot e) {
-                                  Map dataList =
-                                      e.data() as Map<String, dynamic>;
-                                  reviewDisplayList.add(dataList);
-                                }).toList();
-                                return CommentBox(
-                                  userImage: reviewDisplayList[0]['image'] != ''
-                                      ? reviewDisplayList[0]['image']
-                                      : "https://firebasestorage.googleapis.com/v0/b/fir-prictice-81c0f.appspot.com/o/profile.png?alt=media&token=8fdf702b-8f5a-4a12-b46a-091758812a5d",
-                                  child: commentChild(
-                                      reviewList), //display review of cusotmer....
-                                  labelText: 'Write a breif review...',
-                                  withBorder: true,
-                                  errorText: 'Review cannot be blank',
-                                  sendButtonMethod: () {
-                                    if (formKey.currentState!.validate()) {
-                                      print(commentController.text);
-                                      setState(() async {
-                                        Map<String, dynamic> value =  {
-                                          'name': reviewDisplayList[0]['name'],
-                                          'pic': reviewDisplayList[0]
-                                                      ['image'] !=
-                                                  ''
-                                              ? reviewDisplayList[0]['image']
-                                              : "https://firebasestorage.googleapis.com/v0/b/fir-prictice-81c0f.appspot.com/o/profile.png?alt=media&token=8fdf702b-8f5a-4a12-b46a-091758812a5d",
-                                          'message': commentController.text,
-                                          'date and time': date
-                                        };
-                                        FirebaseFirestore.instance
-                                            .collection("Review")
-                                            .add(value);
-                                      });
-                                      commentController.clear();
-                                      FocusScope.of(context).unfocus();
-                                    } else {
-                                      print("Not validated");
-                                    }
-                                  },
-                                  formKey: formKey,
-                                  commentController: commentController,
-                                  backgroundColor: Colors.blue,
-                                  textColor: Colors.white,
-                                  sendWidget: Icon(Icons.send_sharp,
-                                      size: 24, color: Colors.white),
-                                );
-                              })),
+                              },
+                              formKey: formKey,
+                              commentController: commentController,
+                              backgroundColor: Colors.blue,
+                              textColor: Colors.white,
+                              sendWidget: Icon(Icons.send_sharp,
+                                  size: 24, color: Colors.white),
+                            ));
+                          }),
                 );
               }),
         ),

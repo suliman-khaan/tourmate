@@ -42,6 +42,7 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   void initState() {
+    // 
     productProvider = Provider.of(context, listen: false);
     productProvider.fatchAreaData();
     // productProvider.fatchRestaurantList();

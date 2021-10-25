@@ -8,13 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 
+final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+final TextEditingController commentController = TextEditingController();
+
 class Review extends StatefulWidget {
   @override
   _ReviewState createState() => _ReviewState();
 }
 
 class _ReviewState extends State<Review> {
-  final TextEditingController commentController = TextEditingController();
   late String date;
   getData() async {
     Map data;
@@ -28,7 +30,6 @@ class _ReviewState extends State<Review> {
 
   final FirebaseAuth auth = FirebaseAuth.instance;
   String userId = "";
-  final formKey = GlobalKey<FormState>();
   var user;
   @override
   void initState() {
@@ -188,10 +189,6 @@ class _ReviewState extends State<Review> {
         .collection("Review")
         .orderBy("date and time", descending: false)
         .snapshots();
-    // if (FirebaseAuth.instance.currentUser == null) {
-    //   bool login = false;
-    // } else
-    //   bool login = true;
 
     return Material(
       child: Scaffold(

@@ -51,9 +51,6 @@ class _SearchPageState extends State<SearchPage> {
     // productProvider.fatchEventsList();
     // productProvider.fatchTransporttList();
     // productProvider.fatchParksList();
-
-    // 
-
     // productProvider.fatchAreaCatagoryData();
     // productProvider.fatchRestaurantData();
     // productProvider.fatchAllHotelsData();

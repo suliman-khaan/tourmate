@@ -818,34 +818,34 @@ class streamList extends StatelessWidget {
                                     onTap: () {
                                       if (areaIndex == 1) {
                                         print(db_data[index]['ID']);
-                                        // Navigator.push(
-                                        //     context,
-                                        //     MaterialPageRoute(
-                                        //         builder: (context) =>
-                                        //             ViewDistination(
-                                        //                 areaID: db_data[index]
-                                        //                     ['ID'])));
-                                        Navigator.of(context).push(
-                                            PageRouteBuilder(
-                                                transitionDuration: Duration(
-                                                    milliseconds: 1000),
-                                                reverseTransitionDuration:
-                                                    Duration(
-                                                        milliseconds: 1000),
-                                                pageBuilder: (context,
-                                                    animation,
-                                                    secondaryAnimation) {
-                                                  final curvedAnimatino =
-                                                      CurvedAnimation(
-                                                          parent: animation,
-                                                          curve:
-                                                              Interval(0, 0.5));
-                                                  return FadeTransition(
-                                                      opacity: curvedAnimatino,
-                                                      child: ViewDistination(
-                                                          areaID: db_data[index]
-                                                              ['ID']));
-                                                }));
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ViewDistination(
+                                                        areaID: db_data[index]
+                                                            ['ID'])));
+                                        // Navigator.of(context).push(
+                                        //     PageRouteBuilder(
+                                        //         transitionDuration: Duration(
+                                        //             milliseconds: 1000),
+                                        //         reverseTransitionDuration:
+                                        //             Duration(
+                                        //                 milliseconds: 1000),
+                                        //         pageBuilder: (context,
+                                        //             animation,
+                                        //             secondaryAnimation) {
+                                        //           final curvedAnimatino =
+                                        //               CurvedAnimation(
+                                        //                   parent: animation,
+                                        //                   curve:
+                                        //                       Interval(0, 0.5));
+                                        //           return FadeTransition(
+                                        //               opacity: curvedAnimatino,
+                                        //               child: ViewDistination(
+                                        //                   areaID: db_data[index]
+                                        //                       ['ID']));
+                                        //         }));
                                       } else if (areaIndex == 0) {
                                         //hotel
                                         Navigator.push(

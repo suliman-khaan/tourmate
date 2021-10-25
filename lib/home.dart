@@ -224,7 +224,8 @@ class _homeState extends State<home> {
                           ),
                           content: Container(
                               width: double.infinity,
-                              height: MediaQuery.of(context).size.height * 0.67,
+                              margin: EdgeInsets.symmetric(horizontal: 10.0),
+                              height: MediaQuery.of(context).size.height * 0.57,
                               child: Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -242,19 +243,22 @@ class _homeState extends State<home> {
                                                 hintText:
                                                     "Search your destination",
                                                 hintStyle: TextStyle(
-                                                    color: Colors.black45),
+                                                    color: Colors.white),
                                                 border: OutlineInputBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20.0),
-                                                    borderSide:
-                                                        BorderSide.none),
+                                                    borderSide: new BorderSide(
+                                                        color: Colors.white)),
+                                                //  OutlineInputBorder(
+                                                //     borderRadius:
+                                                //         BorderRadius.circular(
+                                                //             20.0),
+                                                //     borderSide: BorderSide(
+                                                //         color: Colors.white)),
                                                 suffixIcon: Container(
                                                   child: Icon(Icons.search,
                                                       color: Colors.white),
                                                 ),
                                                 filled: true,
-                                                fillColor: Colors.white54),
+                                                fillColor: Colors.black54),
                                           ),
                                         ),
                                         onTap: () {

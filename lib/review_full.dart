@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 
-final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 final TextEditingController commentController = TextEditingController();
 
 class Review extends StatefulWidget {
@@ -17,6 +16,7 @@ class Review extends StatefulWidget {
 }
 
 class _ReviewState extends State<Review> {
+  static final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late String date;
   getData() async {
     Map data;

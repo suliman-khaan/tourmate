@@ -44,12 +44,12 @@ class _SearchPageState extends State<SearchPage> {
   void initState() {
     productProvider = Provider.of(context, listen: false);
     productProvider.fatchAreaData();
-    productProvider.fatchRestaurantList();
-    productProvider.fatchHoteltList();
-    productProvider.fatchEntertainmentsList();
-    productProvider.fatchEventsList();
-    productProvider.fatchTransporttList();
-    productProvider.fatchParksList();
+    // productProvider.fatchRestaurantList();
+    // productProvider.fatchHoteltList();
+    // productProvider.fatchEntertainmentsList();
+    // productProvider.fatchEventsList();
+    // productProvider.fatchTransporttList();
+    // productProvider.fatchParksList();
     // productProvider.fatchAreaCatagoryData();
     // productProvider.fatchRestaurantData();
     // productProvider.fatchAllHotelsData();

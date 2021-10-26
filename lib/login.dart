@@ -190,15 +190,10 @@ class _loginState extends State<login> {
                                   login();
                                 }
                               },
-                              child: isLoading
-                                  ? CircularProgressIndicator(
-                                      color: Colors.white,
-                                    )
-                                  : Text(
-                                      "Login",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                              child: Text(
+                                "Login",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
                             ),
                           ),
                           SizedBox(

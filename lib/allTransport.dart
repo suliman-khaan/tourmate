@@ -252,10 +252,14 @@ class _transportState extends State<transport> {
                                                           ),
                                                           placeholder: (context,
                                                                   url) =>
-                                                              CircularProgressIndicator(),
+                                                              Center(
+                                                                  child:
+                                                                      CircularProgressIndicator()),
                                                           errorWidget: (context,
                                                                   url, error) =>
-                                                              Icon(Icons.error),
+                                                              Center(
+                                                                  child: Icon(Icons
+                                                                      .error)),
                                                         ),
                                                         Positioned(
                                                           bottom: 10,
@@ -614,10 +618,14 @@ class _transportState extends State<transport> {
                                                           ),
                                                           placeholder: (context,
                                                                   url) =>
-                                                              CircularProgressIndicator(),
+                                                              Center(
+                                                                  child:
+                                                                      CircularProgressIndicator()),
                                                           errorWidget: (context,
                                                                   url, error) =>
-                                                              Icon(Icons.error),
+                                                              Center(
+                                                                  child: Icon(Icons
+                                                                      .error)),
                                                         ),
                                                         Positioned(
                                                           bottom: 10,

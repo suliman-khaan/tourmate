@@ -176,9 +176,9 @@ class _HotelViewState extends State<HotelView> {
                                   ),
                                 ),
                                 placeholder: (context, url) =>
-                                    CircularProgressIndicator(),
+                                    Center(child: CircularProgressIndicator()),
                                 errorWidget: (context, url, error) =>
-                                    Icon(Icons.error),
+                                    Center(child: Icon(Icons.error)),
                               ),
                             ),
                             Padding(

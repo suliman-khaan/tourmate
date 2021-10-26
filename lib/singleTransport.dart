@@ -66,21 +66,22 @@ class _singleTransportState extends State<singleTransport> {
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image(image: NetworkImage(transport[0]['image'])),
-                      // CachedNetworkImage(
-                      //   imageUrl: transport[0]['image'],
-                      //   imageBuilder: (context, imageProvider) => Container(
-                      //     decoration: BoxDecoration(
-                      //       image: DecorationImage(
-                      //         image: imageProvider,
-                      //         fit: BoxFit.cover,
-                      //       ),
-                      //     ),
-                      //   ),
-                      //   placeholder: (context, url) =>
-                      //       CircularProgressIndicator(),
-                      //   errorWidget: (context, url, error) => Icon(Icons.error),
-                      // ),
+                      // Image(image: NetworkImage(transport[0]['image'])),
+                      CachedNetworkImage(
+                        imageUrl: transport[0]['image'],
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        placeholder: (context, url) =>
+                            Center(child: CircularProgressIndicator()),
+                        errorWidget: (context, url, error) =>
+                            Center(child: Icon(Icons.error)),
+                      ),
                       SizedBox(height: 10),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),

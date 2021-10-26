@@ -188,9 +188,9 @@ class _DistrictAttributeContainerState
                             ),
                           ),
                           placeholder: (context, url) =>
-                              CircularProgressIndicator(),
+                              Center(child: CircularProgressIndicator()),
                           errorWidget: (context, url, error) =>
-                              Icon(Icons.error),
+                              Center(child: Icon(Icons.error)),
                         ),
                       ),
                       SizedBox(
@@ -323,10 +323,14 @@ class _DistrictAttributeContainerState
                                                     ),
                                                     placeholder: (context,
                                                             url) =>
-                                                        CircularProgressIndicator(),
-                                                    errorWidget:
-                                                        (context, url, error) =>
-                                                            Icon(Icons.error),
+                                                        Center(
+                                                            child:
+                                                                CircularProgressIndicator()),
+                                                    errorWidget: (context, url,
+                                                            error) =>
+                                                        Center(
+                                                            child: Icon(
+                                                                Icons.error)),
                                                   ),
                                                 ),
                                               ),

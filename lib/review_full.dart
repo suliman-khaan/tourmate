@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 
-final TextEditingController commentController = TextEditingController();
-
 class Review extends StatefulWidget {
   @override
   _ReviewState createState() => _ReviewState();
@@ -17,7 +15,18 @@ class Review extends StatefulWidget {
 
 class _ReviewState extends State<Review> {
   static final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final TextEditingController commentController = TextEditingController();
+  Stream<QuerySnapshot> reviewStreamF() => FirebaseFirestore.instance
+      .collection("Review")
+      .orderBy("date and time", descending: false)
+      .snapshots();
+  Stream<QuerySnapshot> reviewDisplayStreamF() => FirebaseFirestore.instance
+      .collection("customer")
+      .where("uid", isEqualTo: userId)
+      .snapshots();
   late String date;
+  var reviewStream;
+  var reviewDisplayStream;
   getData() async {
     Map data;
     Response response =
@@ -34,6 +43,8 @@ class _ReviewState extends State<Review> {
   @override
   void initState() {
     super.initState();
+    reviewStream = reviewStreamF();
+    reviewDisplayStream = reviewDisplayStreamF();
     getData();
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user == null) {
@@ -185,11 +196,6 @@ class _ReviewState extends State<Review> {
 
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> reviewStream = FirebaseFirestore.instance
-        .collection("Review")
-        .orderBy("date and time", descending: false)
-        .snapshots();
-
     return Material(
       child: Scaffold(
         appBar: AppBar(
@@ -224,11 +230,6 @@ class _ReviewState extends State<Review> {
                   Map dataList = e.data() as Map<String, dynamic>;
                   reviewList.add(dataList);
                 }).toList();
-                final Stream<QuerySnapshot> reviewDisplayStream =
-                    FirebaseFirestore.instance
-                        .collection("customer")
-                        .where("uid", isEqualTo: userId)
-                        .snapshots();
                 return SafeArea(
                   child: userId == ""
                       ? logincommentChild(reviewList)

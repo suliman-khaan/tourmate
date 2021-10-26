@@ -37,9 +37,9 @@ class _DistrictAttributeContainerState
       case 2:
         _stream = FirebaseFirestore.instance
             .collection(area)
-            //.where('district', isEqualTo: district)
-            .where('explored_area', isEqualTo: true)
             .where('ID', isEqualTo: id)
+            .where('explored_area', isEqualTo: true)
+            // .where('ID', isEqualTo: id)
             .snapshots();
         _stream1 = FirebaseFirestore.instance
             .collection("Gallery")
@@ -49,7 +49,7 @@ class _DistrictAttributeContainerState
       case 3:
         _stream = FirebaseFirestore.instance
             .collection(area)
-            //.where('district', isEqualTo: district)
+            .where('ID', isEqualTo: id)
             .where('hiking_and_tracking', isEqualTo: true)
             .where('ID', isEqualTo: id)
             .snapshots();
@@ -61,7 +61,7 @@ class _DistrictAttributeContainerState
       case 4:
         _stream = FirebaseFirestore.instance
             .collection("Parks")
-            // .where('district', isEqualTo: district)
+            .where('ID', isEqualTo: id)
             .snapshots();
         _stream1 = FirebaseFirestore.instance
             .collection("Gallery")
@@ -93,7 +93,7 @@ class _DistrictAttributeContainerState
       case 7:
         _stream = FirebaseFirestore.instance
             .collection("Entertainment")
-            //.where("district", isEqualTo: district)
+            .where("ID", isEqualTo: id)
             .snapshots();
         _stream1 = FirebaseFirestore.instance
             .collection("Gallery")

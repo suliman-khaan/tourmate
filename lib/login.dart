@@ -47,6 +47,7 @@ class _loginState extends State<login> {
   String password = "";
   String massege = "";
   bool isHiddenPassword = true;
+  bool isLoading = false;
 
   String uid = "";
   final auth = FirebaseAuth.instance;
@@ -183,19 +184,21 @@ class _loginState extends State<login> {
                           Container(
                             width: double.infinity,
                             // ignore: deprecated_member_use
-                            child: RaisedButton(
+                            child: ElevatedButton(
                               onPressed: () async {
                                 if (formkey.currentState!.validate()) {
                                   login();
                                 }
                               },
-                              child: Text(
-                                "Login",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              color: Colors.blueAccent,
-                              splashColor: Colors.white,
-                              textColor: Colors.white,
+                              child: isLoading
+                                  ? CircularProgressIndicator(
+                                      color: Colors.white,
+                                    )
+                                  : Text(
+                                      "Login",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
                             ),
                           ),
                           SizedBox(

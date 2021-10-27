@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tourmate1/Register.dart';
+import 'package:tourmate1/booking_room.dart';
 import 'about.dart';
 import 'login.dart';
 import 'provider.dart';
@@ -78,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // Otherwise, show app
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            // home: home(),
+            home: RoomBooking(),
             themeMode: ThemeMode.light,
             theme: ThemeData(
                 primaryIconTheme: IconThemeData(color: Colors.black),
@@ -89,23 +90,23 @@ class _MyHomePageState extends State<MyHomePage> {
               brightness: Brightness.dark,
             ),
 
-            initialRoute: MyRoute.home,
-            routes: {
-              "/": (context) => home(),
-              MyRoute.review: (context) => Review(),
-              MyRoute.login: (context) => login(),
-              MyRoute.signup: (context) => register(),
-              MyRoute.home: (context) => home(),
-              MyRoute.hotel: (context) => Hotel(),
-              MyRoute.transport: (context) => transport(),
-              MyRoute.resturent: (context) => resturent(),
-              MyRoute.searchPage: (context) => SearchPage(),
-              MyRoute.allDistinations: (context) => AllDistinations(),
-              MyRoute.contactUs: (context) => ContactUs(),
-              MyRoute.aboutUs: (context) => AboutUS(),
-              MyRoute.ourTeam: (context) => TeamMembers(),
-              MyRoute.review: (context) => Review()
-            },
+            // initialRoute: MyRoute.home,
+            // routes: {
+            //   "/": (context) => home(),
+            //   MyRoute.review: (context) => Review(),
+            //   MyRoute.login: (context) => login(),
+            //   MyRoute.signup: (context) => register(),
+            //   MyRoute.home: (context) => home(),
+            //   MyRoute.hotel: (context) => Hotel(),
+            //   MyRoute.transport: (context) => transport(),
+            //   MyRoute.resturent: (context) => resturent(),
+            //   MyRoute.searchPage: (context) => SearchPage(),
+            //   MyRoute.allDistinations: (context) => AllDistinations(),
+            //   MyRoute.contactUs: (context) => ContactUs(),
+            //   MyRoute.aboutUs: (context) => AboutUS(),
+            //   MyRoute.ourTeam: (context) => TeamMembers(),
+            //   MyRoute.review: (context) => Review()
+            // },
           );
         },
       ),

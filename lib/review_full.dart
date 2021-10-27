@@ -16,14 +16,7 @@ class Review extends StatefulWidget {
 class _ReviewState extends State<Review> {
   static final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController commentController = TextEditingController();
-  Stream<QuerySnapshot> reviewStreamF() => FirebaseFirestore.instance
-      .collection("Review")
-      .orderBy("date and time", descending: false)
-      .snapshots();
-  Stream<QuerySnapshot> reviewDisplayStreamF() => FirebaseFirestore.instance
-      .collection("customer")
-      .where("uid", isEqualTo: userId)
-      .snapshots();
+
   late String date;
   var reviewStream;
   var reviewDisplayStream;
@@ -43,10 +36,8 @@ class _ReviewState extends State<Review> {
   @override
   void initState() {
     super.initState();
-    reviewStream = reviewStreamF();
-    reviewDisplayStream = reviewDisplayStreamF();
     getData();
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+    FirebaseAuth.instance.authStateChanges().listen((User? user) async {
       if (user == null) {
         print('Kas loginn nadi yar....');
       } else {
@@ -54,8 +45,22 @@ class _ReviewState extends State<Review> {
         final uid = user!.uid;
         userId = uid;
       }
+      reviewDisplayStream = FirebaseFirestore.instance
+          .collection("customer")
+          .where("uid", isEqualTo: userId)
+          .snapshots();
     });
+    reviewStream = reviewStreamF();
   }
+
+  // Stream<QuerySnapshot> reviewDisplayStream = FirebaseFirestore.instance
+  //     .collection("customer")
+  //     .where("uid", isEqualTo: userId)
+  //     .snapshots();
+  Stream<QuerySnapshot> reviewStreamF() => FirebaseFirestore.instance
+      .collection("Review")
+      .orderBy("date and time", descending: false)
+      .snapshots();
 
   createAlertDialog(BuildContext context) {
     return showDialog(

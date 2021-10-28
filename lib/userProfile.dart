@@ -79,13 +79,23 @@ class _UserProfileState extends State<UserProfile> {
                     child: Column(
                       children: [
                         Container(
-                          height: 200,
-                          width: 200,
-                          child: CircleAvatar(
-                            backgroundImage:
-                                NetworkImage(allUsersList[0]["image"]),
-                          ),
-                        ),
+                            height: 200,
+                            width: 200,
+                            child: allUsersList[0]["image"] != ""
+                                ? CircleAvatar(
+                                    backgroundImage:
+                                        NetworkImage(allUsersList[0]["image"]),
+                                  )
+                                : CircleAvatar(
+                                    child: Text(
+                                      "${allUsersList[0]["name"][0]}",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 48,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    backgroundColor: Colors.amber,
+                                  )),
                         SizedBox(
                           height: 8,
                         ),

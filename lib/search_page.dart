@@ -204,9 +204,17 @@ class _SearchPageState extends State<SearchPage> {
                                         builder: (context) =>
                                             DistrictAttributeContainer(
                                                 areaIndex: 2, a_id: e.id)));
+                              } else if (e.type == "hiking_and_tracking") {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            DistrictAttributeContainer(
+                                                areaIndex: 3, a_id: e.id)));
                               } else {
                                 print("Nothing to show");
                                 print(e.type);
+                                print(e.id);
                               }
                             },
                             child: ListTile(
@@ -217,44 +225,7 @@ class _SearchPageState extends State<SearchPage> {
                           );
                         }).toList()),
                 ),
-
-                //  Container for Recent Search
-
-                Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 40,
-                        ),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            "Your Recent Searches",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 15),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 40,
-                        ),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text("kalam"),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                SizedBox(
-                  height: 10,
-                ),
                 // Container for most visited area
-
                 Container(
                   child: Column(
                     children: [
@@ -272,9 +243,7 @@ class _SearchPageState extends State<SearchPage> {
                           ),
                         ),
                       ),
-
                       //   Most Vistied Areas
-
                       StreamBuilder(
                           stream: _alldistinationStream,
                           builder: (BuildContext context,

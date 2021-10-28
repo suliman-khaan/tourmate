@@ -91,7 +91,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
             initialRoute: MyRoute.home,
             routes: {
-              "/": (context) => home(),
               MyRoute.review: (context) => Review(),
               MyRoute.login: (context) => login(),
               MyRoute.signup: (context) => register(),

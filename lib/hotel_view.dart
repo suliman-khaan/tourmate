@@ -159,11 +159,7 @@ class _HotelViewState extends State<HotelView> {
                           children: [
                             Container(
                               width: MediaQuery.of(context).size.width,
-                              child:
-                                  // Image(image: NetworkImage(
-                                  //     storeHotel[0]['image'],
-                                  //   ))
-                                  CachedNetworkImage(
+                              child: CachedNetworkImage(
                                 imageUrl: storeHotel[0]['image'],
                                 height: 200,
                                 imageBuilder: (context, imageProvider) =>
@@ -181,17 +177,22 @@ class _HotelViewState extends State<HotelView> {
                                     Center(child: Icon(Icons.error)),
                               ),
                             ),
+                            SizedBox(height: 20),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(children: [
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Title(
-                                      color: Colors.black,
-                                      child: Text(storeHotel[0]['name'],
-                                          style: GoogleFonts.roboto(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold))),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 5.0),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Title(
+                                        color: Colors.black,
+                                        child: Text(storeHotel[0]['name'],
+                                            style: GoogleFonts.roboto(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold))),
+                                  ),
                                 ),
                                 Text(
                                   storeHotel[0]['description'],
@@ -206,7 +207,7 @@ class _HotelViewState extends State<HotelView> {
                                             borderRadius:
                                                 BorderRadius.circular(5.0)),
                                         padding:
-                                            EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                            EdgeInsets.fromLTRB(0, 5, 10, 5),
                                         onPressed: () {},
                                         icon: Icon(
                                           Icons.place_outlined,

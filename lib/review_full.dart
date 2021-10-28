@@ -14,7 +14,7 @@ class Review extends StatefulWidget {
 }
 
 class _ReviewState extends State<Review> {
-  static final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController commentController = TextEditingController();
 
   late String date;
@@ -264,7 +264,7 @@ class _ReviewState extends State<Review> {
                               sendButtonMethod: () {
                                 if (formKey.currentState!.validate()) {
                                   print(commentController.text);
-                                  setState(() async {
+                                  setState(() {
                                     Map<String, dynamic> value = {
                                       'name': reviewDisplayList[0]['name'],
                                       'pic': reviewDisplayList[0]['image'] != ''

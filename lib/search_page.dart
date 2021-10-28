@@ -190,7 +190,7 @@ class _SearchPageState extends State<SearchPage> {
                                         builder: (context) =>
                                             DistrictAttributeContainer(
                                                 areaIndex: 7, a_id: e.id)));
-                              } else if (e.type == "histarical") {
+                              } else if (e.type == "historical_area") {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -206,6 +206,7 @@ class _SearchPageState extends State<SearchPage> {
                                                 areaIndex: 2, a_id: e.id)));
                               } else {
                                 print("Nothing to show");
+                                print(e.type);
                               }
                             },
                             child: ListTile(

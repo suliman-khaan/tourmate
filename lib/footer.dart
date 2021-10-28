@@ -30,8 +30,7 @@ class _footerState extends State<footer> {
             context, MaterialPageRoute(builder: (context) => SearchPage()));
       }
       if (_selectedIndex == 2) {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => Review()));
+        Navigator.of(context).pushNamed(MyRoute.review);
       }
     });
   }

@@ -97,12 +97,6 @@ class _ViewDistinationState extends State<ViewDistination> {
                     // decoration: BoxDecoration(border: Border.all(color: Colors.red)),
                     child: Column(
                       children: [
-                        // Image.network(
-                        //   viewDistination[0]['image'],
-                        //   height: 200,
-                        //   fit: BoxFit.fitWidth,
-                        //   width: double.infinity,
-                        // ),
                         Hero(
                           tag:
                               "background:${viewDistination[0]['ID'].toString()}",
@@ -134,13 +128,17 @@ class _ViewDistinationState extends State<ViewDistination> {
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Text(
-                                    viewDistination[0]["name"],
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.w600),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 5),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      viewDistination[0]["name"],
+                                      style: TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.w600),
+                                    ),
                                   ),
                                 ),
                                 //  Description
@@ -156,7 +154,7 @@ class _ViewDistinationState extends State<ViewDistination> {
                                     color: Colors.blue,
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(5)),
-                                    padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                                    padding: EdgeInsets.fromLTRB(0, 5, 10, 5),
                                     onPressed: () {},
                                     icon: Icon(
                                       Icons.place_outlined,

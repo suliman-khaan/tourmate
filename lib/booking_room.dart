@@ -13,93 +13,178 @@ class RoomBooking extends StatefulWidget {
 }
 
 class _RoomBookingState extends State<RoomBooking> {
-  num child = 1;
-  String childNum = '1';
-  int incNum = 0;
-  showAlertDialog(BuildContext context) {
-    // set up the buttons
-    Widget remindButton = ElegantNumberButton(
-        initialValue: child,
-        minValue: 1,
-        maxValue: 20,
-        step:1,
-        onChanged: (value) {
-          setState(() {
-            child = value;
+  var childrens = 0;
+  var adults = 1;
+  var rooms = 1;
+  var testroom = '';
+  var testadults = '';
+  var testchilds = '';
+  void _onbottompressed() {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState1) {
+            return Container(
+              height: MediaQuery.of(context).size.height / 2 - 80,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                child: Column(children: <Widget>[
+                  Divider(
+                    color: Colors.grey,
+                    height: 10,
+                    thickness: 1,
+                  ),
+                  Row(children: [
+                    SizedBox(width: 200, child: Text("Adults")),
+                    Expanded(child: Center()),
+                    TextButton(
+                        onPressed: () {
+                          if (adults > 1) {
+                            setState1(() {
+                              adults--;
+                              testadults = adults.toString();
+                              adultsText();
+                            });
+                          }
+                        },
+                        child: Icon(Icons.remove)),
+                    Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black)),
+                        padding: EdgeInsets.fromLTRB(20, 4, 20, 4),
+                        child: Text("${adults}")),
+                    TextButton(
+                        onPressed: () {
+                          if (adults < 20) {
+                            setState1(() {
+                              adults++;
+                              testadults = adults.toString();
+                              adultsText();
+                            });
+                          }
+                        },
+                        child: Icon(Icons.add))
+                  ]),
+                  Divider(
+                    color: Colors.grey,
+                    height: 10,
+                    thickness: 1,
+                  ),
+                  Row(children: [
+                    SizedBox(width: 200, child: Text("Childrens")),
+                    Expanded(child: Center()),
+                    TextButton(
+                        onPressed: () {
+                          if (childrens > 0) {
+                            setState1(() {
+                              childrens--;
+                              testchilds = childrens.toString();
+                              childText();
+                            });
+                          }
+                        },
+                        child: Icon(Icons.remove)),
+                    Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black)),
+                        padding: EdgeInsets.fromLTRB(20, 4, 20, 4),
+                        child: Text("${childrens}")),
+                    TextButton(
+                        onPressed: () {
+                          if (childrens < 30) {
+                            setState1(() {
+                              childrens++;
+                              testchilds = childrens.toString();
+                              childText();
+                            });
+                          }
+                        },
+                        child: Icon(Icons.add))
+                  ]),
+                  Divider(
+                    color: Colors.grey,
+                    height: 10,
+                    thickness: 1,
+                  ),
+                  Row(children: [
+                    SizedBox(width: 200, child: Text("Rooms")),
+                    Expanded(child: Center()),
+                    TextButton(
+                        onPressed: () {
+                          if (rooms > 1) {
+                            setState1(() {
+                              rooms--;
+                              testroom = rooms.toString();
+                              roomsText();
+                            });
+                          }
+                        },
+                        child: Icon(Icons.remove)),
+                    Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black)),
+                        padding: EdgeInsets.fromLTRB(20, 4, 20, 4),
+                        child: Text("${rooms}")),
+                    TextButton(
+                        onPressed: () {
+                          if (rooms < 10) {
+                            setState1(() {
+                              rooms++;
+                              testroom = rooms.toString();
+                              roomsText();
+                            });
+                          }
+                        },
+                        child: Icon(Icons.add))
+                  ]),
+                  Divider(
+                    color: Colors.grey,
+                    height: 10,
+                    thickness: 1,
+                  ),
+                  MaterialButton(
+                    onPressed: () {
+                      Navigator.pop(context, true);
+                    },
+                    child: Text("Apply", style: TextStyle(color: Colors.black)),
+                    color: Colors.blue[800],
+                    height: 60,
+                    minWidth: double.infinity,
+                  )
+                ]),
+              ),
+            );
           });
-        },
-        decimalPlaces: 1);
-    Widget cancelButton = TextButton(
-      child: Text("Cancel"),
-      onPressed: () {
-        Navigator.of(context, rootNavigator: true).pop();
-      },
-    );
-    // set up the AlertDialog
-    AlertDialog alert = AlertDialog(
-      title: Text("Select rooms and guests"),
-      content: Column(
-        children: [
-          Row(children: [
-            Text("Adults"),
-            Expanded(child: Center()),
-            TextButton(onPressed: () {}, child: Text("+")),
-            Text("1"),
-            TextButton(onPressed: () {}, child: Text("-"))
-          ]),
-          Row(children: [
-            Text("Children"),
-            Expanded(child: Center()),
-            ElegantNumberButton(
-        initialValue: child,
-        minValue: 1,
-        maxValue: 20,
-        step:1,
-        onChanged: (value) {
-          setState(() {
-            child = value;
-          });
-        },
-        decimalPlaces: 1)
-          ]),
-          Row(children: [
-            Text("Rooms"),
-            Expanded(child: Center()),
-            TextButton(onPressed: () {
-              setState(() {
-                incNum--;
-                childNum = incNum.toString();
-                print(childNum);
-              });
-              
-            }, child: Text("-")),
-            Text(childNum),
-            TextButton(onPressed: () {
-               setState(() {
-                incNum++;
-                childNum = incNum.toString();
-              });
-            }, child: Text("+"))
-          ])
-        ],
-      ),
-      actions: [
-        cancelButton,
-      ],
-    );
+        });
+  }
 
-    // show the dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
+  String roomsText() {
+    setState(() {
+      testroom = rooms.toString();
+    });
+    return testroom;
+  }
+
+  String adultsText() {
+    setState(() {
+      testadults = adults.toString();
+    });
+    return testadults;
+  }
+
+  String childText() {
+    setState(() {
+      testchilds = childrens.toString();
+    });
+    return testchilds;
   }
 
   final DateRangePickerController _controller = DateRangePickerController();
   String test = '';
   String test1 = '';
+  bool checkBoxValue = false;
+
   String fromDate =
       DateFormat('E,MMMM dd, yyyy').format(DateTime.now()).toString();
   String toDate = DateFormat('E,MMMM dd, yyyy')
@@ -228,7 +313,8 @@ class _RoomBookingState extends State<RoomBooking> {
                         margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
                         child: GestureDetector(
                           onTap: () {
-                            showAlertDialog(context);
+                            // showAlertDialog(context);
+                            _onbottompressed();
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -238,7 +324,7 @@ class _RoomBookingState extends State<RoomBooking> {
                                     MediaQuery.of(context).size.width / 3 - 14,
                                 color: Colors.white,
                                 child: Column(
-                                  children: [Text("Adults"), Text("1")],
+                                  children: [Text("Adults"), Text("${adults}")],
                                 ),
                               ),
                               Container(
@@ -246,7 +332,10 @@ class _RoomBookingState extends State<RoomBooking> {
                                     MediaQuery.of(context).size.width / 3 - 14,
                                 color: Colors.white,
                                 child: Column(
-                                  children: [Text("Children"), Text("1")],
+                                  children: [
+                                    Text("Children"),
+                                    Text("${childrens}")
+                                  ],
                                 ),
                               ),
                               Container(
@@ -254,11 +343,46 @@ class _RoomBookingState extends State<RoomBooking> {
                                     MediaQuery.of(context).size.width / 3 - 14,
                                 color: Colors.white,
                                 child: Column(
-                                  children: [Text("Rooms"), Text(childNum)],
+                                  children: [Text("Rooms"), Text(roomsText())],
                                 ),
                               ),
                             ],
                           ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                        child: Container(
+                          padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                          color: Colors.white,
+                          child:Row(
+                            children: [
+                              Checkbox(value: checkBoxValue, onChanged: (value){
+                                setState(() {
+                                  this.checkBoxValue = value!;
+                                });
+                              }),
+                              SizedBox(width: 20,)
+                              ,
+                              Padding(
+                                padding: const EdgeInsets.only(bottom:2.5),
+                                child: Text("I'm travelling for work",style:TextStyle(fontWeight: FontWeight.bold)),
+                              )
+                            ],
+                          )
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Container(
+                          child: MaterialButton(
+                        onPressed: () {},
+                        child:
+                            Text("Search", style: TextStyle(color: Colors.white,fontSize: 18)),
+                        color: Colors.blue[800],
+                        height: 60,
+                        minWidth: double.infinity,    
+                  )
                         ),
                       )
                     ],

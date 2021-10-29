@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'drawer.dart';
 import 'singleTransport.dart';
@@ -91,9 +92,26 @@ class _compSingleState extends State<compSingle> {
                               },
                               child: Hero(
                                 tag: "img-${name[0]['ID']}",
-                                child: Image(
-                                    image: NetworkImage(name[index]['image']),
-                                    fit: BoxFit.cover),
+                                child:
+                                    // Image(
+                                    //     image: NetworkImage(name[index]['image']),
+                                    //     fit: BoxFit.cover),
+                                    CachedNetworkImage(
+                                  imageUrl: name[index]['image'],
+                                  imageBuilder: (context, imageProvider) =>
+                                      Container(
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: imageProvider,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  placeholder: (context, url) => Center(
+                                      child: CircularProgressIndicator()),
+                                  errorWidget: (context, url, error) =>
+                                      Center(child: Icon(Icons.error)),
+                                ),
                               ),
                             ),
                             Positioned(

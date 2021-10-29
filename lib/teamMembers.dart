@@ -1,6 +1,7 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tourmate1/socialLuncher.dart';
 import 'package:tourmate1/teamMembersClass.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'footer.dart';
@@ -23,7 +24,7 @@ class _TeamMembersState extends State<TeamMembers> {
         contact: '03428270869',
         description:
             'What Is Chief Executive Officer (CEO)?A chief executive officer (CEO) is the highest-ranking executive in a company, whose primary responsibilities include making major corporate decisions, managing the overall operations and resources of a company, acting as the main point of communication between the board of directors (the board) and corporate operations and being the public face of the company. A CEO is elected by the board and its shareholders.',
-        facebook: 'Fahim Ullah official',
+        facebook: 'Fahim Ullah Official',
         facebookLink: 'https://www.facebook.com/fahimullah.fahmy',
         dashes: 40),
     Quotes(
@@ -33,40 +34,40 @@ class _TeamMembersState extends State<TeamMembers> {
         rank: 'CO-Founder',
         contact: '03409340543',
         description:
-            'What Is Chief Executive Officer (CEO)?A chief executive officer (CEO) is the highest-ranking executive in a company, whose primary responsibilities include making major corporate decisions, managing the overall operations and resources of a company, acting as the main point of communication between the board of directors (the board) and corporate operations and being the public face of the company. A CEO is elected by the board and its shareholders.',
+            'I am Saad Ali Student of BS  Software Engineering and Co-Founder of TourMate Company. Working As Project Manager  and Flutter Developer TourMate Company. I have 6 Months Experience in Mobile Application development and 1 year experience in Web Development(Full Stack).',
         facebook: 'Itz Saad khanz',
         facebookLink: 'https://www.facebook.com/profile.php?id=100010622133903',
         dashes: 40),
     Quotes(
         name: "Mr. Sayed Suliman",
         email: "sulimansayed003@gmail.com",
-        image: 'assets/images/Suliman.jpg',
+        image: 'assets/images/SayedSuliman.jpeg',
         rank: 'App Developer',
         contact: '03469794125',
         description:
-            'What Is Chief Executive Officer (CEO)?A chief executive officer (CEO) is the highest-ranking executive in a company, whose primary responsibilities include making major corporate decisions, managing the overall operations and resources of a company, acting as the main point of communication between the board of directors (the board) and corporate operations and being the public face of the company. A CEO is elected by the board and its shareholders.',
+            'I am Sayed Suliman Student of BS  Software Engineering and Android Developer in TourMate Company. Working As Back-End and Front-End Developer TourMate Company. I have 1 year of Experience in App development and 2 years of experience in Web Development(Full Stack).',
         facebook: 'Sayed Suliman',
         facebookLink: 'https://www.facebook.com/Mr.Alpha125',
         dashes: 40),
     Quotes(
         name: "Mr. Suliman Khan",
         email: "sulimank418@gmail.com",
-        image: 'assets/images/Shiekh.jpg',
+        image: 'assets/images/SulimanKhan.jpeg',
         rank: 'App Developer',
         contact: '03489358689',
         description:
-            'What Is Chief Executive Officer (CEO)?A chief executive officer (CEO) is the highest-ranking executive in a company, whose primary responsibilities include making major corporate decisions, managing the overall operations and resources of a company, acting as the main point of communication between the board of directors (the board) and corporate operations and being the public face of the company. A CEO is elected by the board and its shareholders.',
+            'Web Developer with 3 years of experience in designing and developing user interfaces, testing, debugging, and training staff within eCommerce technologies. Proven ability in optimizing web functionality that improve data retrieval and workflow efficiencies.Using Flutter, Firebase to create complex mobile applications from the prototype stage to the launch and ongoing maintenance phases.',
         facebook: 'Suliman Khan',
         facebookLink: 'https://www.facebook.com/profile.php?id=100007348177845',
         dashes: 40),
     Quotes(
         name: "Mr. Bashir Ullah",
         email: "bashirshamakhail@gmail.com",
-        image: 'assets/images/bashir.jpg',
+        image: 'assets/images/bashir.jpeg',
         rank: 'Graphic Designer',
         contact: '03470191817',
         description:
-            'What Is Chief Executive Officer (CEO)?A chief executive officer (CEO) is the highest-ranking executive in a company, whose primary responsibilities include making major corporate decisions, managing the overall operations and resources of a company, acting as the main point of communication between the board of directors (the board) and corporate operations and being the public face of the company. A CEO is elected by the board and its shareholders.',
+            'Graphic designer with 3+ years of experience in the management of the complete design process, from conceptualization to delivery. Expert at interdepartmental coordination and communication. Skilled with Adobe Creative Suite (Photoshop, Illustrator), Video Editing, Microsoft Office Suite, and Web design applications (HTML, CSS, JavaScript). Able to stretch the boundaries of web design and digital storytelling to help my client’s brands stand out',
         facebook: 'Bashir ShamaKhail',
         facebookLink: 'https://www.facebook.com/bashir.shamakhail',
         dashes: 40),
@@ -238,9 +239,8 @@ class _TeamMembersState extends State<TeamMembers> {
                                           Row(
                                             children: [
                                               ElevatedButton(
-                                                onPressed: () {
-                                                  launch(e.facebookLink);
-                                                },
+                                                onPressed: () =>
+                                                    launch(e.facebookLink),
                                                 child: Icon(
                                                     FontAwesomeIcons.facebookF,
                                                     size: 24,

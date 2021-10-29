@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:tourmate1/allResturent.dart';
 import 'attribute_view.dart';
 import 'best_distination_attribute_container.dart';
 import 'footer.dart';
@@ -98,27 +97,30 @@ class _ViewDistinationState extends State<ViewDistination> {
                     // decoration: BoxDecoration(border: Border.all(color: Colors.red)),
                     child: Column(
                       children: [
-                        // Image.network(
-                        //   viewDistination[0]['image'],
-                        //   height: 200,
-                        //   fit: BoxFit.fitWidth,
-                        //   width: double.infinity,
-                        // ),
-                        CachedNetworkImage(
-                          imageUrl: viewDistination[0]['image'],
-                          height: 200,
-                          imageBuilder: (context, imageProvider) => Container(
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: imageProvider,
-                                fit: BoxFit.cover,
+                        Hero(
+                          tag:
+                              "background:${viewDistination[0]['ID'].toString()}",
+                          child: GestureDetector(
+                            onTap: () =>
+                                print(viewDistination[0]['ID'].toString()),
+                            child: CachedNetworkImage(
+                              imageUrl: viewDistination[0]['image'],
+                              height: 200,
+                              imageBuilder: (context, imageProvider) =>
+                                  Container(
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: imageProvider,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
                               ),
+                              placeholder: (context, url) =>
+                                  Center(child: CircularProgressIndicator()),
+                              errorWidget: (context, url, error) =>
+                                  Center(child: Icon(Icons.error)),
                             ),
                           ),
-                          placeholder: (context, url) =>
-                              CircularProgressIndicator(),
-                          errorWidget: (context, url, error) =>
-                              Icon(Icons.error),
                         ),
                         SizedBox(height: 20),
                         Container(
@@ -126,13 +128,17 @@ class _ViewDistinationState extends State<ViewDistination> {
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Text(
-                                    viewDistination[0]["name"],
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.w600),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 5),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      viewDistination[0]["name"],
+                                      style: TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.w600),
+                                    ),
                                   ),
                                 ),
                                 //  Description
@@ -148,7 +154,7 @@ class _ViewDistinationState extends State<ViewDistination> {
                                     color: Colors.blue,
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(5)),
-                                    padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                                    padding: EdgeInsets.fromLTRB(0, 5, 10, 5),
                                     onPressed: () {},
                                     icon: Icon(
                                       Icons.place_outlined,
@@ -290,12 +296,17 @@ class _ViewDistinationState extends State<ViewDistination> {
                                                               ),
                                                               placeholder: (context,
                                                                       url) =>
-                                                                  CircularProgressIndicator(),
-                                                              errorWidget: (context,
-                                                                      url,
-                                                                      error) =>
-                                                                  Icon(Icons
-                                                                      .error),
+                                                                  Center(
+                                                                      child:
+                                                                          CircularProgressIndicator()),
+                                                              errorWidget:
+                                                                  (context, url,
+                                                                          error) =>
+                                                                      Center(
+                                                                child: Icon(
+                                                                    Icons
+                                                                        .error),
+                                                              ),
                                                             ),
                                                             Container(
                                                               margin: EdgeInsets
@@ -478,12 +489,17 @@ class _ViewDistinationState extends State<ViewDistination> {
                                                               ),
                                                               placeholder: (context,
                                                                       url) =>
-                                                                  CircularProgressIndicator(),
-                                                              errorWidget: (context,
-                                                                      url,
-                                                                      error) =>
-                                                                  Icon(Icons
-                                                                      .error),
+                                                                  Center(
+                                                                      child:
+                                                                          CircularProgressIndicator()),
+                                                              errorWidget:
+                                                                  (context, url,
+                                                                          error) =>
+                                                                      Center(
+                                                                child: Icon(
+                                                                    Icons
+                                                                        .error),
+                                                              ),
                                                             ),
                                                             Container(
                                                               margin: EdgeInsets
@@ -668,12 +684,17 @@ class _ViewDistinationState extends State<ViewDistination> {
                                                               ),
                                                               placeholder: (context,
                                                                       url) =>
-                                                                  CircularProgressIndicator(),
-                                                              errorWidget: (context,
-                                                                      url,
-                                                                      error) =>
-                                                                  Icon(Icons
-                                                                      .error),
+                                                                  Center(
+                                                                      child:
+                                                                          CircularProgressIndicator()),
+                                                              errorWidget:
+                                                                  (context, url,
+                                                                          error) =>
+                                                                      Center(
+                                                                child: Icon(
+                                                                    Icons
+                                                                        .error),
+                                                              ),
                                                             ),
                                                             Container(
                                                               margin: EdgeInsets
@@ -864,12 +885,17 @@ class _ViewDistinationState extends State<ViewDistination> {
                                                               ),
                                                               placeholder: (context,
                                                                       url) =>
-                                                                  CircularProgressIndicator(),
-                                                              errorWidget: (context,
-                                                                      url,
-                                                                      error) =>
-                                                                  Icon(Icons
-                                                                      .error),
+                                                                  Center(
+                                                                      child:
+                                                                          CircularProgressIndicator()),
+                                                              errorWidget:
+                                                                  (context, url,
+                                                                          error) =>
+                                                                      Center(
+                                                                child: Icon(
+                                                                    Icons
+                                                                        .error),
+                                                              ),
                                                             ),
                                                             Container(
                                                               margin: EdgeInsets
@@ -1056,12 +1082,17 @@ class _ViewDistinationState extends State<ViewDistination> {
                                                               ),
                                                               placeholder: (context,
                                                                       url) =>
-                                                                  CircularProgressIndicator(),
-                                                              errorWidget: (context,
-                                                                      url,
-                                                                      error) =>
-                                                                  Icon(Icons
-                                                                      .error),
+                                                                  Center(
+                                                                      child:
+                                                                          CircularProgressIndicator()),
+                                                              errorWidget:
+                                                                  (context, url,
+                                                                          error) =>
+                                                                      Center(
+                                                                child: Icon(
+                                                                    Icons
+                                                                        .error),
+                                                              ),
                                                             ),
                                                             Container(
                                                               margin: EdgeInsets

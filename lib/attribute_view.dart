@@ -188,9 +188,9 @@ class _DistrictAttributeContainerState
                             ),
                           ),
                           placeholder: (context, url) =>
-                              CircularProgressIndicator(),
+                              Center(child: CircularProgressIndicator()),
                           errorWidget: (context, url, error) =>
-                              Icon(Icons.error),
+                              Center(child: Icon(Icons.error)),
                         ),
                       ),
                       SizedBox(
@@ -298,14 +298,39 @@ class _DistrictAttributeContainerState
                                                 child: Hero(
                                                   tag:
                                                       "hero-${index.toString()}",
-                                                  child: Image.network(
-                                                    // "assets/images/${imageData[index].imageName}",
-                                                    viewGallery[index]["image"],
-                                                    fit: BoxFit.cover,
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                            .size
-                                                            .height,
+                                                  child:
+                                                      // Image.network(
+                                                      //   // "assets/images/${imageData[index].imageName}",
+                                                      //   viewGallery[index]["image"],
+                                                      //   fit: BoxFit.cover,
+                                                      //   height:
+                                                      //       MediaQuery.of(context)
+                                                      //           .size
+                                                      //           .height,
+                                                      // ),
+                                                      CachedNetworkImage(
+                                                    imageUrl: viewGallery[index]
+                                                        ['image'],
+                                                    imageBuilder: (context,
+                                                            imageProvider) =>
+                                                        Container(
+                                                      decoration: BoxDecoration(
+                                                        image: DecorationImage(
+                                                          image: imageProvider,
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    placeholder: (context,
+                                                            url) =>
+                                                        Center(
+                                                            child:
+                                                                CircularProgressIndicator()),
+                                                    errorWidget: (context, url,
+                                                            error) =>
+                                                        Center(
+                                                            child: Icon(
+                                                                Icons.error)),
                                                   ),
                                                 ),
                                               ),

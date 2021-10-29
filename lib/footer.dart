@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tourmate1/home.dart';
 import 'package:tourmate1/review_full.dart';
+import 'package:tourmate1/routes.dart';
 import 'package:tourmate1/search_page.dart';
-import 'routes.dart';
 
 // ignore: camel_case_types
 class footer extends StatefulWidget {
@@ -30,8 +30,7 @@ class _footerState extends State<footer> {
             context, MaterialPageRoute(builder: (context) => SearchPage()));
       }
       if (_selectedIndex == 2) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Review()));
+        Navigator.of(context).pushNamed(MyRoute.review);
       }
     });
   }

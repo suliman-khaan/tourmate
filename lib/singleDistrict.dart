@@ -238,7 +238,7 @@ class _singleDistrictState extends State<singleDistrict>
                             //     _current = index;
                             //   });
                             // },
-                            autoPlayCurve: Curves.fastOutSlowIn),
+                            autoPlayCurve: Curves.easeInToLinear),
                         items: List.generate(
                             ImageList.length,
                             (int index) => Container(
@@ -260,10 +260,10 @@ class _singleDistrictState extends State<singleDistrict>
                                       ),
                                     ),
                                   ),
-                                  placeholder: (context, url) =>
-                                      CircularProgressIndicator(),
+                                  placeholder: (context, url) => Center(
+                                      child: CircularProgressIndicator()),
                                   errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
+                                      Center(child: Icon(Icons.error)),
                                 ))),
                       ),
                     );
@@ -323,7 +323,7 @@ class _singleDistrictState extends State<singleDistrict>
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5)),
                           color: Colors.blue,
-                          padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                          padding: EdgeInsets.fromLTRB(0, 5, 10, 5),
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
@@ -342,7 +342,6 @@ class _singleDistrictState extends State<singleDistrict>
             //***********Best Destination***********
             Column(
               children: [
-                SizedBox(height: 40),
                 Row(
                   children: [
                     SizedBox(width: 10),
@@ -372,7 +371,6 @@ class _singleDistrictState extends State<singleDistrict>
             /********Hotel********/
             Column(
               children: [
-                SizedBox(height: 40),
                 Row(
                   children: [
                     SizedBox(width: 10),
@@ -399,7 +397,6 @@ class _singleDistrictState extends State<singleDistrict>
             /******Transportation******/
             Column(
               children: [
-                SizedBox(height: 40),
                 Row(
                   children: [
                     SizedBox(width: 10),
@@ -434,6 +431,7 @@ class _singleDistrictState extends State<singleDistrict>
                       db_data.add(dataList);
                     }).toList();
                     return Container(
+<<<<<<< HEAD
                       height: 230,
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 10.0),
@@ -522,17 +520,116 @@ class _singleDistrictState extends State<singleDistrict>
                                                               ),
                                                             ),
                                                           ),
+=======
+                      height: 200,
+                      child: Stack(
+                        children: [
+                          Container(
+                            height: 200,
+                            width: MediaQuery.of(context).size.width,
+                            child: ListView(
+                              scrollDirection: Axis.horizontal,
+                              physics: BouncingScrollPhysics(),
+                              children: List.generate(
+                                  db_data.length,
+                                  (index) => Container(
+                                        margin: const EdgeInsets.only(
+                                            left: 10.0, right: 10.0),
+                                        width: 250,
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        singleTransport(
+                                                            id: db_data[index]
+                                                                ['ID'])));
+                                          },
+                                          child: Card(
+                                            margin: EdgeInsets.only(bottom: 10),
+                                            elevation: 4,
+                                            clipBehavior: Clip.antiAlias,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5.0)),
+                                            child: Stack(
+                                              alignment: Alignment.bottomLeft,
+                                              children: [
+                                                Hero(
+                                                  tag: db_data[index]['ID'],
+                                                  child: CachedNetworkImage(
+                                                    imageUrl: db_data[index]
+                                                        ['image'],
+                                                    // height: 180,
+                                                    imageBuilder: (context,
+                                                            imageProvider) =>
+                                                        Container(
+                                                      decoration: BoxDecoration(
+                                                        image: DecorationImage(
+                                                          image: imageProvider,
+                                                          fit: BoxFit.cover,
+>>>>>>> be994846ef42503b3b71b8ccd3cf16860e5c6303
                                                         ),
-                                                      )
-                                                    ],
+                                                      ),
+                                                    ),
+                                                    placeholder: (context,
+                                                            url) =>
+                                                        Center(
+                                                            child:
+                                                                CircularProgressIndicator()),
+                                                    errorWidget: (context, url,
+                                                            error) =>
+                                                        Center(
+                                                            child: Icon(
+                                                                Icons.error)),
                                                   ),
                                                 ),
-                                              ),
-                                            )).toList(),
-                                  ),
-                                ))
-                          ],
-                        ),
+                                                Positioned(
+                                                  bottom: 10,
+                                                  left: 10,
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            4.8),
+                                                    child: BackdropFilter(
+                                                      filter: ImageFilter.blur(
+                                                          sigmaY: 19.2,
+                                                          sigmaX: 19.2),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Row(
+                                                          children: [
+                                                            Icon(
+                                                                Icons
+                                                                    .place_outlined,
+                                                                color: Colors
+                                                                    .white),
+                                                            Text(
+                                                                db_data[index]
+                                                                    ['name'],
+                                                                style: TextStyle(
+                                                                    color: Colors
+                                                                        .white,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500)),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      )).toList(),
+                            ),
+                          )
+                        ],
                       ),
                     );
                   },
@@ -542,7 +639,6 @@ class _singleDistrictState extends State<singleDistrict>
             /***********Explored Area***********/
             Column(
               children: [
-                SizedBox(height: 40),
                 Row(
                   children: [
                     SizedBox(width: 10),
@@ -575,7 +671,6 @@ class _singleDistrictState extends State<singleDistrict>
             /************Hiking Area************/
             Column(
               children: [
-                SizedBox(height: 40),
                 Row(
                   children: [
                     SizedBox(width: 10),
@@ -605,7 +700,6 @@ class _singleDistrictState extends State<singleDistrict>
             /************Resturant***************/
             Column(
               children: [
-                SizedBox(height: 40),
                 Row(
                   children: [
                     SizedBox(width: 10),
@@ -632,7 +726,6 @@ class _singleDistrictState extends State<singleDistrict>
             /*********Parks********/
             Column(
               children: [
-                SizedBox(height: 40),
                 Row(
                   children: [
                     SizedBox(width: 10),
@@ -662,7 +755,6 @@ class _singleDistrictState extends State<singleDistrict>
             /***********Historical Places*************/
             Column(
               children: [
-                SizedBox(height: 40),
                 Row(
                   children: [
                     SizedBox(width: 10),
@@ -692,7 +784,6 @@ class _singleDistrictState extends State<singleDistrict>
             /***********Events*************/
             Column(
               children: [
-                SizedBox(height: 40),
                 Row(
                   children: [
                     SizedBox(width: 10),
@@ -722,7 +813,6 @@ class _singleDistrictState extends State<singleDistrict>
             /***********Entertainment*************/
             Column(
               children: [
-                SizedBox(height: 40),
                 Row(
                   children: [
                     SizedBox(width: 10),
@@ -781,144 +871,150 @@ class streamList extends StatelessWidget {
           db_data.add(dataList);
         }).toList();
         return Container(
-          height: 230,
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 10.0),
-            child: Stack(
-              children: [
-                Positioned(
-                    top: 10,
-                    child: Container(
-                      height: 200,
-                      width: MediaQuery.of(context).size.width,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        physics: BouncingScrollPhysics(),
-                        children: List.generate(
-                            db_data.length,
-                            (index) => Container(
-                                  margin: const EdgeInsets.only(
-                                      left: 10.0, right: 10.0),
-                                  width: 250,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      if (areaIndex == 1) {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    ViewDistination(
-                                                        areaID: db_data[index]
-                                                            ['ID'])));
-                                      } else if (areaIndex == 0) {
-                                        //hotel
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) => HotelView(
-                                                    index: 1,
-                                                    id: db_data[index]['ID'])));
-                                      } else if (areaIndex == 8) {
-                                        //resturants
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) => HotelView(
-                                                    index: 2,
-                                                    id: db_data[index]['ID'])));
-                                      } else if (areaIndex == 4) {
-                                        //parks
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) => HotelView(
-                                                    index: 3,
-                                                    id: db_data[index]['ID'])));
-                                      } else {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    DistrictAttributeContainer(
-                                                      areaIndex: areaIndex,
-                                                      a_id: db_data[index]
-                                                          ['ID'],
-                                                    )));
-                                      }
-                                    },
-                                    child: Card(
-                                      margin: EdgeInsets.only(bottom: 10),
-                                      elevation: 4,
-                                      clipBehavior: Clip.antiAlias,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5.0)),
-                                      child: Stack(
-                                        alignment: Alignment.bottomLeft,
-                                        children: [
-                                          // Ink.image(
-                                          //     image: NetworkImage(
-                                          //         db_data[index]['image']),
-                                          //     // height: 180,
-                                          //     fit: BoxFit.cover),
-                                          CachedNetworkImage(
-                                            imageUrl: db_data[index]['image'],
-                                            imageBuilder:
-                                                (context, imageProvider) =>
-                                                    Container(
-                                              decoration: BoxDecoration(
-                                                image: DecorationImage(
-                                                  image: imageProvider,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
+          height: 200,
+          child: Stack(
+            children: [
+              Container(
+                height: 200,
+                width: MediaQuery.of(context).size.width,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  physics: BouncingScrollPhysics(),
+                  children: List.generate(
+                      db_data.length,
+                      (index) => Container(
+                            margin:
+                                const EdgeInsets.only(left: 10.0, right: 10.0),
+                            width: 250,
+                            child: GestureDetector(
+                              onTap: () {
+                                if (areaIndex == 1) {
+                                  print(db_data[index]['ID']);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => ViewDistination(
+                                              areaID: db_data[index]['ID'])));
+                                  // Navigator.of(context).push(
+                                  //     PageRouteBuilder(
+                                  //         transitionDuration: Duration(
+                                  //             milliseconds: 1000),
+                                  //         reverseTransitionDuration:
+                                  //             Duration(
+                                  //                 milliseconds: 1000),
+                                  //         pageBuilder: (context,
+                                  //             animation,
+                                  //             secondaryAnimation) {
+                                  //           final curvedAnimatino =
+                                  //               CurvedAnimation(
+                                  //                   parent: animation,
+                                  //                   curve:
+                                  //                       Interval(0, 0.5));
+                                  //           return FadeTransition(
+                                  //               opacity: curvedAnimatino,
+                                  //               child: ViewDistination(
+                                  //                   areaID: db_data[index]
+                                  //                       ['ID']));
+                                  //         }));
+                                } else if (areaIndex == 0) {
+                                  //hotel
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => HotelView(
+                                              index: 1,
+                                              id: db_data[index]['ID'])));
+                                } else if (areaIndex == 8) {
+                                  //resturants
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => HotelView(
+                                              index: 2,
+                                              id: db_data[index]['ID'])));
+                                } else if (areaIndex == 4) {
+                                  //parks
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => HotelView(
+                                              index: 3,
+                                              id: db_data[index]['ID'])));
+                                } else {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              DistrictAttributeContainer(
+                                                areaIndex: areaIndex,
+                                                a_id: db_data[index]['ID'],
+                                              )));
+                                }
+                              },
+                              child: Card(
+                                margin: EdgeInsets.only(bottom: 10),
+                                elevation: 4,
+                                clipBehavior: Clip.antiAlias,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0)),
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    Hero(
+                                      tag:
+                                          "background:${db_data[index]['ID'].toString()}",
+                                      child: CachedNetworkImage(
+                                        imageUrl: db_data[index]['image'],
+                                        imageBuilder:
+                                            (context, imageProvider) =>
+                                                Container(
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                              image: imageProvider,
+                                              fit: BoxFit.cover,
                                             ),
-                                            placeholder: (context, url) =>
-                                                CircularProgressIndicator(),
-                                            errorWidget:
-                                                (context, url, error) =>
-                                                    Icon(Icons.error),
                                           ),
-                                          Positioned(
-                                            bottom: 10,
-                                            left: 10,
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(4.8),
-                                              child: BackdropFilter(
-                                                filter: ImageFilter.blur(
-                                                    sigmaY: 19.2, sigmaX: 19.2),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
-                                                  child: Row(
-                                                    children: [
-                                                      Icon(Icons.place_outlined,
-                                                          color: Colors.white),
-                                                      Text(
-                                                          db_data[index]
-                                                              ['name'],
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500)),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          )
-                                        ],
+                                        ),
+                                        placeholder: (context, url) => Center(
+                                            child: CircularProgressIndicator()),
+                                        errorWidget: (context, url, error) =>
+                                            Center(child: Icon(Icons.error)),
                                       ),
                                     ),
-                                  ),
-                                )).toList(),
-                      ),
-                    ))
-              ],
-            ),
+                                    Positioned(
+                                      bottom: 10,
+                                      left: 10,
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(4.8),
+                                        child: BackdropFilter(
+                                          filter: ImageFilter.blur(
+                                              sigmaY: 19.2, sigmaX: 19.2),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              children: [
+                                                Icon(Icons.place_outlined,
+                                                    color: Colors.white),
+                                                Text(db_data[index]['name'],
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.w500)),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          )).toList(),
+                ),
+              )
+            ],
           ),
         );
       },

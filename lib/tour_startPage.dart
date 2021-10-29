@@ -47,7 +47,8 @@ class _tourMateState extends State<tourMate> {
             child: Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage("assets/bg2.jpg"), fit: BoxFit.cover)),
+                      image: AssetImage("assets/background.jpg"),
+                      fit: BoxFit.cover)),
               child: Scaffold(
                 backgroundColor: Colors.transparent,
                 body: SafeArea(

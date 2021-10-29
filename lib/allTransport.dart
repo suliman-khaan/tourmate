@@ -1,7 +1,9 @@
+// import 'dart:html';
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tourmate1/singleTraspComp.dart';
 import 'footer.dart';
 import 'singleTransport.dart';
 import 'package:flutter/cupertino.dart';
@@ -183,15 +185,29 @@ class _transportState extends State<transport> {
                                                 width: 250,
                                                 child: GestureDetector(
                                                   onTap: () {
-                                                    Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                singleTransport(
-                                                                    id: swatTransportList[
-                                                                            index]
-                                                                        [
-                                                                        'ID'])));
+                                                    if (swatTransportList[index]
+                                                            ["local"] ==
+                                                        false) {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  compSingle(
+                                                                      local:
+                                                                          false,
+                                                                      dist:
+                                                                          swatID)));
+                                                    } else {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  singleTransport(
+                                                                      id: swatTransportList[
+                                                                              index]
+                                                                          [
+                                                                          'ID'])));
+                                                    }
                                                   },
                                                   child: Card(
                                                     margin: EdgeInsets.only(
@@ -236,10 +252,14 @@ class _transportState extends State<transport> {
                                                           ),
                                                           placeholder: (context,
                                                                   url) =>
-                                                              CircularProgressIndicator(),
+                                                              Center(
+                                                                  child:
+                                                                      CircularProgressIndicator()),
                                                           errorWidget: (context,
                                                                   url, error) =>
-                                                              Icon(Icons.error),
+                                                              Center(
+                                                                  child: Icon(Icons
+                                                                      .error)),
                                                         ),
                                                         Positioned(
                                                           bottom: 10,
@@ -531,15 +551,29 @@ class _transportState extends State<transport> {
                                                 width: 250,
                                                 child: GestureDetector(
                                                   onTap: () {
-                                                    Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                singleTransport(
-                                                                    id: swatTransportList[
-                                                                            index]
-                                                                        [
-                                                                        'ID'])));
+                                                    if (swatTransportList[index]
+                                                            ["local"] ==
+                                                        false) {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  compSingle(
+                                                                      local:
+                                                                          false,
+                                                                      dist:
+                                                                          chitralID)));
+                                                    } else {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  singleTransport(
+                                                                      id: swatTransportList[
+                                                                              index]
+                                                                          [
+                                                                          'ID'])));
+                                                    }
                                                   },
                                                   child: Card(
                                                     margin: EdgeInsets.only(
@@ -584,10 +618,14 @@ class _transportState extends State<transport> {
                                                           ),
                                                           placeholder: (context,
                                                                   url) =>
-                                                              CircularProgressIndicator(),
+                                                              Center(
+                                                                  child:
+                                                                      CircularProgressIndicator()),
                                                           errorWidget: (context,
                                                                   url, error) =>
-                                                              Icon(Icons.error),
+                                                              Center(
+                                                                  child: Icon(Icons
+                                                                      .error)),
                                                         ),
                                                         Positioned(
                                                           bottom: 10,

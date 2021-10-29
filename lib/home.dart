@@ -55,8 +55,10 @@ class _homeState extends State<home> {
       .collection("District")
       .where("district", isEqualTo: true)
       .snapshots();
-  final Stream<QuerySnapshot> hotelStream =
-      FirebaseFirestore.instance.collection("hotel").snapshots();
+  final Stream<QuerySnapshot> hotelStream = FirebaseFirestore.instance
+      .collection("hotel")
+      .where("price", isGreaterThanOrEqualTo: "8000")
+      .snapshots();
   final Stream<QuerySnapshot> attractiveStream = FirebaseFirestore.instance
       .collection("Areas")
       .where("best_destination", isEqualTo: true)
@@ -224,12 +226,13 @@ class _homeState extends State<home> {
                           ),
                           content: Container(
                               width: double.infinity,
-                              height: MediaQuery.of(context).size.height * 0.67,
+                              margin: EdgeInsets.symmetric(horizontal: 10.0),
+                              height: MediaQuery.of(context).size.height * 0.57,
                               child: Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    SizedBox(height: 120),
+                                    SizedBox(height: 150),
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 10),
@@ -242,19 +245,26 @@ class _homeState extends State<home> {
                                                 hintText:
                                                     "Search your destination",
                                                 hintStyle: TextStyle(
-                                                    color: Colors.black45),
+                                                    color: Colors.white),
                                                 border: OutlineInputBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20.0),
-                                                    borderSide:
-                                                        BorderSide.none),
+                                                    borderRadius: BorderRadius
+                                                        .circular(30.0),
+                                                    borderSide: BorderSide(
+                                                        color: Colors.white)),
                                                 suffixIcon: Container(
                                                   child: Icon(Icons.search,
                                                       color: Colors.white),
                                                 ),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(40),
+                                                        borderSide: BorderSide(
+                                                            color:
+                                                                Colors.white)),
                                                 filled: true,
-                                                fillColor: Colors.white54),
+                                                fillColor: Colors.black54),
                                           ),
                                         ),
                                         onTap: () {
@@ -343,10 +353,14 @@ class _homeState extends State<home> {
                                                     ),
                                                   ),
                                                   placeholder: (context, url) =>
-                                                      CircularProgressIndicator(),
+                                                      Center(
+                                                          child:
+                                                              CircularProgressIndicator()),
                                                   errorWidget:
                                                       (context, url, error) =>
-                                                          Icon(Icons.error),
+                                                          Center(
+                                                              child: Icon(
+                                                                  Icons.error)),
                                                 ),
                                                 Center(
                                                     child: DecoratedBox(
@@ -404,7 +418,6 @@ class _homeState extends State<home> {
                           }).toList();
                           return Column(
                             children: [
-                              SizedBox(height: 20),
                               Row(
                                 children: [
                                   SizedBox(width: 10),
@@ -428,133 +441,135 @@ class _homeState extends State<home> {
                                 ],
                               ),
                               Container(
-                                height: 230,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(bottom: 10.0),
-                                  child: Stack(
-                                    children: [
-                                      Positioned(
-                                          top: 10,
-                                          child: Container(
-                                            height: 200,
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            child: ListView(
-                                              scrollDirection: Axis.horizontal,
-                                              physics: BouncingScrollPhysics(),
-                                              children: List.generate(
-                                                  hotel.length,
-                                                  (index) => Container(
-                                                        margin: const EdgeInsets
-                                                            .only(right: 10.0),
-                                                        width: 250,
-                                                        child: GestureDetector(
-                                                          onTap: () {
-                                                            Navigator.push(
-                                                                context,
-                                                                MaterialPageRoute(
-                                                                    builder: (context) => HotelView(
-                                                                        index:
-                                                                            1,
-                                                                        id: hotel[index]
-                                                                            [
-                                                                            'ID'])));
-                                                          },
-                                                          child: Card(
-                                                            margin:
-                                                                EdgeInsets.only(
-                                                                    left: 10.0,
-                                                                    bottom: 10),
-                                                            elevation: 4,
-                                                            clipBehavior:
-                                                                Clip.antiAlias,
-                                                            shape: RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5.0)),
-                                                            child: Stack(
-                                                              alignment: Alignment
-                                                                  .bottomLeft,
-                                                              children: [
-                                                                // Ink.image(
-                                                                //     image: NetworkImage(
-                                                                //         hotel[index]
-                                                                //             [
-                                                                //             'image']),
-                                                                //     // height: 180,
-                                                                //     fit: BoxFit
-                                                                //         .cover),
-                                                                CachedNetworkImage(
-                                                                  imageUrl: hotel[
-                                                                          index]
-                                                                      ['image'],
-                                                                  imageBuilder:
-                                                                      (context,
-                                                                              imageProvider) =>
-                                                                          Container(
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      image:
-                                                                          DecorationImage(
-                                                                        image:
-                                                                            imageProvider,
-                                                                        fit: BoxFit
-                                                                            .cover,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  placeholder: (context,
-                                                                          url) =>
-                                                                      CircularProgressIndicator(),
-                                                                  errorWidget: (context,
-                                                                          url,
-                                                                          error) =>
-                                                                      Icon(Icons
-                                                                          .error),
+                                height: 200,
+                                child: Stack(
+                                  children: [
+                                    Container(
+                                      height: 200,
+                                      width: MediaQuery.of(context).size.width,
+                                      child: ListView(
+                                        scrollDirection: Axis.horizontal,
+                                        physics: BouncingScrollPhysics(),
+                                        children: List.generate(
+                                            hotel.length,
+                                            (index) => Container(
+                                                  margin: const EdgeInsets.only(
+                                                      right: 10.0),
+                                                  width: 250,
+                                                  child: GestureDetector(
+                                                    onTap: () {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  HotelView(
+                                                                      index: 1,
+                                                                      id: hotel[
+                                                                              index]
+                                                                          [
+                                                                          'ID'])));
+                                                    },
+                                                    child: Card(
+                                                      margin: EdgeInsets.only(
+                                                          left: 10.0,
+                                                          bottom: 10),
+                                                      elevation: 4,
+                                                      clipBehavior:
+                                                          Clip.antiAlias,
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5.0)),
+                                                      child: Stack(
+                                                        alignment: Alignment
+                                                            .bottomLeft,
+                                                        children: [
+                                                          // Ink.image(
+                                                          //     image: NetworkImage(
+                                                          //         hotel[index]
+                                                          //             [
+                                                          //             'image']),
+                                                          //     // height: 180,
+                                                          //     fit: BoxFit
+                                                          //         .cover),
+                                                          CachedNetworkImage(
+                                                            imageUrl:
+                                                                hotel[index]
+                                                                    ['image'],
+                                                            imageBuilder: (context,
+                                                                    imageProvider) =>
+                                                                Container(
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                image:
+                                                                    DecorationImage(
+                                                                  image:
+                                                                      imageProvider,
+                                                                  fit: BoxFit
+                                                                      .cover,
                                                                 ),
-                                                                Positioned(
-                                                                  bottom: 10,
-                                                                  left: 10,
-                                                                  child:
-                                                                      ClipRRect(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            4.8),
-                                                                    child:
-                                                                        BackdropFilter(
-                                                                      filter: ImageFilter.blur(
-                                                                          sigmaY:
-                                                                              19.2,
-                                                                          sigmaX:
-                                                                              19.2),
-                                                                      child:
-                                                                          Padding(
-                                                                        padding:
-                                                                            const EdgeInsets.all(8.0),
-                                                                        child:
-                                                                            Row(
-                                                                          children: [
-                                                                            Icon(Icons.place_outlined,
-                                                                                color: Colors.white),
-                                                                            Text(hotel[index]['name'],
-                                                                                style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500)),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                )
-                                                              ],
+                                                              ),
                                                             ),
+                                                            placeholder: (context,
+                                                                    url) =>
+                                                                CircularProgressIndicator(),
+                                                            errorWidget:
+                                                                (context, url,
+                                                                        error) =>
+                                                                    Icon(Icons
+                                                                        .error),
                                                           ),
-                                                        ),
-                                                      )).toList(),
-                                            ),
-                                          ))
-                                    ],
-                                  ),
+                                                          Positioned(
+                                                            bottom: 10,
+                                                            left: 10,
+                                                            child: ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          4.8),
+                                                              child:
+                                                                  BackdropFilter(
+                                                                filter: ImageFilter
+                                                                    .blur(
+                                                                        sigmaY:
+                                                                            19.2,
+                                                                        sigmaX:
+                                                                            19.2),
+                                                                child: Padding(
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                              .all(
+                                                                          8.0),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Icon(
+                                                                          Icons
+                                                                              .place_outlined,
+                                                                          color:
+                                                                              Colors.white),
+                                                                      Text(
+                                                                          hotel[index]
+                                                                              [
+                                                                              'name'],
+                                                                          style: TextStyle(
+                                                                              color: Colors.white,
+                                                                              fontWeight: FontWeight.w500)),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                )).toList(),
+                                      ),
+                                    )
+                                  ],
                                 ),
                               )
                             ],
@@ -581,7 +596,6 @@ class _homeState extends State<home> {
                           }).toList();
                           return Column(
                             children: [
-                              SizedBox(height: 20),
                               Row(
                                 children: [
                                   SizedBox(width: 10),
@@ -606,131 +620,135 @@ class _homeState extends State<home> {
                                 ],
                               ),
                               Container(
-                                height: 230,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(bottom: 10.0),
-                                  child: Stack(
-                                    children: [
-                                      Positioned(
-                                          top: 10,
-                                          child: Container(
-                                            height: 200,
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            child: ListView(
-                                              scrollDirection: Axis.horizontal,
-                                              physics: BouncingScrollPhysics(),
-                                              children: List.generate(
-                                                  destination.length,
-                                                  (index) => Container(
-                                                        margin: const EdgeInsets
-                                                            .only(right: 10.0),
-                                                        width: 250,
-                                                        child: GestureDetector(
-                                                          onTap: () {
-                                                            Navigator.push(
-                                                                context,
-                                                                MaterialPageRoute(
-                                                                    builder: (context) =>
-                                                                        ViewDistination(
-                                                                            areaID:
-                                                                                destination[index]['ID'])));
-                                                          },
-                                                          child: Card(
-                                                            margin:
-                                                                EdgeInsets.only(
-                                                                    left: 10.0,
-                                                                    bottom: 10),
-                                                            elevation: 4,
-                                                            clipBehavior:
-                                                                Clip.antiAlias,
-                                                            shape: RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5.0)),
-                                                            child: Stack(
-                                                              alignment: Alignment
-                                                                  .bottomLeft,
-                                                              children: [
-                                                                // Ink.image(
-                                                                //     image: NetworkImage(
-                                                                //         destination[index]
-                                                                //             [
-                                                                //             'image']),
-                                                                //     // height: 180,
-                                                                //     fit: BoxFit
-                                                                //         .cover),
-                                                                CachedNetworkImage(
-                                                                  imageUrl: destination[
-                                                                          index]
-                                                                      ['image'],
-                                                                  imageBuilder:
-                                                                      (context,
-                                                                              imageProvider) =>
-                                                                          Container(
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      image:
-                                                                          DecorationImage(
-                                                                        image:
-                                                                            imageProvider,
-                                                                        fit: BoxFit
-                                                                            .cover,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  placeholder: (context,
-                                                                          url) =>
-                                                                      CircularProgressIndicator(),
-                                                                  errorWidget: (context,
-                                                                          url,
-                                                                          error) =>
-                                                                      Icon(Icons
-                                                                          .error),
+                                height: 200,
+                                child: Stack(
+                                  children: [
+                                    Container(
+                                      height: 200,
+                                      width: MediaQuery.of(context).size.width,
+                                      child: ListView(
+                                        scrollDirection: Axis.horizontal,
+                                        physics: BouncingScrollPhysics(),
+                                        children: List.generate(
+                                            destination.length,
+                                            (index) => Container(
+                                                  margin: const EdgeInsets.only(
+                                                      right: 10.0),
+                                                  width: 250,
+                                                  child: GestureDetector(
+                                                    onTap: () {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  ViewDistination(
+                                                                      areaID: destination[
+                                                                              index]
+                                                                          [
+                                                                          'ID'])));
+                                                    },
+                                                    child: Card(
+                                                      margin: EdgeInsets.only(
+                                                          left: 10.0,
+                                                          bottom: 10),
+                                                      elevation: 4,
+                                                      clipBehavior:
+                                                          Clip.antiAlias,
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5.0)),
+                                                      child: Stack(
+                                                        alignment: Alignment
+                                                            .bottomLeft,
+                                                        children: [
+                                                          // Ink.image(
+                                                          //     image: NetworkImage(
+                                                          //         destination[index]
+                                                          //             [
+                                                          //             'image']),
+                                                          //     // height: 180,
+                                                          //     fit: BoxFit
+                                                          //         .cover),
+                                                          CachedNetworkImage(
+                                                            imageUrl:
+                                                                destination[
+                                                                        index]
+                                                                    ['image'],
+                                                            imageBuilder: (context,
+                                                                    imageProvider) =>
+                                                                Container(
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                image:
+                                                                    DecorationImage(
+                                                                  image:
+                                                                      imageProvider,
+                                                                  fit: BoxFit
+                                                                      .cover,
                                                                 ),
-                                                                Positioned(
-                                                                  bottom: 10,
-                                                                  left: 10,
-                                                                  child:
-                                                                      ClipRRect(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            4.8),
-                                                                    child:
-                                                                        BackdropFilter(
-                                                                      filter: ImageFilter.blur(
-                                                                          sigmaY:
-                                                                              19.2,
-                                                                          sigmaX:
-                                                                              19.2),
-                                                                      child:
-                                                                          Padding(
-                                                                        padding:
-                                                                            const EdgeInsets.all(8.0),
-                                                                        child:
-                                                                            Row(
-                                                                          children: [
-                                                                            Icon(Icons.place_outlined,
-                                                                                color: Colors.white),
-                                                                            Text(destination[index]['name'],
-                                                                                style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500)),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                )
-                                                              ],
+                                                              ),
                                                             ),
+                                                            placeholder: (context,
+                                                                    url) =>
+                                                                CircularProgressIndicator(),
+                                                            errorWidget:
+                                                                (context, url,
+                                                                        error) =>
+                                                                    Icon(Icons
+                                                                        .error),
                                                           ),
-                                                        ),
-                                                      )).toList(),
-                                            ),
-                                          ))
-                                    ],
-                                  ),
+                                                          Positioned(
+                                                            bottom: 10,
+                                                            left: 10,
+                                                            child: ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          4.8),
+                                                              child:
+                                                                  BackdropFilter(
+                                                                filter: ImageFilter
+                                                                    .blur(
+                                                                        sigmaY:
+                                                                            19.2,
+                                                                        sigmaX:
+                                                                            19.2),
+                                                                child: Padding(
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                              .all(
+                                                                          8.0),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Icon(
+                                                                          Icons
+                                                                              .place_outlined,
+                                                                          color:
+                                                                              Colors.white),
+                                                                      Text(
+                                                                          destination[index]
+                                                                              [
+                                                                              'name'],
+                                                                          style: TextStyle(
+                                                                              color: Colors.white,
+                                                                              fontWeight: FontWeight.w500)),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                )).toList(),
+                                      ),
+                                    )
+                                  ],
                                 ),
                               )
                             ],
@@ -757,7 +775,6 @@ class _homeState extends State<home> {
                           }).toList();
                           return Column(
                             children: [
-                              SizedBox(height: 20),
                               Row(
                                 children: [
                                   SizedBox(width: 10),
@@ -783,132 +800,132 @@ class _homeState extends State<home> {
                               ),
                               Container(
                                 height: 230,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(bottom: 10.0),
-                                  child: Stack(
-                                    children: [
-                                      Positioned(
-                                          top: 10,
-                                          child: Container(
-                                            height: 200,
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            child: ListView(
-                                              scrollDirection: Axis.horizontal,
-                                              physics: BouncingScrollPhysics(),
-                                              children: List.generate(
-                                                  resturant.length,
-                                                  (index) => Container(
-                                                        margin: const EdgeInsets
-                                                            .only(right: 10.0),
-                                                        width: 250,
-                                                        child: GestureDetector(
-                                                          onTap: () {
-                                                            Navigator.push(
-                                                                context,
-                                                                MaterialPageRoute(
-                                                                    builder: (context) => HotelView(
-                                                                        index:
-                                                                            2,
-                                                                        id: resturant[index]
-                                                                            [
-                                                                            'ID'])));
-                                                          },
-                                                          child: Card(
-                                                            margin:
-                                                                EdgeInsets.only(
-                                                                    left: 10.0,
-                                                                    bottom: 10),
-                                                            elevation: 4,
-                                                            clipBehavior:
-                                                                Clip.antiAlias,
-                                                            shape: RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5.0)),
-                                                            child: Stack(
-                                                              alignment: Alignment
-                                                                  .bottomLeft,
-                                                              children: [
-                                                                // Ink.image(
-                                                                //     image: NetworkImage(
-                                                                //         resturant[index]
-                                                                //             [
-                                                                //             'image']),
-                                                                //     // height: 180,
-                                                                //     fit: BoxFit
-                                                                //         .cover),
-                                                                CachedNetworkImage(
-                                                                  imageUrl: resturant[
+                                child: Stack(
+                                  children: [
+                                    Container(
+                                      height: 200,
+                                      width: MediaQuery.of(context).size.width,
+                                      child: ListView(
+                                        scrollDirection: Axis.horizontal,
+                                        physics: BouncingScrollPhysics(),
+                                        children: List.generate(
+                                            resturant.length,
+                                            (index) => Container(
+                                                  margin: const EdgeInsets.only(
+                                                      right: 10.0),
+                                                  width: 250,
+                                                  child: GestureDetector(
+                                                    onTap: () {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) => HotelView(
+                                                                  index: 2,
+                                                                  id: resturant[
                                                                           index]
-                                                                      ['image'],
-                                                                  imageBuilder:
-                                                                      (context,
-                                                                              imageProvider) =>
-                                                                          Container(
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      image:
-                                                                          DecorationImage(
-                                                                        image:
-                                                                            imageProvider,
-                                                                        fit: BoxFit
-                                                                            .cover,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  placeholder: (context,
-                                                                          url) =>
-                                                                      CircularProgressIndicator(),
-                                                                  errorWidget: (context,
-                                                                          url,
-                                                                          error) =>
-                                                                      Icon(Icons
-                                                                          .error),
+                                                                      ['ID'])));
+                                                    },
+                                                    child: Card(
+                                                      margin: EdgeInsets.only(
+                                                          left: 10.0,
+                                                          bottom: 10),
+                                                      elevation: 4,
+                                                      clipBehavior:
+                                                          Clip.antiAlias,
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5.0)),
+                                                      child: Stack(
+                                                        alignment: Alignment
+                                                            .bottomLeft,
+                                                        children: [
+                                                          // Ink.image(
+                                                          //     image: NetworkImage(
+                                                          //         resturant[index]
+                                                          //             [
+                                                          //             'image']),
+                                                          //     // height: 180,
+                                                          //     fit: BoxFit
+                                                          //         .cover),
+                                                          CachedNetworkImage(
+                                                            imageUrl:
+                                                                resturant[index]
+                                                                    ['image'],
+                                                            imageBuilder: (context,
+                                                                    imageProvider) =>
+                                                                Container(
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                image:
+                                                                    DecorationImage(
+                                                                  image:
+                                                                      imageProvider,
+                                                                  fit: BoxFit
+                                                                      .cover,
                                                                 ),
-                                                                Positioned(
-                                                                  bottom: 10,
-                                                                  left: 10,
-                                                                  child:
-                                                                      ClipRRect(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            4.8),
-                                                                    child:
-                                                                        BackdropFilter(
-                                                                      filter: ImageFilter.blur(
-                                                                          sigmaY:
-                                                                              19.2,
-                                                                          sigmaX:
-                                                                              19.2),
-                                                                      child:
-                                                                          Padding(
-                                                                        padding:
-                                                                            const EdgeInsets.all(8.0),
-                                                                        child:
-                                                                            Row(
-                                                                          children: [
-                                                                            Icon(Icons.place_outlined,
-                                                                                color: Colors.white),
-                                                                            Text(resturant[index]['name'],
-                                                                                style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500)),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                )
-                                                              ],
+                                                              ),
                                                             ),
+                                                            placeholder: (context,
+                                                                    url) =>
+                                                                CircularProgressIndicator(),
+                                                            errorWidget:
+                                                                (context, url,
+                                                                        error) =>
+                                                                    Icon(Icons
+                                                                        .error),
                                                           ),
-                                                        ),
-                                                      )).toList(),
-                                            ),
-                                          ))
-                                    ],
-                                  ),
+                                                          Positioned(
+                                                            bottom: 10,
+                                                            left: 10,
+                                                            child: ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          4.8),
+                                                              child:
+                                                                  BackdropFilter(
+                                                                filter: ImageFilter
+                                                                    .blur(
+                                                                        sigmaY:
+                                                                            19.2,
+                                                                        sigmaX:
+                                                                            19.2),
+                                                                child: Padding(
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                              .all(
+                                                                          8.0),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Icon(
+                                                                          Icons
+                                                                              .place_outlined,
+                                                                          color:
+                                                                              Colors.white),
+                                                                      Text(
+                                                                          resturant[index]
+                                                                              [
+                                                                              'name'],
+                                                                          style: TextStyle(
+                                                                              color: Colors.white,
+                                                                              fontWeight: FontWeight.w500)),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                )).toList(),
+                                      ),
+                                    )
+                                  ],
                                 ),
                               )
                             ],

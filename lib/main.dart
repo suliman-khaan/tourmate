@@ -1,7 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tourmate1/Register.dart';
+<<<<<<< HEAD
 import 'package:tourmate1/roomtypes.dart';
+=======
+import 'package:tourmate1/booking_room.dart';
+>>>>>>> be994846ef42503b3b71b8ccd3cf16860e5c6303
 import 'about.dart';
 import 'login.dart';
 import 'provider.dart';
@@ -18,7 +21,6 @@ import 'all_distination.dart';
 import 'home.dart';
 import 'routes.dart';
 import 'search_page.dart';
-import 'tour_startPage.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -81,7 +83,6 @@ class _MyHomePageState extends State<MyHomePage> {
           // Otherwise, show app
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            // home: home(),
             themeMode: ThemeMode.light,
             theme: ThemeData(
                 primaryIconTheme: IconThemeData(color: Colors.black),
@@ -91,26 +92,21 @@ class _MyHomePageState extends State<MyHomePage> {
             darkTheme: ThemeData(
               brightness: Brightness.dark,
             ),
-
             initialRoute: MyRoute.home,
             routes: {
-              "/": (context) => home(),
               MyRoute.review: (context) => Review(),
               MyRoute.login: (context) => login(),
               MyRoute.signup: (context) => register(),
               MyRoute.home: (context) => home(),
-              //MyRoute.swatHotel: (context) => hotelSingle(),
               MyRoute.hotel: (context) => Hotel(),
               MyRoute.transport: (context) => transport(),
               MyRoute.resturent: (context) => resturent(),
               MyRoute.searchPage: (context) => SearchPage(),
-              //MyRoute.explore_area_swat: (context) => ExploreAreasSwat(),
-              //MyRoute.historicalAreas: (context) => HistorialAreas(),
-              //MyRoute.parks: (context) => ParksSwat(),
               MyRoute.allDistinations: (context) => AllDistinations(),
               MyRoute.contactUs: (context) => ContactUs(),
               MyRoute.aboutUs: (context) => AboutUS(),
-              MyRoute.ourTeam: (context) => TeamMembers()
+              MyRoute.ourTeam: (context) => TeamMembers(),
+              MyRoute.review: (context) => Review()
             },
           );
         },

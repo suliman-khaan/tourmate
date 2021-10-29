@@ -193,11 +193,12 @@ class streamListTransport extends StatelessWidget {
                                                 ),
                                               ),
                                             ),
-                                            placeholder: (context, url) =>
-                                                CircularProgressIndicator(),
+                                            placeholder: (context, url) => Center(
+                                                child:
+                                                    CircularProgressIndicator()),
                                             errorWidget:
-                                                (context, url, error) =>
-                                                    Icon(Icons.error),
+                                                (context, url, error) => Center(
+                                                    child: Icon(Icons.error)),
                                           ),
                                           Positioned(
                                             bottom: 10,

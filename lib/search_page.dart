@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'singleDistrict.dart';
 import 'singleTransport.dart';
@@ -42,7 +43,7 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   void initState() {
-    // 
+    //
     productProvider = Provider.of(context, listen: false);
     productProvider.fatchAreaData();
     // productProvider.fatchRestaurantList();
@@ -318,64 +319,80 @@ class _SearchPageState extends State<SearchPage> {
                                                                   a_id: e[
                                                                       'ID'])));
                                                 },
-                                                child: Card(
-                                                  margin: EdgeInsets.only(
-                                                      left: 10.0, bottom: 10),
-                                                  elevation: 4,
-                                                  clipBehavior: Clip.antiAlias,
-                                                  shape: RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5.0)),
-                                                  child: Stack(
-                                                    alignment:
-                                                        Alignment.bottomLeft,
-                                                    children: [
-                                                      Ink.image(
-                                                          image: NetworkImage(
-                                                              e['image']),
-                                                          // height: 180,
-                                                          fit: BoxFit.cover),
-                                                      Positioned(
-                                                        bottom: 10,
-                                                        left: 10,
-                                                        child: ClipRRect(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      4.8),
-                                                          child: BackdropFilter(
-                                                            filter: ImageFilter
-                                                                .blur(
-                                                                    sigmaY:
-                                                                        19.2,
-                                                                    sigmaX:
-                                                                        19.2),
-                                                            child: Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .all(8.0),
-                                                              child: Row(
-                                                                children: [
-                                                                  Icon(
-                                                                      Icons
-                                                                          .place_outlined,
-                                                                      color: Colors
-                                                                          .white),
-                                                                  Text(
-                                                                      e['name'],
-                                                                      style: TextStyle(
-                                                                          color: Colors
-                                                                              .white,
-                                                                          fontWeight:
-                                                                              FontWeight.w500)),
-                                                                ],
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 5.0,
+                                                          bottom: 10,
+                                                          right: 5),
+                                                  child: Card(
+                                                    elevation: 4,
+                                                    clipBehavior:
+                                                        Clip.antiAlias,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5.0)),
+                                                    child: Stack(
+                                                      alignment:
+                                                          Alignment.bottomLeft,
+                                                      children: [
+                                                        CachedNetworkImage(
+                                                          imageUrl: e['image'],
+                                                          imageBuilder: (context,
+                                                                  imageProvider) =>
+                                                              Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              image:
+                                                                  DecorationImage(
+                                                                image:
+                                                                    imageProvider,
+                                                                fit: BoxFit
+                                                                    .cover,
                                                               ),
                                                             ),
                                                           ),
+                                                          placeholder: (context,
+                                                                  url) =>
+                                                              CircularProgressIndicator(),
                                                         ),
-                                                      )
-                                                    ],
+                                                        Positioned(
+                                                          bottom: 10,
+                                                          left: 10,
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        4.8),
+                                                            child:
+                                                                BackdropFilter(
+                                                              filter: ImageFilter
+                                                                  .blur(
+                                                                      sigmaY:
+                                                                          19.2,
+                                                                      sigmaX:
+                                                                          19.2),
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .all(
+                                                                        8.0),
+                                                                child: Text(
+                                                                    e['name'],
+                                                                    style: TextStyle(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontWeight:
+                                                                            FontWeight.w500)),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                               ),

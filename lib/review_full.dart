@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 
-final TextEditingController commentController = TextEditingController();
-
 class Review extends StatefulWidget {
   @override
   _ReviewState createState() => _ReviewState();
@@ -17,7 +15,11 @@ class Review extends StatefulWidget {
 
 class _ReviewState extends State<Review> {
   static final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final TextEditingController commentController = TextEditingController();
+
   late String date;
+  var reviewStream;
+  var reviewDisplayStream;
   getData() async {
     Map data;
     Response response =
@@ -35,7 +37,7 @@ class _ReviewState extends State<Review> {
   void initState() {
     super.initState();
     getData();
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+    FirebaseAuth.instance.authStateChanges().listen((User? user) async {
       if (user == null) {
         print('Kas loginn nadi yar....');
       } else {
@@ -43,8 +45,22 @@ class _ReviewState extends State<Review> {
         final uid = user!.uid;
         userId = uid;
       }
+      reviewDisplayStream = FirebaseFirestore.instance
+          .collection("customer")
+          .where("uid", isEqualTo: userId)
+          .snapshots();
     });
+    reviewStream = reviewStreamF();
   }
+
+  // Stream<QuerySnapshot> reviewDisplayStream = FirebaseFirestore.instance
+  //     .collection("customer")
+  //     .where("uid", isEqualTo: userId)
+  //     .snapshots();
+  Stream<QuerySnapshot> reviewStreamF() => FirebaseFirestore.instance
+      .collection("Review")
+      .orderBy("date and time", descending: false)
+      .snapshots();
 
   createAlertDialog(BuildContext context) {
     return showDialog(
@@ -185,11 +201,6 @@ class _ReviewState extends State<Review> {
 
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> reviewStream = FirebaseFirestore.instance
-        .collection("Review")
-        .orderBy("date and time", descending: false)
-        .snapshots();
-
     return Material(
       child: Scaffold(
         appBar: AppBar(
@@ -224,11 +235,6 @@ class _ReviewState extends State<Review> {
                   Map dataList = e.data() as Map<String, dynamic>;
                   reviewList.add(dataList);
                 }).toList();
-                final Stream<QuerySnapshot> reviewDisplayStream =
-                    FirebaseFirestore.instance
-                        .collection("customer")
-                        .where("uid", isEqualTo: userId)
-                        .snapshots();
                 return SafeArea(
                   child: userId == ""
                       ? logincommentChild(reviewList)

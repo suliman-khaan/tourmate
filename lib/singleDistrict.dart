@@ -259,10 +259,10 @@ class _singleDistrictState extends State<singleDistrict>
                                       ),
                                     ),
                                   ),
-                                  placeholder: (context, url) =>
-                                      CircularProgressIndicator(),
+                                  placeholder: (context, url) => Center(
+                                      child: CircularProgressIndicator()),
                                   errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
+                                      Center(child: Icon(Icons.error)),
                                 ))),
                       ),
                     );
@@ -499,10 +499,14 @@ class _singleDistrictState extends State<singleDistrict>
                                                         ),
                                                         placeholder: (context,
                                                                 url) =>
-                                                            CircularProgressIndicator(),
+                                                            Center(
+                                                                child:
+                                                                    CircularProgressIndicator()),
                                                         errorWidget: (context,
                                                                 url, error) =>
-                                                            Icon(Icons.error),
+                                                            Center(
+                                                                child: Icon(Icons
+                                                                    .error)),
                                                       ),
                                                       Positioned(
                                                         bottom: 10,
@@ -912,11 +916,13 @@ class streamList extends StatelessWidget {
                                                   ),
                                                 ),
                                               ),
-                                              placeholder: (context, url) =>
-                                                  CircularProgressIndicator(),
-                                              errorWidget:
-                                                  (context, url, error) =>
-                                                      Icon(Icons.error),
+                                              placeholder: (context, url) => Center(
+                                                  child:
+                                                      CircularProgressIndicator()),
+                                              errorWidget: (context, url,
+                                                      error) =>
+                                                  Center(
+                                                      child: Icon(Icons.error)),
                                             ),
                                           ),
                                           Positioned(

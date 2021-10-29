@@ -48,11 +48,7 @@ class _loginState extends State<login> {
   String password = "";
   String massege = "";
   bool isHiddenPassword = true;
-<<<<<<< HEAD
-  bool isLoading = false;
-=======
   bool loading = false;
->>>>>>> be994846ef42503b3b71b8ccd3cf16860e5c6303
 
   String uid = "";
   final auth = FirebaseAuth.instance;
@@ -93,132 +89,6 @@ class _loginState extends State<login> {
             /*appBar: AppBar(
         title: Center(child: Text("")),
       ),*/
-<<<<<<< HEAD
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: MaterialButton(
-                  child: const Icon(Icons.arrow_back),
-                  color: Colors.blue,
-                  textColor: Colors.white,
-                  padding: EdgeInsets.all(10),
-                  shape: CircleBorder(),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-              ),
-              Container(
-                child: Padding(
-                  padding: const EdgeInsets.all(25.0),
-                  child: Form(
-                      key: formkey,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          SizedBox(
-                              //height: 160,
-                              ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text("Login",
-                                style: TextStyle(
-                                    color: Colors.blue[800],
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily:
-                                        'RobotoMono-VariableFont_wght')),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          TextFormField(
-                              controller: emailController,
-                              keyboardType: TextInputType.emailAddress,
-                              onChanged: (value) {
-                                setState(() {
-                                  email = value;
-                                });
-                              },
-                              decoration: InputDecoration(
-                                  labelText: "Email",
-                                  hintText: "Email",
-                                  prefixIcon: Padding(
-                                      padding: EdgeInsets.all(0),
-                                      child: Icon(Icons.email))),
-                              validator: MultiValidator([
-                                RequiredValidator(
-                                    errorText: "Please enter your Email"),
-                                EmailValidator(
-                                    errorText: "Input Should be Email")
-                              ])),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          TextFormField(
-                              controller: passwordController,
-                              decoration: InputDecoration(
-                                  labelText: "Password",
-                                  hintText: "Enter Your Password",
-                                  prefixIcon: Icon(Icons.lock),
-                                  suffixIcon: InkWell(
-                                      onTap: _togglePasswordView,
-                                      child: Icon(Icons.visibility))),
-                              onChanged: (value) {
-                                setState(() {
-                                  password = value;
-                                });
-                              },
-                              obscureText: isHiddenPassword,
-                              validator: RequiredValidator(
-                                  errorText: "Please Enter your Password!")),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              InkWell(
-                                child: Text("Forget Your Password?"),
-                                onTap: () {},
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Container(
-                            width: double.infinity,
-                            // ignore: deprecated_member_use
-                            child: ElevatedButton(
-                              onPressed: () async {
-                                if (formkey.currentState!.validate()) {
-                                  login();
-                                }
-                              },
-                              child: Text(
-                                "Login",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("Not a Member?"),
-                              SizedBox(width: 5.0),
-                              InkWell(
-                                child: Text(
-                                  "Sign up",
-                                  style: TextStyle(color: Colors.redAccent),
-=======
             body: SafeArea(
               child: SingleChildScrollView(
                 child: Column(
@@ -384,7 +254,6 @@ class _loginState extends State<login> {
                                 Text(
                                   error,
                                   style: TextStyle(color: Colors.green),
->>>>>>> be994846ef42503b3b71b8ccd3cf16860e5c6303
                                 ),
                               ],
                             )),

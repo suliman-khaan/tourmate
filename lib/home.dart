@@ -248,7 +248,7 @@ class _homeState extends State<home> {
                                                     color: Colors.white),
                                                 border: OutlineInputBorder(
                                                     borderRadius: BorderRadius
-                                                        .circular(20.0),
+                                                        .circular(30.0),
                                                     borderSide: BorderSide(
                                                         color: Colors.white)),
                                                 suffixIcon: Container(
@@ -259,7 +259,7 @@ class _homeState extends State<home> {
                                                     OutlineInputBorder(
                                                         borderRadius:
                                                             BorderRadius
-                                                                .circular(10.0),
+                                                                .circular(40),
                                                         borderSide: BorderSide(
                                                             color:
                                                                 Colors.white)),

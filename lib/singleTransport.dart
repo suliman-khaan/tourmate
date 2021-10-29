@@ -66,21 +66,26 @@ class _singleTransportState extends State<singleTransport> {
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Image(image: NetworkImage(transport[0]['image'])),
-                      CachedNetworkImage(
-                        imageUrl: transport[0]['image'],
-                        imageBuilder: (context, imageProvider) => Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: imageProvider,
-                              fit: BoxFit.cover,
+                      SizedBox(
+                        height: 200,
+                        child: Hero(
+                          tag: transport[0]['image'],
+                          child: CachedNetworkImage(
+                            imageUrl: transport[0]['image'],
+                            imageBuilder: (context, imageProvider) => Container(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: imageProvider,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
+                            placeholder: (context, url) =>
+                                Center(child: CircularProgressIndicator()),
+                            errorWidget: (context, url, error) =>
+                                Center(child: Icon(Icons.error)),
                           ),
                         ),
-                        placeholder: (context, url) =>
-                            Center(child: CircularProgressIndicator()),
-                        errorWidget: (context, url, error) =>
-                            Center(child: Icon(Icons.error)),
                       ),
                       SizedBox(height: 10),
                       Padding(

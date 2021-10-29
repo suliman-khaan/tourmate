@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tourmate1/Register.dart';
+import 'package:tourmate1/roomtypes.dart';
 import 'about.dart';
 import 'login.dart';
 import 'provider.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: RoomTypes(),
     );
   }
 }

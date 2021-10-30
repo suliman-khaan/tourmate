@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tourmate1/home.dart';
-import 'package:tourmate1/review_full.dart';
-import 'package:tourmate1/routes.dart';
-import 'package:tourmate1/search_page.dart';
+import 'package:tourmate1/basic.dart';
 
 // ignore: camel_case_types
 class footer extends StatefulWidget {
@@ -22,15 +19,16 @@ class _footerState extends State<footer> {
     setState(() {
       _selectedIndex = index;
       if (_selectedIndex == 0) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => home()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => MainHome(index: 0)));
       }
       if (_selectedIndex == 1) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => SearchPage()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => MainHome(index: 1)));
       }
       if (_selectedIndex == 2) {
-        Navigator.of(context).pushNamed(MyRoute.review);
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => MainHome(index: 2)));
       }
     });
   }

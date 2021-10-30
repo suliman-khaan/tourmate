@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tourmate1/Register.dart';
+import 'package:tourmate1/basic.dart';
 import 'about.dart';
 import 'login.dart';
 import 'provider.dart';
@@ -89,9 +90,10 @@ class _MyHomePageState extends State<MyHomePage> {
               brightness: Brightness.dark,
             ),
 
-            initialRoute: MyRoute.home,
+            initialRoute: MyRoute.MainHome,
             routes: {
               MyRoute.review: (context) => Review(),
+              MyRoute.MainHome: (context) => MainHome(index: 0),
               MyRoute.login: (context) => login(),
               MyRoute.signup: (context) => register(),
               MyRoute.home: (context) => home(),

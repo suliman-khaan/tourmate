@@ -1,10 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tourmate1/Register.dart';
-<<<<<<< HEAD
 import 'package:tourmate1/roomtypes.dart';
-=======
+import 'package:tourmate1/basic.dart';
 import 'package:tourmate1/booking_room.dart';
->>>>>>> be994846ef42503b3b71b8ccd3cf16860e5c6303
 import 'about.dart';
 import 'login.dart';
 import 'provider.dart';
@@ -92,9 +90,10 @@ class _MyHomePageState extends State<MyHomePage> {
             darkTheme: ThemeData(
               brightness: Brightness.dark,
             ),
-            initialRoute: MyRoute.home,
+            initialRoute: MyRoute.MainHome,
             routes: {
               MyRoute.review: (context) => Review(),
+              MyRoute.MainHome: (context) => MainHome(index: 0),
               MyRoute.login: (context) => login(),
               MyRoute.signup: (context) => register(),
               MyRoute.home: (context) => home(),

@@ -294,9 +294,9 @@ class _ReviewState extends State<Review> {
                 );
               }),
         ),
-        bottomNavigationBar: footer(
-          tabIndex: 2,
-        ),
+        // bottomNavigationBar: footer(
+        //   tabIndex: 2,
+        // ),
       ),
     );
   }

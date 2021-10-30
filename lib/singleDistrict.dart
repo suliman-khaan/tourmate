@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tourmate1/singleTraspComp.dart';
 import 'attribute_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -430,6 +431,96 @@ class _singleDistrictState extends State<singleDistrict>
                       db_data.add(dataList);
                     }).toList();
                     return Container(
+<<<<<<< HEAD
+                      height: 230,
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0),
+                        child: Stack(
+                          children: [
+                            Positioned(
+                                top: 10,
+                                child: Container(
+                                  height: 200,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: ListView(
+                                    scrollDirection: Axis.horizontal,
+                                    physics: BouncingScrollPhysics(),
+                                    children: List.generate(
+                                        db_data.length,
+                                        (index) => Container(
+                                              margin: const EdgeInsets.only(
+                                                  left: 10.0, right: 10.0),
+                                              width: 250,
+                                              child: GestureDetector(
+                                                onTap: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              compSingle(
+                                                                  local: false,
+                                                                  dist: dist[0]
+                                                                      ['ID'])));
+                                                },
+                                                child: Card(
+                                                  margin: EdgeInsets.only(
+                                                      bottom: 10),
+                                                  elevation: 4,
+                                                  clipBehavior: Clip.antiAlias,
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5.0)),
+                                                  child: Stack(
+                                                    alignment:
+                                                        Alignment.bottomLeft,
+                                                    children: [
+                                                      Ink.image(
+                                                          image: NetworkImage(
+                                                              db_data[index]
+                                                                  ['image']),
+                                                          // height: 180,
+                                                          fit: BoxFit.cover),
+                                                      Positioned(
+                                                        bottom: 10,
+                                                        left: 10,
+                                                        child: ClipRRect(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      4.8),
+                                                          child: BackdropFilter(
+                                                            filter: ImageFilter
+                                                                .blur(
+                                                                    sigmaY:
+                                                                        19.2,
+                                                                    sigmaX:
+                                                                        19.2),
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(8.0),
+                                                              child: Row(
+                                                                children: [
+                                                                  Icon(
+                                                                      Icons
+                                                                          .place_outlined,
+                                                                      color: Colors
+                                                                          .white),
+                                                                  Text(
+                                                                      db_data[index]
+                                                                          [
+                                                                          'name'],
+                                                                      style: TextStyle(
+                                                                          color: Colors
+                                                                              .white,
+                                                                          fontWeight:
+                                                                              FontWeight.w500)),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+=======
                       height: 200,
                       child: Stack(
                         children: [
@@ -478,6 +569,7 @@ class _singleDistrictState extends State<singleDistrict>
                                                         image: DecorationImage(
                                                           image: imageProvider,
                                                           fit: BoxFit.cover,
+>>>>>>> be994846ef42503b3b71b8ccd3cf16860e5c6303
                                                         ),
                                                       ),
                                                     ),

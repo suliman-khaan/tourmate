@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tourmate1/Register.dart';
+import 'package:tourmate1/roomtypes.dart';
 import 'package:tourmate1/basic.dart';
+import 'package:tourmate1/booking_room.dart';
 import 'about.dart';
 import 'login.dart';
 import 'provider.dart';
@@ -79,7 +81,6 @@ class _MyHomePageState extends State<MyHomePage> {
           // Otherwise, show app
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            // home: home(),
             themeMode: ThemeMode.light,
             theme: ThemeData(
                 primaryIconTheme: IconThemeData(color: Colors.black),
@@ -89,7 +90,6 @@ class _MyHomePageState extends State<MyHomePage> {
             darkTheme: ThemeData(
               brightness: Brightness.dark,
             ),
-
             initialRoute: MyRoute.MainHome,
             routes: {
               MyRoute.review: (context) => Review(),

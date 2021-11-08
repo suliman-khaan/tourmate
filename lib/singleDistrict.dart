@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tourmate1/singleTraspComp.dart';
 import 'attribute_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -27,25 +28,33 @@ class singleDistrict extends StatefulWidget {
   final int tabIndex;
   final String district;
   @override
-  _singleDistrictState createState() => _singleDistrictState();
+  _singleDistrictState createState() =>
+      _singleDistrictState(district: this.district);
 }
 
 // ignore: camel_case_types
 class _singleDistrictState extends State<singleDistrict>
     with SingleTickerProviderStateMixin {
+  final String district;
+  _singleDistrictState({required this.district});
   // ignore: unused_field
   int _current = 0;
   int tabLength = 4;
   dynamic _lineLength = 3;
-  var bool = false;
+  var bool;
 
   int _tabIndex = 0;
 
   late TabController _tabController;
-
+  var districtStream;
   void initState() {
     super.initState();
     _tabController = TabController(vsync: this, length: tabLength);
+    districtStream = FirebaseFirestore.instance
+        .collection("District")
+        .where("ID", isEqualTo: district)
+        .snapshots();
+    bool = false;
   }
 
   void _secondTab() {
@@ -68,13 +77,13 @@ class _singleDistrictState extends State<singleDistrict>
   //   _tabController.animateTo(_tabIndex);
   // }
 
+  // final Stream<QuerySnapshot> districtStream = FirebaseFirestore.instance
+  //     .collection("District")
+  //     .where("ID", isEqualTo: district)
+  //     .snapshots();
+
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> districtStream = FirebaseFirestore.instance
-        .collection("District")
-        .where("ID", isEqualTo: widget.district)
-        .snapshots();
-
     _tabController.index = widget.tabIndex;
     return StreamBuilder(
         stream: districtStream,
@@ -144,9 +153,9 @@ class _singleDistrictState extends State<singleDistrict>
                       physics: NeverScrollableScrollPhysics(),
                       children: [
                         singleOverview(dist),
-                        PageSecond(dist: widget.district),
-                        pageThird(dist: widget.district),
-                        singleTransportDistrict(dist: widget.district)
+                        PageSecond(dist: district),
+                        pageThird(dist: district),
+                        singleTransportDistrict(dist: district)
                       ]),
                 ),
                 bottomNavigationBar: footer(),
@@ -159,47 +168,47 @@ class _singleDistrictState extends State<singleDistrict>
   Widget singleOverview(dist) {
     final Stream<QuerySnapshot> regionStream = FirebaseFirestore.instance
         .collection("Areas")
-        .where("district", isEqualTo: widget.district)
+        .where("district", isEqualTo: district)
         .where("best_destination", isEqualTo: true)
         .snapshots();
     final Stream<QuerySnapshot> historicalStream = FirebaseFirestore.instance
         .collection("Areas")
-        .where("district", isEqualTo: widget.district)
+        .where("district", isEqualTo: district)
         .where("historical", isEqualTo: true)
         .snapshots();
     final Stream<QuerySnapshot> exploreStream = FirebaseFirestore.instance
         .collection("Areas")
-        .where("district", isEqualTo: widget.district)
+        .where("district", isEqualTo: district)
         .where("explored_area", isEqualTo: true)
         .snapshots();
     final Stream<QuerySnapshot> hikingStream = FirebaseFirestore.instance
         .collection("Areas")
-        .where("district", isEqualTo: widget.district)
+        .where("district", isEqualTo: district)
         .where("hiking_and_tracking", isEqualTo: true)
         .snapshots();
     final Stream<QuerySnapshot> hotelStream = FirebaseFirestore.instance
         .collection("hotel")
-        .where("district", isEqualTo: widget.district)
+        .where("district", isEqualTo: district)
         .snapshots();
     final Stream<QuerySnapshot> resturantStream = FirebaseFirestore.instance
         .collection("Resturents")
-        .where("district", isEqualTo: widget.district)
+        .where("district", isEqualTo: district)
         .snapshots();
     final Stream<QuerySnapshot> transportStream = FirebaseFirestore.instance
         .collection("Transport")
-        .where("district", isEqualTo: widget.district)
+        .where("district", isEqualTo: district)
         .snapshots();
     final Stream<QuerySnapshot> parkStream = FirebaseFirestore.instance
         .collection("Parks")
-        .where("district", isEqualTo: widget.district)
+        .where("district", isEqualTo: district)
         .snapshots();
     final Stream<QuerySnapshot> eventStream = FirebaseFirestore.instance
         .collection("Events")
-        .where("district", isEqualTo: widget.district)
+        .where("district", isEqualTo: district)
         .snapshots();
     final Stream<QuerySnapshot> entStream = FirebaseFirestore.instance
         .collection("Entertainment")
-        .where("district", isEqualTo: widget.district)
+        .where("district", isEqualTo: district)
         .snapshots();
     final Stream<QuerySnapshot> slideStream = FirebaseFirestore.instance
         .collection("Gallery")

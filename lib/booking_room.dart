@@ -188,21 +188,23 @@ class _RoomBookingState extends State<RoomBooking> {
   bool checkBoxValue = false;
 
   String fromDate =
-      DateFormat('E,MMMM dd, yyyy').format(DateTime.now()).toString();
-  String toDate = DateFormat('E,MMMM dd, yyyy')
+      DateFormat('E,dd-MM-yyyy').format(DateTime.now()).toString();
+  String toDate = DateFormat('E,dd-MM-yyyy')
       .format(DateTime.now().add(Duration(days: 1)))
       .toString();
   void selectionChanged(DateRangePickerSelectionChangedArgs args) {
     SchedulerBinding.instance!.addPostFrameCallback((duration) {
       fromDate =
-          DateFormat('E,MMMM dd, yyyy').format(args.value.startDate).toString();
+          DateFormat('E,dd-MM-yyyy').format(args.value.startDate).toString();
       test =
-          DateFormat('E,MMMM dd, yyyy').format(args.value.startDate).toString();
+
+          DateFormat('E,dd-MM-yyyy').format(args.value.startDate).toString();
       
       toDate =
-          DateFormat('E,MMMM dd, yyyy').format(args.value.endDate).toString();
+          DateFormat('E,dd-MM-yyyy').format(args.value.endDate).toString();
       test1 =
-          DateFormat('E,MMMM dd, yyyy').format(args.value.endDate).toString();
+
+          DateFormat('E,dd-MM-yyyy').format(args.value.endDate).toString();
   
       setState(() {});
     });

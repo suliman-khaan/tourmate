@@ -149,15 +149,10 @@ class _singleDistrictState extends State<singleDistrict>
             Map dataList = e.data() as Map<String, dynamic>;
             dist.add(dataList);
           }).toList();
-          if (snapshot.connectionState == ConnectionState.done) {
-            setState(() {
-              slideStream = FirebaseFirestore.instance
-                  .collection("Gallery")
-                  .where("name", isEqualTo: dist[0]['name'])
-                  .snapshots();
-            });
-          }
-
+          slideStream = FirebaseFirestore.instance
+              .collection("Gallery")
+              .where("name", isEqualTo: dist[0]['name'])
+              .snapshots();
           return Material(
             child: DefaultTabController(
               length: tabLength,
@@ -236,50 +231,64 @@ class _singleDistrictState extends State<singleDistrict>
                   stream: slideStream,
                   builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
+                      return Container(
+                          height: 200,
+                          child: Center(child: CircularProgressIndicator()));
                     }
-                    // ignore: non_constant_identifier_names
-                    final List ImageList = [];
-                    snapshot.data!.docs.map((DocumentSnapshot e) {
-                      Map dataList = e.data() as Map<String, dynamic>;
-                      ImageList.add(dataList);
-                    }).toList();
-                    return Container(
-                      child: CarouselSlider(
-                        options: CarouselOptions(
-                            height: 200,
-                            aspectRatio: 16 / 9,
-                            viewportFraction: 1.0,
-                            enlargeCenterPage: true,
-                            enableInfiniteScroll: true,
-                            autoPlay: true,
-                            // onPageChanged: (index, reason) {
-                            //   setState(() {
-                            //     _current = index;
-                            //   });
-                            // },
-                            autoPlayCurve: Curves.easeInToLinear),
-                        items: List.generate(
-                            ImageList.length,
-                            (int index) => Container(
-                                    child: CachedNetworkImage(
-                                  imageUrl: ImageList[index]['image'],
-                                  imageBuilder: (context, imageProvider) =>
-                                      Container(
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: imageProvider,
-                                        fit: BoxFit.cover,
+                    if (snapshot.hasData) {
+                      // ignore: non_constant_identifier_names
+                      final List ImageList = [];
+                      snapshot.data!.docs.map((DocumentSnapshot e) {
+                        Map dataList = e.data() as Map<String, dynamic>;
+                        ImageList.add(dataList);
+                      }).toList();
+                      return Container(
+                        child: CarouselSlider(
+                          options: CarouselOptions(
+                              height: 200,
+                              aspectRatio: 16 / 9,
+                              viewportFraction: 1.0,
+                              enlargeCenterPage: true,
+                              enableInfiniteScroll: true,
+                              autoPlay: true,
+                              // onPageChanged: (index, reason) {
+                              //   setState(() {
+                              //     _current = index;
+                              //   });
+                              // },
+                              autoPlayCurve: Curves.easeInToLinear),
+                          items: List.generate(
+                              ImageList.length,
+                              (int index) => Container(
+                                      child: CachedNetworkImage(
+                                    imageUrl: ImageList[index]['image'],
+                                    imageBuilder: (context, imageProvider) =>
+                                        Container(
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: imageProvider,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  placeholder: (context, url) => Center(
-                                      child: CircularProgressIndicator()),
-                                  errorWidget: (context, url, error) =>
-                                      Center(child: Icon(Icons.error)),
-                                ))),
-                      ),
-                    );
+                                    placeholder: (context, url) => Center(
+                                        child: CircularProgressIndicator()),
+                                    errorWidget: (context, url, error) =>
+                                        Center(child: Icon(Icons.error)),
+                                  ))),
+                        ),
+                      );
+                    } else {
+                      return Container(
+                          height: 200,
+                          child: Center(
+                              child: Text(
+                            "Data Getting Failed from the server.\nPlease Make sure\nYour Internet Connection",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.poppins(
+                                color: Colors.red, fontSize: 18),
+                          )));
+                    }
                   }),
             ]),
             SizedBox(height: 10.0),

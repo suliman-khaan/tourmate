@@ -90,11 +90,11 @@ class _MyHomePageState extends State<MyHomePage> {
             darkTheme: ThemeData(
               brightness: Brightness.dark,
             ),
-            initialRoute: MyRoute.MainHome,
+            initialRoute: MyRoute.mainHome,
 
             routes: {
               MyRoute.review: (context) => Review(),
-              MyRoute.MainHome: (context) => MainHome(index: 0),
+              MyRoute.mainHome: (context) => MainHome(index: 0),
               MyRoute.login: (context) => login(),
               MyRoute.signup: (context) => register(),
               MyRoute.home: (context) => home(),

@@ -1,9 +1,7 @@
 // ignore: invalid_language_version_override
 //@dart=2.9;
 import 'dart:ui';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:tourmate1/auth.dart';
 import 'home.dart';
 import 'tearm_and_conditions.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -39,7 +37,6 @@ class _registerState extends State<register> {
   //  //_updateUser(user);
   //   }
 
-  final AuthService _auth = AuthService();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   final auth = FirebaseAuth.instance;
   final emailController = TextEditingController();
@@ -274,28 +271,6 @@ class _registerState extends State<register> {
                             }
                             if (formkey.currentState!.validate() &&
                                 value == true) {
-                              dynamic result =
-                                  await _auth.RegisterWithEmailAndPassword(
-                                          email, password, context)
-                                      .then((value) async {
-                                User? user = FirebaseAuth.instance.currentUser;
-                                await FirebaseFirestore.instance
-                                    .collection("customer")
-                                    .doc(user!.uid)
-                                    .set({
-                                  'name': name,
-                                  'email': email,
-                                  'password': password,
-                                  'address': address,
-                                  'Contact': contact,
-                                  'uid': user.uid,
-                                  'image': "",
-                                  //'uid': uid
-                                });
-                                Navigator.pushNamed(context, '/login');
-                                //.doc(user.uid)
-                                // .set({});
-                              });
                               //registeration();
                             }
                           },

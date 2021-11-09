@@ -184,6 +184,8 @@ class _RoomBookingState extends State<RoomBooking> {
 
   final DateRangePickerController _controller = DateRangePickerController();
   String test = '';
+  // remove just for check
+  String hello = "remov eme";
   String test1 = '';
   bool checkBoxValue = false;
 

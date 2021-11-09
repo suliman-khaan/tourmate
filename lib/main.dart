@@ -1,8 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tourmate1/Register.dart';
-import 'package:tourmate1/roomtypes.dart';
 import 'package:tourmate1/basic.dart';
-import 'package:tourmate1/booking_room.dart';
 import 'about.dart';
 import 'login.dart';
 import 'provider.dart';

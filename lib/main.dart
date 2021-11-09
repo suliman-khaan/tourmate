@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // Otherwise, show app
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: RoomBooking(),
+             home: RoomBooking(),
             themeMode: ThemeMode.light,
             theme: ThemeData(
                 primaryIconTheme: IconThemeData(color: Colors.black),
@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
               brightness: Brightness.dark,
             ),
 
-            initialRoute: MyRoute.home,
+            // initialRoute: MyRoute.home,
             routes: {
               MyRoute.review: (context) => Review(),
               MyRoute.login: (context) => login(),

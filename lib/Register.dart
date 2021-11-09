@@ -274,10 +274,9 @@ class _registerState extends State<register> {
                             }
                             if (formkey.currentState!.validate() &&
                                 value == true) {
-                              dynamic result =
-                                  await _auth.RegisterWithEmailAndPassword(
-                                          email, password, context)
-                                      .then((value) async {
+                              await _auth.RegisterWithEmailAndPassword(
+                                      email, password, context)
+                                  .then((value) async {
                                 User? user = FirebaseAuth.instance.currentUser;
                                 await FirebaseFirestore.instance
                                     .collection("customer")

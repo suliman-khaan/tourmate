@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -11,32 +9,31 @@ class RoomTypes extends StatefulWidget {
 }
 
 class _RoomTypesState extends State<RoomTypes> {
-  int _StandardRoomcount = 1;
-  int _DeluxRoomcount = 1;
-  int _SweetyRoomcount = 1;
+  int _standardRoomcount = 1;
+  int _deluxRoomcount = 1;
+  int _sweetyRoomcount = 1;
   int _personcount = 1;
-  int _DeluxPersoncount = 1;
-  int _SweetyPersoncount = 1;
+  int _deluxPersoncount = 1;
+  int _sweetyPersoncount = 1;
   double _price = 3500.0;
-  double _DeluxPrice = 4500.0;
-  double _SweetyPrice = 6000.0;
-  late double _finalPrice;
+  double _deluxPrice = 4500.0;
+  double _sweetyPrice = 6000.0;
 
   void _incrementRoom() {
     setState(() {
-      _StandardRoomcount++;
+      _standardRoomcount++;
     });
   }
 
   void _incrementDeluxRoom() {
     setState(() {
-      _DeluxRoomcount++;
+      _deluxRoomcount++;
     });
   }
 
   void _incrementSweetyRoom() {
     setState(() {
-      _SweetyRoomcount++;
+      _sweetyRoomcount++;
     });
   }
 
@@ -48,28 +45,28 @@ class _RoomTypesState extends State<RoomTypes> {
 
   void _incrementDeluxPerson() {
     setState(() {
-      _DeluxPersoncount++;
+      _deluxPersoncount++;
     });
   }
 
   void _incrementSweetyPerson() {
     setState(() {
-      _SweetyPersoncount++;
+      _sweetyPersoncount++;
     });
   }
 
   void _decrementRoom() {
     setState(() {
-      if (_StandardRoomcount > 1) {
-        _StandardRoomcount--;
+      if (_standardRoomcount > 1) {
+        _standardRoomcount--;
       }
     });
   }
 
   void _decrementDeluxRoom() {
     setState(() {
-      if (_DeluxRoomcount > 1) {
-        _DeluxRoomcount--;
+      if (_deluxRoomcount > 1) {
+        _deluxRoomcount--;
       }
     });
   }
@@ -84,24 +81,24 @@ class _RoomTypesState extends State<RoomTypes> {
 
   void _decrementDeluxPerson() {
     setState(() {
-      if (_DeluxPersoncount > 1) {
-        _DeluxPersoncount--;
+      if (_deluxPersoncount > 1) {
+        _deluxPersoncount--;
       }
     });
   }
 
   void _decrementSweetyPerson() {
     setState(() {
-      if (_SweetyPersoncount > 1) {
-        _SweetyPersoncount--;
+      if (_sweetyPersoncount > 1) {
+        _sweetyPersoncount--;
       }
     });
   }
 
   void _decrementSweetyRoom() {
     setState(() {
-      if (_SweetyRoomcount > 1) {
-        _SweetyRoomcount--;
+      if (_sweetyRoomcount > 1) {
+        _sweetyRoomcount--;
       }
     });
   }
@@ -331,15 +328,15 @@ class _RoomTypesState extends State<RoomTypes> {
                                             width: 1, color: Colors.black)),
                                     child: Padding(
                                         padding: const EdgeInsets.all(8.0),
-                                        child: _StandardRoomcount == 1
+                                        child: _standardRoomcount == 1
                                             ? Text(
-                                                "${_StandardRoomcount} Room",
+                                                "$_standardRoomcount Room",
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 12),
                                               )
                                             : Text(
-                                                "${_StandardRoomcount} Rooms",
+                                                "$_standardRoomcount Rooms",
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 12),
@@ -402,7 +399,7 @@ class _RoomTypesState extends State<RoomTypes> {
                                             size: 12,
                                           ),
                                           Text(
-                                            "  :  ${_personcount}",
+                                            "  :  $_personcount",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 12),
@@ -463,7 +460,7 @@ class _RoomTypesState extends State<RoomTypes> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "PKR : ${_StandardRoomcount * _price}",
+                              "PKR : ${_standardRoomcount * _price}",
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
 
@@ -711,15 +708,15 @@ class _RoomTypesState extends State<RoomTypes> {
                                             width: 1, color: Colors.black)),
                                     child: Padding(
                                         padding: const EdgeInsets.all(8.0),
-                                        child: _DeluxRoomcount == 1
+                                        child: _deluxRoomcount == 1
                                             ? Text(
-                                                "${_DeluxRoomcount} Room",
+                                                "$_deluxRoomcount Room",
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 12),
                                               )
                                             : Text(
-                                                "${_DeluxRoomcount} Rooms",
+                                                "$_deluxRoomcount Rooms",
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 12),
@@ -782,7 +779,7 @@ class _RoomTypesState extends State<RoomTypes> {
                                             size: 12,
                                           ),
                                           Text(
-                                            "  :  ${_DeluxPersoncount}",
+                                            "  :  $_deluxPersoncount",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 12),
@@ -843,7 +840,7 @@ class _RoomTypesState extends State<RoomTypes> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "PKR : ${_DeluxRoomcount * _DeluxPrice}",
+                              "PKR : ${_deluxRoomcount * _deluxPrice}",
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
 
@@ -1108,15 +1105,15 @@ class _RoomTypesState extends State<RoomTypes> {
                                             width: 1, color: Colors.black)),
                                     child: Padding(
                                         padding: const EdgeInsets.all(8.0),
-                                        child: _SweetyRoomcount == 1
+                                        child: _sweetyRoomcount == 1
                                             ? Text(
-                                                "${_SweetyRoomcount} Room",
+                                                "$_sweetyRoomcount Room",
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 12),
                                               )
                                             : Text(
-                                                "${_SweetyRoomcount} Rooms",
+                                                "$_sweetyRoomcount Rooms",
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 12),
@@ -1175,7 +1172,7 @@ class _RoomTypesState extends State<RoomTypes> {
                                             size: 12,
                                           ),
                                           Text(
-                                            "  :  ${_SweetyPersoncount}",
+                                            "  :  $_sweetyPersoncount",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 12),
@@ -1225,7 +1222,7 @@ class _RoomTypesState extends State<RoomTypes> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "PKR : ${_SweetyRoomcount * _SweetyPrice}",
+                              "PKR : ${_sweetyRoomcount * _sweetyPrice}",
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
 

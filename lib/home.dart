@@ -233,16 +233,11 @@ class _homeState extends State<home> {
                                 child: InkWell(
                                   child: IgnorePointer(
                                     child: TextField(
-                                      style: TextStyle(color: Colors.black),
+                                      style: TextStyle(color: Colors.white),
                                       decoration: InputDecoration(
                                           hintText: "Search your destination",
                                           hintStyle:
                                               TextStyle(color: Colors.white),
-                                          border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(30.0),
-                                              borderSide: BorderSide(
-                                                  color: Colors.white)),
                                           suffixIcon: Container(
                                             child: Icon(Icons.search,
                                                 color: Colors.white),

@@ -1,14 +1,13 @@
-// import 'dart:html';
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tourmate1/singleTraspComp.dart';
 import 'attribute_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
-// import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import 'Areas.dart';
 import 'drawer.dart';
@@ -469,13 +468,24 @@ class _singleDistrictState extends State<singleDistrict>
                                         width: 250,
                                         child: GestureDetector(
                                           onTap: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        singleTransport(
-                                                            id: db_data[index]
-                                                                ['ID'])));
+                                            db_data[index]['local']
+                                                ? Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            singleTransport(
+                                                                id: db_data[
+                                                                        index]
+                                                                    ['ID'])))
+                                                : Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            compSingle(
+                                                                local: false,
+                                                                dist: db_data[
+                                                                        index][
+                                                                    'district'])));
                                           },
                                           child: Card(
                                             margin: EdgeInsets.only(bottom: 10),

@@ -10,16 +10,17 @@ import 'userProfile.dart';
 import 'routes.dart';
 
 class MyDrawer extends StatefulWidget {
-  const MyDrawer({Key? key}) : super(key: key);
-
+  const MyDrawer({Key? key, this.userId = ''}) : super(key: key);
+  final String userId;
   @override
-  _MyDrawerState createState() => _MyDrawerState();
+  _MyDrawerState createState() => _MyDrawerState(userId: this.userId);
 }
 
 class _MyDrawerState extends State<MyDrawer> {
-  final FirebaseAuth auth = FirebaseAuth.instance;
-  String userId = "";
-  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  // final FirebaseAuth auth = FirebaseAuth.instance;
+  String userId;
+  _MyDrawerState({required this.userId});
+  // final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   Widget _createDrawerItem(
       {required IconData icon,
@@ -55,15 +56,15 @@ class _MyDrawerState extends State<MyDrawer> {
   @override
   void initState() {
     super.initState();
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user == null) {
-        print('User is currently signed out!');
-      } else {
-        final User? user = auth.currentUser;
-        final uid = user!.uid;
-        userId = uid;
-      }
-    });
+    // FirebaseAuth.instance.authStateChanges().listen((User? user) {
+    //   if (user == null) {
+    //     print('User is currently signed out!');
+    //   } else {
+    //     final User? user = auth.currentUser;
+    //     final uid = user!.uid;
+    //     userId = uid;
+    //   }
+    // });
   }
 
   @override

@@ -99,6 +99,7 @@ Widget singleResturent(dist) {
                                       Positioned(
                                         bottom: 10,
                                         left: 10,
+                                        right: 10,
                                         child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(4.8),
@@ -108,18 +109,12 @@ Widget singleResturent(dist) {
                                             child: Padding(
                                               padding:
                                                   const EdgeInsets.all(8.0),
-                                              child: Row(
-                                                children: [
-                                                  Icon(
-                                                      Icons.restaurant_outlined,
-                                                      color: Colors.white),
-                                                  Text(db_data[index]['name'],
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.w500)),
-                                                ],
-                                              ),
+                                              child: Text(
+                                                  db_data[index]['name'],
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.w500)),
                                             ),
                                           ),
                                         ),

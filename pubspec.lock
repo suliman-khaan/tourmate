@@ -100,7 +100,7 @@ packages:
     source: hosted
     version: "2.4.3"
   collection:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: collection
       url: "https://pub.dartlang.org"
@@ -381,7 +381,7 @@ packages:
     source: hosted
     version: "0.15.0"
   http:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: http
       url: "https://pub.dartlang.org"
@@ -450,6 +450,48 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  location:
+    dependency: "direct main"
+    description:
+      name: location
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.3.0"
+  location_platform_interface:
+    dependency: transitive
+    description:
+      name: location_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.3.0"
+  location_web:
+    dependency: transitive
+    description:
+      name: location_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.1"
+  mapbox_gl_dart:
+    dependency: transitive
+    description:
+      name: mapbox_gl_dart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
+  mapbox_gl_platform_interface:
+    dependency: "direct overridden"
+    description:
+      path: "lib/maps/mapbox_gl_platform_interface"
+      relative: true
+    source: path
+    version: "0.14.0"
+  mapbox_gl_web:
+    dependency: "direct overridden"
+    description:
+      path: "lib/maps/mapbox_gl_web"
+      relative: true
+    source: path
+    version: "0.14.0"
   matcher:
     dependency: transitive
     description:
@@ -486,7 +528,7 @@ packages:
     source: hosted
     version: "1.8.0"
   path_provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path_provider
       url: "https://pub.dartlang.org"

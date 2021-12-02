@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tourmate1/Register.dart';
 import 'package:tourmate1/basic.dart';
+import 'package:tourmate1/map.dart';
 import 'about.dart';
 import 'login.dart';
 import 'provider.dart';
@@ -27,13 +28,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Tour Mate',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Tour Mate',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: MapsDemo()
+        // MyHomePage(),
+        );
   }
 }
 

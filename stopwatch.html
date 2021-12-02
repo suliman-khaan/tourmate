@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch</title>
+</head>
+
+<body>
+    <div class="box">
+        <h3 id="time">00:00:00<h3>
+                <button onclick="start();">Start</button>
+                <button onclick="stp();">Stop</button>
+                <button onclick="stop();">Reset</button>
+    </div>
+</body>
+<script>
+    var time = document.getElementById("time");
+    var hr = 0;
+    var min = 0;
+    var sec = 0;
+    var stopTime = true;
+    function start() {
+        if (stopTime == true) {
+            stopTime = false;
+            startCycle();
+        }
+    }
+    function startCycle() {
+        if (stopTime == false) {
+            hr = parseInt(hr);
+            min = parseInt(min);
+            sec = parseInt(sec);
+            sec = sec + 1;
+            if (sec == 60) {
+                min = min + 1;
+                sec = 0;
+            }
+            if (min == 60) {
+                hr = hr + 1;
+                min = 0;
+            }
+            sec < 10 || sec == 0 ? sec = "0" + sec : sec = sec;
+            min < 10 || min == 0 ? min = "0" + min : min = min;
+            hr < 10 || hr == 0 ? hr = "0" + hr : hr = hr;
+            time.innerHTML = hr + ":" + min + ":" + sec;
+            setTimeout(startCycle, 1000);
+        }
+    }
+    function stop() {
+        time.innerHTML = '00:00:00';
+        stopTime = true;
+        hr = 0;
+        min = 0;
+        sec = 0;
+    }
+    function stp() {
+        stopTime == false ? stopTime = true : stopTime = false;
+    }
+</script>
+
+</html>

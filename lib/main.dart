@@ -1,7 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tourmate1/Register.dart';
 import 'package:tourmate1/basic.dart';
-import 'package:tourmate1/map.dart';
+import 'package:tourmate1/mapsss.dart';
+// import 'package:tourmate1/mapsss.dart';
 import 'about.dart';
 import 'login.dart';
 import 'provider.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: MapsDemo()
+        home: Map()
         // MyHomePage(),
         );
   }

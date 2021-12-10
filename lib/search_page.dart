@@ -380,7 +380,7 @@ class _SearchPageState extends State<SearchPage> {
             ),
           ),
         ),
-        bottomNavigationBar: footer(tabIndex: 1),
+        // bottomNavigationBar: footer(tabIndex: 1),
       ),
     );
   }

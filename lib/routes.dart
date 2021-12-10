@@ -1,5 +1,6 @@
 class MyRoute {
   static String tourMate = "/";
+  static String MainHome = "/home2";
   static String singleTravel = "/singleTravel";
   static String compTravel = "/CompanyData";
   static String swatHotel = "/swatHotel";

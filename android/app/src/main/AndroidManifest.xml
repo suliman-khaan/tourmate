@@ -4,7 +4,7 @@
         android:label="Tour Mate"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyCGShAceyIm1LHL2mLja0eKCDjoZV2RzY"/>
+               android:value="AIzaSyANqXxhrJQA1hXAMXo-nWZivPlhkWcutF8"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -42,4 +42,6 @@
         
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 </manifest>

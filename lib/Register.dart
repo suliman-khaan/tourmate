@@ -290,6 +290,7 @@ class _registerState extends State<register> {
                                   'Contact': contact,
                                   'uid': user.uid,
                                   'image': "",
+                                  'role': "User",
                                   //'uid': uid
                                 });
                                 Navigator.pushNamed(context, '/login');

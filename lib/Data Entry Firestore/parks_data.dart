@@ -26,6 +26,14 @@ class _ParksDataState extends State<ParksData> {
     return Container(
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.arrow_back_ios_new,
+                size: 16,
+              )),
           title: Text("Parks Data"),
         ),
         body: Container(

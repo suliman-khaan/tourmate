@@ -1,10 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:tourmate1/Register.dart';
-<<<<<<< HEAD
-import 'package:tourmate1/roomtypes.dart';
-=======
-import 'package:tourmate1/booking_room.dart';
->>>>>>> be994846ef42503b3b71b8ccd3cf16860e5c6303
+import 'package:tourmate1/updation/admine_panel.dart';
 import 'about.dart';
 import 'login.dart';
 import 'provider.dart';
@@ -36,7 +31,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: RoomTypes(),
+      home: home(),
     );
   }
 }

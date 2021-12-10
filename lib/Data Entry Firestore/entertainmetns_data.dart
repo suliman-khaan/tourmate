@@ -27,6 +27,14 @@ class _EntertianmentsDataState extends State<EntertianmentsData> {
     return Container(
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.arrow_back_ios_new,
+                size: 16,
+              )),
           title: Text("Entertainments Data"),
         ),
         body: Container(

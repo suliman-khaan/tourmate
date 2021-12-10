@@ -62,6 +62,12 @@ dependencies:
   syncfusion_flutter_datepicker: ^19.3.46
   intl: ^0.17.0
   flutter_elegant_number_button: ^0.0.6
+  country_code_picker: ^2.0.2
+  #international_phone_input: 1.0.4
+  intl_phone_field: ^2.1.0
+  intl_phone_number_input: ^0.7.0+2
+  mailer: ^5.0.2
+  square_in_app_payments: ^1.7.2
 
 dev_dependencies:
   flutter_test:

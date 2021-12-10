@@ -2,8 +2,10 @@
 //@dart=2.9;
 import 'dart:ui';
 import 'package:flutter/material.dart';
+
 import 'package:tourmate1/home.dart';
 import 'package:tourmate1/loading.dart';
+import 'package:tourmate1/login_admin.dart';
 import 'Register.dart';
 import 'auth.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -181,6 +183,20 @@ class _loginState extends State<login> {
                                     InkWell(
                                       child: Text("Forget Your Password?"),
                                       onTap: () {},
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    InkWell(
+                                      child: Text("Admin Login",
+                                          style: TextStyle(
+                                              color: Colors.redAccent)),
+                                      onTap: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    LoginAdmin()));
+                                      },
                                     ),
                                   ],
                                 ),

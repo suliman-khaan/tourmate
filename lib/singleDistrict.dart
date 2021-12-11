@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tourmate1/routes.dart';
 import 'package:tourmate1/singleTraspComp.dart';
 import 'attribute_view.dart';
 import 'package:flutter/material.dart';
@@ -319,7 +320,8 @@ class _singleDistrictState extends State<singleDistrict>
                     children: [
                       // ignore: deprecated_member_use
                       FlatButton(
-                          onPressed: () {},
+                          onPressed: () =>
+                              Navigator.pushNamed(context, MyRoute.map),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5)),
                           color: Colors.blue,

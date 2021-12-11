@@ -274,9 +274,10 @@ class _registerState extends State<register> {
                             }
                             if (formkey.currentState!.validate() &&
                                 value == true) {
-                              await _auth.RegisterWithEmailAndPassword(
-                                      email, password, context)
-                                  .then((value) async {
+                              dynamic result =
+                                  await _auth.RegisterWithEmailAndPassword(
+                                          email, password, context)
+                                      .then((value) async {
                                 User? user = FirebaseAuth.instance.currentUser;
                                 await FirebaseFirestore.instance
                                     .collection("customer")
@@ -289,6 +290,7 @@ class _registerState extends State<register> {
                                   'Contact': contact,
                                   'uid': user.uid,
                                   'image': "",
+                                  'role': "User",
                                   //'uid': uid
                                 });
                                 Navigator.pushNamed(context, '/login');

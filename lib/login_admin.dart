@@ -1,22 +1,21 @@
-// ignore: invalid_language_version_override
-//@dart=2.9;
-import 'dart:ui';
-import 'package:flutter/material.dart';
+import 'dart:html';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
+
+import 'package:tourmate1/auth.dart';
 import 'package:tourmate1/home.dart';
 import 'package:tourmate1/loading.dart';
-import 'package:tourmate1/login_admin.dart';
-import 'Register.dart';
-import 'auth.dart';
-import 'package:form_field_validator/form_field_validator.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:tourmate1/login.dart';
+import 'package:tourmate1/updation/admine_panel.dart';
 
-// ignore: camel_case_types
-class login extends StatefulWidget {
-  const login({Key? key}) : super(key: key);
+class LoginAdmin extends StatefulWidget {
+  const LoginAdmin({Key? key}) : super(key: key);
 
   @override
-  _loginState createState() => _loginState();
+  _LoginAdminState createState() => _LoginAdminState();
 }
 
 dialogBox(BuildContext context, status, text) {
@@ -32,8 +31,7 @@ dialogBox(BuildContext context, status, text) {
       });
 }
 
-// ignore: camel_case_types
-class _loginState extends State<login> {
+class _LoginAdminState extends State<LoginAdmin> {
   void initState() {
     super.initState();
     FirebaseAuth.instance.signOut();
@@ -41,6 +39,7 @@ class _loginState extends State<login> {
 
   // ignore: unused_field
   final AuthService _auth = AuthService();
+
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -54,13 +53,39 @@ class _loginState extends State<login> {
 
   String uid = "";
   final auth = FirebaseAuth.instance;
-  login() async {
+  login_admin() async {
     try {
+      final Stream<QuerySnapshot> _alldistinationStream = FirebaseFirestore
+          .instance
+          .collection('Areas')
+          .where("explored_area", isEqualTo: true)
+          .snapshots();
+
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
           email: email, password: password);
-      Navigator.push(context, MaterialPageRoute(builder: (context) => home()));
-      print(userCredential);
-      dialogBox(context, "Success", "Login Successful!");
+      final user = FirebaseAuth.instance.currentUser;
+
+      FirebaseFirestore.instance
+          .collection("customer")
+          .where('uid', isEqualTo: user!.uid)
+          .get()
+          .then((QuerySnapshot value) {
+        value.docs.forEach((element) {
+          if (element['role'] == 'Admin' || element['role'] == 'admin') {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => AdminPanel()));
+            print(userCredential);
+            dialogBox(context, "Success", "Login Successful!");
+          } else {}
+        });
+      });
+
+      // .then((value) {
+      //   if (value.docs[0].exists) {
+      //     if (value.docs[0].data()) {}
+      //   }
+      // });
+
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         setState(() => loading = false);
@@ -122,7 +147,7 @@ class _loginState extends State<login> {
                                     ),
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Text("Login",
+                                  child: Text("Admin Login",
                                       style: TextStyle(
                                           color: Colors.blue[800],
                                           fontSize: 30,
@@ -188,14 +213,14 @@ class _loginState extends State<login> {
                                       width: 10,
                                     ),
                                     InkWell(
-                                      child: Text("Admin Login",
+                                      child: Text("User Login",
                                           style: TextStyle(
                                               color: Colors.redAccent)),
                                       onTap: () {
-                                        Navigator.of(context).push(
+                                        Navigator.push(
+                                            context,
                                             MaterialPageRoute(
-                                                builder: (context) =>
-                                                    LoginAdmin()));
+                                                builder: (context) => login()));
                                       },
                                     ),
                                   ],
@@ -210,7 +235,7 @@ class _loginState extends State<login> {
                                     onPressed: () async {
                                       if (formkey.currentState!.validate()) {
                                         setState(() => loading = true);
-                                        login();
+                                        login_admin();
                                       }
                                     },
                                     child: Text(
@@ -222,30 +247,6 @@ class _loginState extends State<login> {
                                     splashColor: Colors.white,
                                     textColor: Colors.white,
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text("Not a Member?"),
-                                    SizedBox(width: 5.0),
-                                    InkWell(
-                                      child: Text(
-                                        "Sign up",
-                                        style:
-                                            TextStyle(color: Colors.redAccent),
-                                      ),
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    register()));
-                                      },
-                                    ),
-                                  ],
                                 ),
                                 SizedBox(
                                   height: 10,

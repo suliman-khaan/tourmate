@@ -3,6 +3,7 @@ import 'package:comment_box/comment/comment.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tourmate1/Register.dart';
 import 'package:tourmate1/login.dart';
+import 'footer.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'dart:convert';

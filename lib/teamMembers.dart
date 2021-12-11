@@ -1,6 +1,7 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tourmate1/socialLuncher.dart';
 import 'package:tourmate1/teamMembersClass.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'footer.dart';

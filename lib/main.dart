@@ -1,8 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:tourmate1/Register.dart';
 import 'package:tourmate1/basic.dart';
-import 'package:tourmate1/mapsss.dart';
-// import 'package:tourmate1/mapsss.dart';
+import 'package:tourmate1/updation/admine_panel.dart';
 import 'about.dart';
 import 'login.dart';
 import 'provider.dart';
@@ -29,14 +27,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Tour Mate',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: MyHomePage()
-        // MyHomePage(),
-        );
+      debugShowCheckedModeBanner: false,
+      title: 'Tour Mate',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(),
+    );
   }
 }
 
@@ -82,8 +79,6 @@ class _MyHomePageState extends State<MyHomePage> {
           // Otherwise, show app
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            //home: RoomBooking(),
-
             themeMode: ThemeMode.light,
             theme: ThemeData(
                 primaryIconTheme: IconThemeData(color: Colors.black),
@@ -93,11 +88,10 @@ class _MyHomePageState extends State<MyHomePage> {
             darkTheme: ThemeData(
               brightness: Brightness.dark,
             ),
-            initialRoute: MyRoute.mainHome,
-
+            initialRoute: MyRoute.MainHome,
             routes: {
               MyRoute.review: (context) => Review(),
-              MyRoute.mainHome: (context) => MainHome(index: 0),
+              MyRoute.MainHome: (context) => MainHome(index: 0),
               MyRoute.login: (context) => login(),
               MyRoute.signup: (context) => register(),
               MyRoute.home: (context) => home(),

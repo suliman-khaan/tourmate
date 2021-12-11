@@ -7,11 +7,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tourmate1/Register.dart';
 import 'package:tourmate1/login.dart';
+import 'package:tourmate1/mail_sender.dart';
+import 'package:tourmate1/roomtypes.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'mail_sender.dart';
 
 import 'socialLuncher.dart';
 
@@ -27,6 +31,7 @@ class HotelView extends StatefulWidget {
 }
 
 class _HotelViewState extends State<HotelView> {
+  final SendMail _mail = SendMail();
   createAlertDialog(BuildContext context) {
     return showDialog(
         context: context,
@@ -39,7 +44,7 @@ class _HotelViewState extends State<HotelView> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "To make a Call or WhatsApp, you need to be Logged In",
+                      "You are Not Logged In, you need to be Logged In",
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.grey),
                     ),
@@ -196,30 +201,68 @@ class _HotelViewState extends State<HotelView> {
                                 Text(
                                   storeHotel[0]['description'],
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: RaisedButton.icon(
-                                        color: Colors.blue,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(5.0)),
-                                        padding:
-                                            EdgeInsets.fromLTRB(0, 5, 10, 5),
-                                        onPressed: () {},
-                                        icon: Icon(
-                                          Icons.place_outlined,
-                                          color: Colors.white,
-                                        ),
-                                        label: Text(
-                                          "Get Direction",
-                                          style: TextStyle(
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.fromLTRB(0, 20, 0, 20),
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: RaisedButton.icon(
+                                            color: Colors.blue,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5.0)),
+                                            padding: EdgeInsets.fromLTRB(
+                                                0, 5, 10, 5),
+                                            onPressed: () {},
+                                            icon: Icon(
+                                              Icons.place_outlined,
                                               color: Colors.white,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold),
-                                        )),
-                                  ),
+                                            ),
+                                            label: Text(
+                                              "Get Direction",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold),
+                                            )),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: RaisedButton(
+                                            color: Colors.blue,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5.0)),
+                                            onPressed: () {
+                                              FirebaseAuth.instance
+                                                          .currentUser !=
+                                                      null
+                                                  ? Navigator.of(context).push(
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              RoomTypes()))
+                                                  : createAlertDialog(context);
+                                            },
+                                            child: Text(
+                                              "Book Now",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold),
+                                            )),
+                                      ),
+                                    ),
+                                  ],
                                 ),
 
                                 // Facilities Container

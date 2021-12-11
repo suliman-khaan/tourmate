@@ -27,6 +27,14 @@ class _EventsDAtaState extends State<EventsDAta> {
     return Container(
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.arrow_back_ios_new,
+                size: 16,
+              )),
           title: Text("Events Data"),
         ),
         body: Container(

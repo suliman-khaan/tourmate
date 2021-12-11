@@ -74,6 +74,10 @@ Widget singleHotel(dist) {
                                   child: Stack(
                                     alignment: Alignment.bottomLeft,
                                     children: [
+                                      // Ink.image(
+                                      //     image: NetworkImage(
+                                      //         hotel[index]['image']),
+                                      //     fit: BoxFit.cover),
                                       CachedNetworkImage(
                                         imageUrl: hotel[index]['image'],
                                         width: double.infinity,
@@ -95,7 +99,6 @@ Widget singleHotel(dist) {
                                       Positioned(
                                         bottom: 10,
                                         left: 10,
-                                        right: 10,
                                         child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(4.8),
@@ -105,11 +108,17 @@ Widget singleHotel(dist) {
                                             child: Padding(
                                               padding:
                                                   const EdgeInsets.all(8.0),
-                                              child: Text(hotel[index]['name'],
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.w500)),
+                                              child: Row(
+                                                children: [
+                                                  Icon(Icons.home_outlined,
+                                                      color: Colors.white),
+                                                  Text(hotel[index]['name'],
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontWeight:
+                                                              FontWeight.w500)),
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),

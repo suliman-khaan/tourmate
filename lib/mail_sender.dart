@@ -8,7 +8,8 @@ class SendMail {
   Future sendmail(
       {required String firstname,
       required String lastname,
-      required String email}) async {
+      required String email,
+      required String hotel_name}) async {
     String username = 'tourmate111@gmail.com';
     String password = 'swat12345';
 
@@ -27,11 +28,10 @@ class SendMail {
       ..recipients.add('${email}')
       // ..ccRecipients.addAll(['destCc1@example.com', 'destCc2@example.com'])
       ..bccRecipients.add(Address('tourmate111@gmail.com'))
-      ..bccRecipients.add(Address('masoomk9666@gmail.com'))
       ..subject = 'Room Reservation ${DateTime.now()}'
       // ..text = 'This is the plain text.\nThis is line 2 of the text part.'
       ..html =
-          "<h1>Hello ${firstname + " " + lastname} </h1>\n<p>Hey! Here's some HTML content</p>";
+          "<h1>Hello ${firstname + " " + lastname} </h1>\n<h2>Confirmed</h2>\n<p>Your accomodation Booked we sent your email to ${email}</p>\n<h3>Hotel :${hotel_name} </h3><p>For More Information Contact Us </p>\n<p>Contact No: 03428270869</p>\n<p>Email: tourmate111@gmail.com</p>\n<h3>Thank You!</h3>";
 
     try {
       final sendReport = await send(message, smtpServer);

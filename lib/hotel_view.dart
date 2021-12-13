@@ -253,7 +253,10 @@ class _HotelViewState extends State<HotelView> {
                                                   ? Navigator.of(context).push(
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              RoomTypes()))
+                                                              RoomTypes(
+                                                                  name: storeHotel[
+                                                                          0][
+                                                                      'name'])))
                                                   : createAlertDialog(context);
                                             },
                                             child: Text(

@@ -5,6 +5,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
 //import 'package:international_phone_input/international_phone_input.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:tourmate1/allHotel.dart';
 import 'package:tourmate1/home.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:tourmate1/mail_sender.dart';
@@ -14,8 +15,10 @@ class UserDetailForBooking extends StatefulWidget {
       {Key? key,
       required this.room_name,
       required this.rooms,
-      required this.price})
+      required this.price,
+      required this.hotel_name})
       : super(key: key);
+  final String hotel_name;
   final String room_name;
   final int rooms;
   final dynamic price;
@@ -63,7 +66,8 @@ class _UserDetailForBookingState extends State<UserDetailForBooking> {
                   await _mail.sendmail(
                       firstname: _firstname,
                       lastname: _lastname,
-                      email: _email);
+                      email: _email,
+                      hotel_name: widget.hotel_name);
                   String _room_name = widget.room_name;
                   int _rooms = widget.rooms;
                   int _price = widget.price;
@@ -78,17 +82,6 @@ class _UserDetailForBookingState extends State<UserDetailForBooking> {
                     "price": _price
                   }).then((value) => print("user added" + value.toString()));
 
-                  //  ignore: deprecated_member_use
-                  // Scaffold.of(context).showSnackBar(SnackBar(
-                  //     content: Text('Your Data is Save in Database.')));
-                  // _formKey.currentState!.reset();
-                  // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  //   backgroundColor: Colors.blueAccent,
-                  //   content: Text(
-                  //     "Thank You for Your Feedback, Have a great time",
-                  //     style: TextStyle(fontSize: 20.0),
-                  //   ),
-                  // ));
                   Navigator.push(
                       context, MaterialPageRoute(builder: (context) => home()));
                   print("your Data added Successfuly");

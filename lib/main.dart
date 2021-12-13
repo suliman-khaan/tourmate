@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tourmate1/basic.dart';
+import 'package:tourmate1/roomtypes.dart';
 import 'package:tourmate1/updation/admine_panel.dart';
 import 'about.dart';
 import 'login.dart';
@@ -32,7 +33,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: home(),
+      home: RoomTypes(
+        name: "Swat Continantal",
+      ),
     );
   }
 }

@@ -7,8 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tourmate1/user_detail_for_booking.dart';
 
 class RoomTypes extends StatefulWidget {
-  RoomTypes({Key? key}) : super(key: key);
-
+  RoomTypes({Key? key, required this.name}) : super(key: key);
+  final String name;
   @override
   _RoomTypesState createState() => _RoomTypesState();
 }
@@ -659,7 +659,10 @@ class _RoomTypesState extends State<RoomTypes> {
                                                                     roomType[
                                                                             index]
                                                                         [
-                                                                        'price'])))));
+                                                                        'price'])),
+                                                                hotel_name:
+                                                                    widget
+                                                                        .name)));
                                                   },
                                                   child: Text(
                                                     "Reserve",

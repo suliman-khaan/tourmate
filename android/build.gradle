@@ -12,13 +12,33 @@ buildscript {
     }
 }
 
-allprojects {
+// allprojects {
+//     repositories {
+//         google()
+//         jcenter()
+//     }
+// }
+rootProject.allprojects {
+    def token = System.getenv('SDK_REGISTRY_TOKEN') ?: project.properties['MAPBOX_DOWNLOADS_TOKEN']
+    if (token == null || token.empty) {
+        throw new Exception("SDK Registry token is null. See README.md for more information.")
+    }
     repositories {
         google()
         jcenter()
+        mavenCentral()
+        maven {
+            url 'https://api.mapbox.com/downloads/v2/releases/maven'
+            authentication {
+                basic(BasicAuthentication)
+            }
+            credentials {
+                username = 'mapbox'
+                password = project.properties['MAPBOX_DOWNLOADS_TOKEN'] ?: ""
+            }
+        }
     }
 }
-
 rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"

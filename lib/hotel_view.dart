@@ -9,6 +9,7 @@ import 'package:tourmate1/Register.dart';
 import 'package:tourmate1/login.dart';
 import 'package:tourmate1/mail_sender.dart';
 import 'package:tourmate1/roomtypes.dart';
+import 'package:tourmate1/routes.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'drawer.dart';
 import 'package:flutter/material.dart';
@@ -217,7 +218,9 @@ class _HotelViewState extends State<HotelView> {
                                                     BorderRadius.circular(5.0)),
                                             padding: EdgeInsets.fromLTRB(
                                                 0, 5, 10, 5),
-                                            onPressed: () {},
+                                            onPressed: () =>
+                                                Navigator.pushNamed(
+                                                    context, MyRoute.map),
                                             icon: Icon(
                                               Icons.place_outlined,
                                               color: Colors.white,

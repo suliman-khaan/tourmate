@@ -2,7 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:comment_box/comment/comment.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tourmate1/Register.dart';
+import 'package:tourmate1/basic.dart';
 import 'package:tourmate1/login.dart';
+import 'package:tourmate1/routes.dart';
 import 'footer.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
@@ -206,7 +208,10 @@ class _ReviewState extends State<Review> {
         appBar: AppBar(
           leading: IconButton(
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MainHome(index: 0)));
               },
               icon: Icon(
                 Icons.arrow_back_ios_new,

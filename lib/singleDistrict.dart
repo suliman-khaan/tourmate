@@ -1,15 +1,14 @@
-// import 'dart:html';
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tourmate1/routes.dart';
 import 'package:tourmate1/singleTraspComp.dart';
 import 'attribute_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
-// import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import 'Areas.dart';
 import 'drawer.dart';
@@ -28,25 +27,89 @@ class singleDistrict extends StatefulWidget {
   final int tabIndex;
   final String district;
   @override
-  _singleDistrictState createState() => _singleDistrictState();
+  _singleDistrictState createState() =>
+      _singleDistrictState(district: this.district);
 }
 
 // ignore: camel_case_types
 class _singleDistrictState extends State<singleDistrict>
     with SingleTickerProviderStateMixin {
+  final String district;
+  _singleDistrictState({required this.district});
   // ignore: unused_field
   int _current = 0;
   int tabLength = 4;
   dynamic _lineLength = 3;
-  var bool = false;
+  var bool;
 
   int _tabIndex = 0;
 
   late TabController _tabController;
-
+  var districtStream;
+  var regionStream;
+  var historicalStream;
+  var exploreStream;
+  var hikingStream;
+  var hotelStream;
+  var resturantStream;
+  var transportStream;
+  var parkStream;
+  var eventStream;
+  var entStream;
+  var slideStream;
   void initState() {
     super.initState();
     _tabController = TabController(vsync: this, length: tabLength);
+    districtStream = FirebaseFirestore.instance
+        .collection("District")
+        .where("ID", isEqualTo: district)
+        .snapshots();
+    regionStream = FirebaseFirestore.instance
+        .collection("Areas")
+        .where("district", isEqualTo: district)
+        .where("best_destination", isEqualTo: true)
+        .snapshots();
+    historicalStream = FirebaseFirestore.instance
+        .collection("Areas")
+        .where("district", isEqualTo: district)
+        .where("historical", isEqualTo: true)
+        .snapshots();
+    exploreStream = FirebaseFirestore.instance
+        .collection("Areas")
+        .where("district", isEqualTo: district)
+        .where("explored_area", isEqualTo: true)
+        .snapshots();
+    hikingStream = FirebaseFirestore.instance
+        .collection("Areas")
+        .where("district", isEqualTo: district)
+        .where("hiking_and_tracking", isEqualTo: true)
+        .snapshots();
+    hotelStream = FirebaseFirestore.instance
+        .collection("hotel")
+        .where("district", isEqualTo: district)
+        .snapshots();
+    resturantStream = FirebaseFirestore.instance
+        .collection("Resturents")
+        .where("district", isEqualTo: district)
+        .snapshots();
+    transportStream = FirebaseFirestore.instance
+        .collection("Transport")
+        .where("district", isEqualTo: district)
+        .snapshots();
+    parkStream = FirebaseFirestore.instance
+        .collection("Parks")
+        .where("district", isEqualTo: district)
+        .snapshots();
+    eventStream = FirebaseFirestore.instance
+        .collection("Events")
+        .where("district", isEqualTo: district)
+        .snapshots();
+    entStream = FirebaseFirestore.instance
+        .collection("Entertainment")
+        .where("district", isEqualTo: district)
+        .snapshots();
+    // slideStream = slideStreamF();
+    bool = false;
   }
 
   void _secondTab() {
@@ -71,11 +134,6 @@ class _singleDistrictState extends State<singleDistrict>
 
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> districtStream = FirebaseFirestore.instance
-        .collection("District")
-        .where("ID", isEqualTo: widget.district)
-        .snapshots();
-
     _tabController.index = widget.tabIndex;
     return StreamBuilder(
         stream: districtStream,
@@ -90,6 +148,10 @@ class _singleDistrictState extends State<singleDistrict>
             Map dataList = e.data() as Map<String, dynamic>;
             dist.add(dataList);
           }).toList();
+          slideStream = FirebaseFirestore.instance
+              .collection("Gallery")
+              .where("name", isEqualTo: dist[0]['name'])
+              .snapshots();
           return Material(
             child: DefaultTabController(
               length: tabLength,
@@ -144,10 +206,10 @@ class _singleDistrictState extends State<singleDistrict>
                       controller: _tabController,
                       physics: NeverScrollableScrollPhysics(),
                       children: [
-                        singleOverview(dist),
-                        PageSecond(dist: widget.district),
-                        pageThird(dist: widget.district),
-                        singleTransportDistrict(dist: widget.district)
+                        singleOverview(dist, slideStream),
+                        PageSecond(dist: district),
+                        pageThird(dist: district),
+                        singleTransportDistrict(dist: district)
                       ]),
                 ),
                 bottomNavigationBar: footer(),
@@ -157,55 +219,7 @@ class _singleDistrictState extends State<singleDistrict>
         });
   }
 
-  Widget singleOverview(dist) {
-    final Stream<QuerySnapshot> regionStream = FirebaseFirestore.instance
-        .collection("Areas")
-        .where("district", isEqualTo: widget.district)
-        .where("best_destination", isEqualTo: true)
-        .snapshots();
-    final Stream<QuerySnapshot> historicalStream = FirebaseFirestore.instance
-        .collection("Areas")
-        .where("district", isEqualTo: widget.district)
-        .where("historical", isEqualTo: true)
-        .snapshots();
-    final Stream<QuerySnapshot> exploreStream = FirebaseFirestore.instance
-        .collection("Areas")
-        .where("district", isEqualTo: widget.district)
-        .where("explored_area", isEqualTo: true)
-        .snapshots();
-    final Stream<QuerySnapshot> hikingStream = FirebaseFirestore.instance
-        .collection("Areas")
-        .where("district", isEqualTo: widget.district)
-        .where("hiking_and_tracking", isEqualTo: true)
-        .snapshots();
-    final Stream<QuerySnapshot> hotelStream = FirebaseFirestore.instance
-        .collection("hotel")
-        .where("district", isEqualTo: widget.district)
-        .snapshots();
-    final Stream<QuerySnapshot> resturantStream = FirebaseFirestore.instance
-        .collection("Resturents")
-        .where("district", isEqualTo: widget.district)
-        .snapshots();
-    final Stream<QuerySnapshot> transportStream = FirebaseFirestore.instance
-        .collection("Transport")
-        .where("district", isEqualTo: widget.district)
-        .snapshots();
-    final Stream<QuerySnapshot> parkStream = FirebaseFirestore.instance
-        .collection("Parks")
-        .where("district", isEqualTo: widget.district)
-        .snapshots();
-    final Stream<QuerySnapshot> eventStream = FirebaseFirestore.instance
-        .collection("Events")
-        .where("district", isEqualTo: widget.district)
-        .snapshots();
-    final Stream<QuerySnapshot> entStream = FirebaseFirestore.instance
-        .collection("Entertainment")
-        .where("district", isEqualTo: widget.district)
-        .snapshots();
-    final Stream<QuerySnapshot> slideStream = FirebaseFirestore.instance
-        .collection("Gallery")
-        .where("name", isEqualTo: dist[0]['name'])
-        .snapshots();
+  Widget singleOverview(dist, slideStream) {
     return SafeArea(
       child: SingleChildScrollView(
         child: Column(
@@ -216,57 +230,64 @@ class _singleDistrictState extends State<singleDistrict>
                   stream: slideStream,
                   builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
+                      return Container(
+                          height: 200,
+                          child: Center(child: CircularProgressIndicator()));
                     }
-                    // ignore: non_constant_identifier_names
-                    final List ImageList = [];
-                    snapshot.data!.docs.map((DocumentSnapshot e) {
-                      Map dataList = e.data() as Map<String, dynamic>;
-                      ImageList.add(dataList);
-                    }).toList();
-                    return Container(
-                      child: CarouselSlider(
-                        options: CarouselOptions(
-                            height: 200,
-                            aspectRatio: 16 / 9,
-                            viewportFraction: 1.0,
-                            enlargeCenterPage: true,
-                            enableInfiniteScroll: true,
-                            autoPlay: true,
-                            // onPageChanged: (index, reason) {
-                            //   setState(() {
-                            //     _current = index;
-                            //   });
-                            // },
-                            autoPlayCurve: Curves.easeInToLinear),
-                        items: List.generate(
-                            ImageList.length,
-                            (int index) => Container(
-                                    child:
-                                        // Image(
-                                        //   image:
-                                        //       NetworkImage(ImageList[index]['image']),
-                                        //   fit: BoxFit.cover,
-                                        //   width: 1000,
-                                        // ),
-                                        CachedNetworkImage(
-                                  imageUrl: ImageList[index]['image'],
-                                  imageBuilder: (context, imageProvider) =>
-                                      Container(
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: imageProvider,
-                                        fit: BoxFit.cover,
+                    if (snapshot.hasData) {
+                      // ignore: non_constant_identifier_names
+                      final List ImageList = [];
+                      snapshot.data!.docs.map((DocumentSnapshot e) {
+                        Map dataList = e.data() as Map<String, dynamic>;
+                        ImageList.add(dataList);
+                      }).toList();
+                      return Container(
+                        child: CarouselSlider(
+                          options: CarouselOptions(
+                              height: 200,
+                              aspectRatio: 16 / 9,
+                              viewportFraction: 1.0,
+                              enlargeCenterPage: true,
+                              enableInfiniteScroll: true,
+                              autoPlay: true,
+                              // onPageChanged: (index, reason) {
+                              //   setState(() {
+                              //     _current = index;
+                              //   });
+                              // },
+                              autoPlayCurve: Curves.easeInToLinear),
+                          items: List.generate(
+                              ImageList.length,
+                              (int index) => Container(
+                                      child: CachedNetworkImage(
+                                    imageUrl: ImageList[index]['image'],
+                                    imageBuilder: (context, imageProvider) =>
+                                        Container(
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: imageProvider,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  placeholder: (context, url) => Center(
-                                      child: CircularProgressIndicator()),
-                                  errorWidget: (context, url, error) =>
-                                      Center(child: Icon(Icons.error)),
-                                ))),
-                      ),
-                    );
+                                    placeholder: (context, url) => Center(
+                                        child: CircularProgressIndicator()),
+                                    errorWidget: (context, url, error) =>
+                                        Center(child: Icon(Icons.error)),
+                                  ))),
+                        ),
+                      );
+                    } else {
+                      return Container(
+                          height: 200,
+                          child: Center(
+                              child: Text(
+                            "Data Getting Failed from the server.\nPlease Make sure\nYour Internet Connection",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.poppins(
+                                color: Colors.red, fontSize: 18),
+                          )));
+                    }
                   }),
             ]),
             SizedBox(height: 10.0),
@@ -319,7 +340,8 @@ class _singleDistrictState extends State<singleDistrict>
                     children: [
                       // ignore: deprecated_member_use
                       FlatButton(
-                          onPressed: () {},
+                          onPressed: () =>
+                              Navigator.pushNamed(context, MyRoute.map),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5)),
                           color: Colors.blue,
@@ -448,13 +470,24 @@ class _singleDistrictState extends State<singleDistrict>
                                         width: 250,
                                         child: GestureDetector(
                                           onTap: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        singleTransport(
-                                                            id: db_data[index]
-                                                                ['ID'])));
+                                            db_data[index]['local']
+                                                ? Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            singleTransport(
+                                                                id: db_data[
+                                                                        index]
+                                                                    ['ID'])))
+                                                : Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            compSingle(
+                                                                local: false,
+                                                                dist: db_data[
+                                                                        index][
+                                                                    'district'])));
                                           },
                                           child: Card(
                                             margin: EdgeInsets.only(bottom: 10),

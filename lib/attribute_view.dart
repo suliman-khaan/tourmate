@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tourmate1/routes.dart';
 import 'footer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -225,7 +226,8 @@ class _DistrictAttributeContainerState
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5)),
                               padding: EdgeInsets.fromLTRB(10, 5, 20, 5),
-                              onPressed: () {},
+                              onPressed: () =>
+                                  Navigator.pushNamed(context, MyRoute.map),
                               icon: Icon(
                                 Icons.place_outlined,
                                 color: Colors.white,

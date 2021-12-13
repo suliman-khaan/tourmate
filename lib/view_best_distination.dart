@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tourmate1/routes.dart';
 import 'attribute_view.dart';
 import 'best_distination_attribute_container.dart';
 import 'footer.dart';
@@ -155,7 +156,8 @@ class _ViewDistinationState extends State<ViewDistination> {
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(5)),
                                     padding: EdgeInsets.fromLTRB(0, 5, 10, 5),
-                                    onPressed: () {},
+                                    onPressed: () => Navigator.pushNamed(
+                                        context, MyRoute.map),
                                     icon: Icon(
                                       Icons.place_outlined,
                                       color: Colors.white,

@@ -81,7 +81,6 @@ class _UserDetailForBookingState extends State<UserDetailForBooking> {
                     "rooms": _rooms,
                     "price": _price
                   }).then((value) => print("user added" + value.toString()));
-
                   Navigator.push(
                       context, MaterialPageRoute(builder: (context) => home()));
                   print("your Data added Successfuly");

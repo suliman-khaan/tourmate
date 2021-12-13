@@ -114,7 +114,7 @@ packages:
     source: hosted
     version: "2.5.0"
   collection:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: collection
       url: "https://pub.dartlang.org"
@@ -148,13 +148,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
-  csslib:
-    dependency: transitive
-    description:
-      name: csslib
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.17.1"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -168,7 +161,7 @@ packages:
       name: dio
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.1"
+    version: "4.0.4"
   dotted_line:
     dependency: "direct main"
     description:
@@ -387,13 +380,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
-  google_maps:
-    dependency: transitive
+  google_maps_flutter:
+    dependency: "direct main"
     description:
-      name: google_maps
+      name: google_maps_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.3.0"
+    version: "2.1.1"
   google_maps_flutter_platform_interface:
     dependency: transitive
     description:
@@ -401,22 +394,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.3"
-  google_maps_flutter_web:
-    dependency: "direct main"
-    description:
-      name: google_maps_flutter_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.2"
-  html:
-    dependency: transitive
-    description:
-      name: html
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.15.0"
   http:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: http
       url: "https://pub.dartlang.org"
@@ -485,10 +464,17 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.3"
-  js_wrapping:
+  libphonenumber:
     dependency: transitive
     description:
-      name: js_wrapping
+      name: libphonenumber
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.2"
+  libphonenumber_platform_interface:
+    dependency: transitive
+    description:
+      name: libphonenumber_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.7.3"
@@ -527,6 +513,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  location:
+    dependency: "direct main"
+    description:
+      name: location
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.3.0"
+  location_platform_interface:
+    dependency: transitive
+    description:
+      name: location_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.3.0"
+  location_web:
+    dependency: transitive
+    description:
+      name: location_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.1"
   logging:
     dependency: transitive
     description:
@@ -591,7 +598,7 @@ packages:
     source: hosted
     version: "1.8.0"
   path_provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path_provider
       url: "https://pub.dartlang.org"
@@ -674,13 +681,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.27.2"
-  sanitize_html:
-    dependency: transitive
-    description:
-      name: sanitize_html
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   shimmer:
     dependency: "direct main"
     description:

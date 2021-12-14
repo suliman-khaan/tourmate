@@ -611,34 +611,37 @@ class _singleDistrictState extends State<singleDistrict>
               ],
             ),
             /************Hiking Area************/
-            Column(
-              children: [
-                Row(
-                  children: [
-                    SizedBox(width: 10),
-                    Text("Hiking And Trecking Area",
-                        style: GoogleFonts.roboto(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18,
-                        )),
-                    Expanded(child: Center()),
-                    TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Areas(
-                                      areaIndex: 3, dist: dist[0]['ID'])));
-                        },
-                        child: Text(
-                          "View All",
-                        )),
-                    SizedBox(width: 10)
-                  ],
-                ),
-                streamList(stream: hikingStream, areaIndex: 3)
-              ],
-            ),
+            hikingStream == null
+                ? Column(
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(width: 10),
+                          Text("Hiking And Trecking Area",
+                              style: GoogleFonts.roboto(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18,
+                              )),
+                          Expanded(child: Center()),
+                          TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Areas(
+                                            areaIndex: 3,
+                                            dist: dist[0]['ID'])));
+                              },
+                              child: Text(
+                                "View All",
+                              )),
+                          SizedBox(width: 10)
+                        ],
+                      ),
+                      streamList(stream: hikingStream, areaIndex: 3)
+                    ],
+                  )
+                : Text(""),
             /************Resturant***************/
             Column(
               children: [
@@ -837,27 +840,6 @@ class streamList extends StatelessWidget {
                                       MaterialPageRoute(
                                           builder: (context) => ViewDistination(
                                               areaID: db_data[index]['ID'])));
-                                  // Navigator.of(context).push(
-                                  //     PageRouteBuilder(
-                                  //         transitionDuration: Duration(
-                                  //             milliseconds: 1000),
-                                  //         reverseTransitionDuration:
-                                  //             Duration(
-                                  //                 milliseconds: 1000),
-                                  //         pageBuilder: (context,
-                                  //             animation,
-                                  //             secondaryAnimation) {
-                                  //           final curvedAnimatino =
-                                  //               CurvedAnimation(
-                                  //                   parent: animation,
-                                  //                   curve:
-                                  //                       Interval(0, 0.5));
-                                  //           return FadeTransition(
-                                  //               opacity: curvedAnimatino,
-                                  //               child: ViewDistination(
-                                  //                   areaID: db_data[index]
-                                  //                       ['ID']));
-                                  //         }));
                                 } else if (areaIndex == 0) {
                                   //hotel
                                   Navigator.push(

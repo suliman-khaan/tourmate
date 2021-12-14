@@ -141,13 +141,15 @@ class _BestDistinationAttributeContainerState
                                       builder: (context) => HotelView(
                                           index: 2,
                                           id: storeAttribute[index]['ID'])));
-                            } else if (widget.areaIndex == 5) {
+                            } else if (widget.areaIndex == 3) {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => HotelView(
-                                          index: 3,
-                                          id: storeAttribute[index]['ID'])));
+                                      builder: (context) =>
+                                          DistrictAttributeContainer(
+                                              areaIndex: 6,
+                                              a_id: storeAttribute[index]
+                                                  ['ID'])));
                             } else if (widget.areaIndex == 4) {
                               Navigator.push(
                                   context,
@@ -157,6 +159,13 @@ class _BestDistinationAttributeContainerState
                                               areaIndex: 7,
                                               a_id: storeAttribute[index]
                                                   ['ID'])));
+                            } else if (widget.areaIndex == 5) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => HotelView(
+                                          index: 3,
+                                          id: storeAttribute[index]['ID'])));
                             } else {
                               Navigator.push(
                                   context,

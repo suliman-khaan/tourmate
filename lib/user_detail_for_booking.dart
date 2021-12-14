@@ -38,6 +38,7 @@ class _UserDetailForBookingState extends State<UserDetailForBooking> {
   late String _email;
   late String _country;
   late String _phonenumber;
+  bool loading = false;
   final _formKey = GlobalKey<FormState>();
   String title = "Country code Picker";
   void getPhoneNumber(String phoneNumber) async {

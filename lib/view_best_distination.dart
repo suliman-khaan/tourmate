@@ -171,7 +171,7 @@ class _ViewDistinationState extends State<ViewDistination> {
                               ]),
                         ),
                         SizedBox(height: 20),
-                        // Restaurants
+                        // Restaurants{2}
                         StreamBuilder(
                           stream: viewRestaurants,
                           builder: (BuildContext context,
@@ -361,7 +361,7 @@ class _ViewDistinationState extends State<ViewDistination> {
                           },
                         ),
                         SizedBox(height: 10),
-                        // Hotels
+                        // Hotels{1}
                         StreamBuilder(
                           stream: viewHotels,
                           builder: (BuildContext context,
@@ -553,7 +553,7 @@ class _ViewDistinationState extends State<ViewDistination> {
                             }
                           },
                         ),
-                        // Events
+                        // Events{3}
                         SizedBox(height: 10),
                         StreamBuilder<QuerySnapshot>(
                           stream: viewEvents,
@@ -753,7 +753,7 @@ class _ViewDistinationState extends State<ViewDistination> {
                             }
                           },
                         ),
-                        //  Entertainments
+                        //  Entertainments{4}
                         SizedBox(height: 10),
                         StreamBuilder<QuerySnapshot>(
                           stream: viewEntertainments,
@@ -949,7 +949,7 @@ class _ViewDistinationState extends State<ViewDistination> {
                             }
                           },
                         ),
-                        // parks
+                        // parks {5}
                         SizedBox(height: 10),
                         StreamBuilder<QuerySnapshot>(
                           stream: viewParks,

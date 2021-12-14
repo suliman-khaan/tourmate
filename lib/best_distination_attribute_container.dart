@@ -26,6 +26,7 @@ class _BestDistinationAttributeContainerState
   @override
   Widget build(BuildContext context1) {
     String id = widget.id;
+    String name;
     final Stream<QuerySnapshot> _stream;
     switch (widget.areaIndex) {
       case 1:
@@ -33,30 +34,35 @@ class _BestDistinationAttributeContainerState
             .collection("hotel")
             .where("best_destination", isEqualTo: id)
             .snapshots();
+        name = "Hotel";
         break;
       case 2:
         _stream = FirebaseFirestore.instance
             .collection("Resturents")
             .where("best_destination", isEqualTo: id)
             .snapshots();
+        name = "Resturents";
         break;
       case 3:
         _stream = FirebaseFirestore.instance
             .collection("Events")
             .where("best_destination", isEqualTo: id)
             .snapshots();
+        name = "Event";
         break;
       case 4:
         _stream = FirebaseFirestore.instance
             .collection("Entertainment")
             .where("best_destination", isEqualTo: id)
             .snapshots();
+        name = "Entertainment";
         break;
       case 5:
         _stream = FirebaseFirestore.instance
             .collection("Parks")
             .where("best_destination", isEqualTo: id)
             .snapshots();
+        name = "Parks";
         break;
       case 6:
         _stream = FirebaseFirestore.instance
@@ -64,12 +70,14 @@ class _BestDistinationAttributeContainerState
             .where("best_destination", isEqualTo: id)
             .where("explored_area", isEqualTo: true)
             .snapshots();
+        name = "Areas";
         break;
       default:
         _stream = FirebaseFirestore.instance
             .collection("hotel")
             .where("best_destination", isEqualTo: id)
             .snapshots();
+        name = "Hotel";
     }
     return StreamBuilder<QuerySnapshot>(
         stream: _stream,
@@ -107,7 +115,7 @@ class _BestDistinationAttributeContainerState
                       },
                     ),
                     title: Text(
-                      storeAttribute[0]["name"],
+                      name,
                       style:
                           GoogleFonts.roboto(color: Colors.black, fontSize: 16),
                     )),
@@ -126,13 +134,31 @@ class _BestDistinationAttributeContainerState
                                       builder: (context) => HotelView(
                                           index: 1,
                                           id: storeAttribute[index]['ID'])));
-                            } else if (widget.areaIndex == 1) {
+                            } else if (widget.areaIndex == 2) {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => HotelView(
                                           index: 2,
                                           id: storeAttribute[index]['ID'])));
+                            } else if (widget.areaIndex == 3) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          DistrictAttributeContainer(
+                                              areaIndex: 6,
+                                              a_id: storeAttribute[index]
+                                                  ['ID'])));
+                            } else if (widget.areaIndex == 4) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          DistrictAttributeContainer(
+                                              areaIndex: 7,
+                                              a_id: storeAttribute[index]
+                                                  ['ID'])));
                             } else if (widget.areaIndex == 5) {
                               Navigator.push(
                                   context,

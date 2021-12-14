@@ -83,7 +83,7 @@ class _DistrictAttributeContainerState
       case 6:
         _stream = FirebaseFirestore.instance
             .collection("Events")
-            //.where("district", isEqualTo: district)
+            .where("ID", isEqualTo: id)
             .where("present", isEqualTo: true)
             .snapshots();
         _stream1 = FirebaseFirestore.instance

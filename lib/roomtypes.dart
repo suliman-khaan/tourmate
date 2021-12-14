@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -139,7 +137,7 @@ class _RoomTypesState extends State<RoomTypes> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5),
                     child: Container(
-                      height: MediaQuery.of(context).size.height - 120,
+                      height: MediaQuery.of(context).size.height - 150,
                       width: MediaQuery.of(context).size.width,
                       child: ListView(
                         primary: false,
@@ -190,19 +188,6 @@ class _RoomTypesState extends State<RoomTypes> {
                                                   width: 3,
                                                 ),
                                               ],
-                                              // children: [
-                                              //   FaIcon(
-                                              //     FontAwesomeIcons.user,
-                                              //     size: 15,
-                                              //   ),
-                                              //   SizedBox(
-                                              //     width: 3,
-                                              //   ),
-                                              //   FaIcon(
-                                              //     FontAwesomeIcons.user,
-                                              //     size: 15,
-                                              //   ),
-                                              // ],
                                             ),
                                             SizedBox(
                                               height: 10,
@@ -394,17 +379,18 @@ class _RoomTypesState extends State<RoomTypes> {
                                                   child: Row(
                                                     children: [
                                                       SizedBox(
-                                                        height: 30,
                                                         width: 30,
-                                                        // ignore: deprecated_member_use
-                                                        child: OutlineButton(
-                                                          // style: ButtonStyle(shape: MaterialStateProperty.all(RoundedRectangleBorder(side: )))
-                                                          borderSide:
-                                                              BorderSide(
-                                                                  color: Colors
-                                                                      .black,
-                                                                  width: 1),
-                                                          color: Colors.white,
+                                                        height: 31,
+                                                        child: TextButton(
+                                                          style: ButtonStyle(
+                                                            shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .zero,
+                                                                side: BorderSide(
+                                                                    color: Colors
+                                                                        .black))),
+                                                          ),
                                                           onPressed: () {
                                                             _incrementRoom(
                                                                 index);
@@ -412,6 +398,7 @@ class _RoomTypesState extends State<RoomTypes> {
                                                           child: Icon(
                                                             Icons.add,
                                                             size: 15,
+                                                            color: Colors.black,
                                                           ),
                                                         ),
                                                       ),
@@ -419,10 +406,11 @@ class _RoomTypesState extends State<RoomTypes> {
                                                         height: 31,
                                                         width: 75,
                                                         decoration: BoxDecoration(
-                                                            border: Border.all(
-                                                                width: 1,
-                                                                color: Colors
-                                                                    .black)),
+                                                            border: Border.symmetric(
+                                                                horizontal: BorderSide(
+                                                                    width: 1,
+                                                                    color: Colors
+                                                                        .black))),
                                                         child: Padding(
                                                             padding:
                                                                 const EdgeInsets
@@ -462,16 +450,19 @@ class _RoomTypesState extends State<RoomTypes> {
                                                                             fontSize: 12))),
                                                       ),
                                                       SizedBox(
-                                                        height: 30,
+                                                        height: 31,
                                                         width: 30,
                                                         // ignore: deprecated_member_use
-                                                        child: OutlineButton(
-                                                            borderSide:
-                                                                BorderSide(
-                                                                    color: Colors
-                                                                        .black,
-                                                                    width: 1),
-                                                            color: Colors.white,
+                                                        child: TextButton(
+                                                            style: ButtonStyle(
+                                                              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .zero,
+                                                                  side: BorderSide(
+                                                                      color: Colors
+                                                                          .black))),
+                                                            ),
                                                             onPressed: () {
                                                               _decrementRoom(
                                                                   index);
@@ -479,6 +470,8 @@ class _RoomTypesState extends State<RoomTypes> {
                                                             child: Icon(
                                                               Icons.remove,
                                                               size: 15,
+                                                              color:
+                                                                  Colors.black,
                                                             )),
                                                       ),
                                                     ],
@@ -492,25 +485,27 @@ class _RoomTypesState extends State<RoomTypes> {
                                                   child: Row(
                                                     children: [
                                                       SizedBox(
-                                                        height: 30,
+                                                        height: 31,
                                                         width: 30,
                                                         // ignore: deprecated_member_use
-                                                        child: OutlineButton(
-                                                          // style: ButtonStyle(shape: MaterialStateProperty.all(RoundedRectangleBorder(side: )))
-                                                          borderSide:
-                                                              BorderSide(
-                                                                  color: Colors
-                                                                      .black,
-                                                                  width: 1),
-                                                          color: Colors.white,
+                                                        child: TextButton(
+                                                          style: ButtonStyle(
+                                                            shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .zero,
+                                                                side: BorderSide(
+                                                                    color: Colors
+                                                                        .black))),
+                                                          ),
                                                           onPressed: () {
                                                             _incrementPerson(
                                                                 index);
                                                           },
-
                                                           child: Icon(
                                                             Icons.add,
                                                             size: 15,
+                                                            color: Colors.black,
                                                           ),
                                                         ),
                                                       ),
@@ -518,10 +513,11 @@ class _RoomTypesState extends State<RoomTypes> {
                                                         height: 31,
                                                         width: 75,
                                                         decoration: BoxDecoration(
-                                                            border: Border.all(
-                                                                width: 1,
-                                                                color: Colors
-                                                                    .black)),
+                                                            border: Border.symmetric(
+                                                                horizontal: BorderSide(
+                                                                    width: 1,
+                                                                    color: Colors
+                                                                        .black))),
                                                         child: Padding(
                                                             padding:
                                                                 const EdgeInsets
@@ -563,39 +559,31 @@ class _RoomTypesState extends State<RoomTypes> {
                                                                               fontWeight: FontWeight.bold,
                                                                               fontSize: 12),
                                                                         )
-                                                                      ])
-                                                            // child: _count == 1
-                                                            //     ? Text(
-                                                            //         "${_personcount} Person",
-                                                            //         style: TextStyle(
-                                                            //             fontWeight: FontWeight.bold),
-                                                            //       )
-                                                            //     : Text(
-                                                            //         "${_personcount} Person",
-                                                            //         style: TextStyle(
-                                                            //             fontWeight: FontWeight.bold),
-                                                            //       )
-                                                            ),
+                                                                      ])),
                                                       ),
                                                       SizedBox(
-                                                        height: 30,
+                                                        height: 31,
                                                         width: 30,
                                                         // ignore: deprecated_member_use
-                                                        child: OutlineButton(
-                                                            borderSide:
-                                                                BorderSide(
-                                                                    color: Colors
-                                                                        .black,
-                                                                    width: 1),
-                                                            color: Colors.white,
+                                                        child: TextButton(
+                                                            style: ButtonStyle(
+                                                              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .zero,
+                                                                  side: BorderSide(
+                                                                      color: Colors
+                                                                          .black))),
+                                                            ),
                                                             onPressed: () {
                                                               _decrementPerson(
                                                                   index);
                                                             },
                                                             child: Icon(
-                                                              Icons.remove,
-                                                              size: 12,
-                                                            )),
+                                                                Icons.remove,
+                                                                size: 12,
+                                                                color: Colors
+                                                                    .black)),
                                                       ),
                                                     ],
                                                   ),

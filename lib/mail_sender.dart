@@ -11,7 +11,7 @@ class SendMail {
       required String email,
       required String hotel_name}) async {
     String username = 'tourmate111@gmail.com';
-    String password = 'swat12345';
+    String password = 'Friend\$77';
 
     // ignore: deprecated_member_use
     final smtpServer = gmail(username, password);
@@ -37,7 +37,7 @@ class SendMail {
       final sendReport = await send(message, smtpServer);
       print('Message sent: ' + sendReport.toString());
     } on MailerException catch (e) {
-      print('Message not sent.');
+      print('Message not sent. ---$e');
       for (var p in e.problems) {
         print('Problem: ${p.code}: ${p.msg}');
       }

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tourmate1/hotel_view.dart';
 import 'attribute_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -58,12 +59,15 @@ Widget singleResturent(dist) {
                               child: GestureDetector(
                                 onTap: () {
                                   Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              DistrictAttributeContainer(
-                                                  areaIndex: 8,
-                                                  a_id: db_data[index]['ID'])));
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                HotelView(
+                                                                  index: 2,
+                                                                  id: db_data[
+                                                                          index]
+                                                                      ['ID'],
+                                                                )));
                                 },
                                 child: Card(
                                   elevation: 4,

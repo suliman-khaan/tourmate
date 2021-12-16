@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tourmate1/hotel_view.dart';
 import 'footer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -187,9 +188,9 @@ class _resturentState extends State<resturent> {
                                                         context,
                                                         MaterialPageRoute(
                                                             builder: (context) =>
-                                                                DistrictAttributeContainer(
-                                                                  areaIndex: 8,
-                                                                  a_id: swatRestaurantsList[
+                                                                HotelView(
+                                                                  index: 2,
+                                                                  id: swatRestaurantsList[
                                                                           index]
                                                                       ['ID'],
                                                                 )));
@@ -543,9 +544,9 @@ class _resturentState extends State<resturent> {
                                                         context,
                                                         MaterialPageRoute(
                                                             builder: (context) =>
-                                                                DistrictAttributeContainer(
-                                                                  areaIndex: 8,
-                                                                  a_id: chitralRestaurantsList[
+                                                                HotelView(
+                                                                  index: 2,
+                                                                  id: chitralRestaurantsList[
                                                                           index]
                                                                       ['ID'],
                                                                 )));

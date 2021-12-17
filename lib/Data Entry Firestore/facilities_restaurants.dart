@@ -114,7 +114,7 @@ class _FacilitiesRestaurantDataState extends State<FacilitiesRestaurantData> {
             ElevatedButton(
                 onPressed: () async {
                   await users.add({
-                    'hotel': restaurant,
+                    'resturent': restaurant,
                     'ID': "",
                     "ac": aC,
                     "vegetarian": vegetarian,

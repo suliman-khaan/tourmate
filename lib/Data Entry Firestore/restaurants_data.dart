@@ -102,7 +102,8 @@ class _RestaurantsDataState extends State<RestaurantsData> {
                       "image": image,
                       "location": location,
                       "name": name,
-                      "type": type
+                      "type": type,
+                      "contact_no": "03428270869"
                     }).then((value) => print("user added" + value.toString()));
                     Navigator.push(
                         context,

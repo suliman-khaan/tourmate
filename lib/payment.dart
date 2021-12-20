@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,7 +31,6 @@ class _PaymentMethodState extends State<PaymentMethod> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     defaultText = paymentList[0];
   }
@@ -43,11 +40,11 @@ class _PaymentMethodState extends State<PaymentMethod> {
     return Container(
       child: SafeArea(
           child: GestureDetector(
-            onTap: (){
-              FocusScope.of(context).requestFocus(new FocusNode());
-            },
-            child: Scaffold(
-                  appBar: AppBar(
+        onTap: () {
+          FocusScope.of(context).requestFocus(new FocusNode());
+        },
+        child: Scaffold(
+          appBar: AppBar(
             iconTheme: IconThemeData(color: Colors.black),
             leading: IconButton(
                 onPressed: () {
@@ -65,16 +62,16 @@ class _PaymentMethodState extends State<PaymentMethod> {
             elevation: 0,
             backgroundColor: Colors.transparent,
             actions: [],
-                  ),
-                  body: Container(
+          ),
+          body: Container(
             padding: EdgeInsets.all(8),
             child: Column(
               children: [
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   Container(
                     decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black),
-                            borderRadius: BorderRadius.circular(25)),
+                        border: Border.all(color: Colors.black),
+                        borderRadius: BorderRadius.circular(25)),
                     width: 300,
                     child: DropdownButtonHideUnderline(
                       child: ButtonTheme(
@@ -96,18 +93,22 @@ class _PaymentMethodState extends State<PaymentMethod> {
                     ),
                   ),
                 ]),
-                SizedBox(height: 10,),
+                SizedBox(
+                  height: 10,
+                ),
                 // Debit card
                 if (defaultText == "Debit Card")
                   Container(
                       child: Column(children: [
                     TextField(
-                      decoration: InputDecoration(focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.black),
-                                      borderRadius: BorderRadius.circular(25)),
-                                  border: new OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.black),
-                                      borderRadius: BorderRadius.circular(25)),hintText: "Enter Card Number"),
+                      decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black),
+                              borderRadius: BorderRadius.circular(25)),
+                          border: new OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black),
+                              borderRadius: BorderRadius.circular(25)),
+                          hintText: "Enter Card Number"),
                     ),
                     SizedBox(
                       height: 10,
@@ -143,10 +144,12 @@ class _PaymentMethodState extends State<PaymentMethod> {
                                   hintText: "CVV",
                                   counterText: '',
                                   focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.black),
+                                      borderSide:
+                                          BorderSide(color: Colors.black),
                                       borderRadius: BorderRadius.circular(25)),
                                   border: new OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.black),
+                                      borderSide:
+                                          BorderSide(color: Colors.black),
                                       borderRadius: BorderRadius.circular(25))),
                               inputFormatters: <TextInputFormatter>[
                                 FilteringTextInputFormatter.digitsOnly
@@ -203,22 +206,23 @@ class _PaymentMethodState extends State<PaymentMethod> {
                           ),
                         ]),
                   ]))
-          
+
                 // //
 
-
                 // Easypaisaa
-          
+
                 else if (defaultText == "Easy Paisa")
-                 Container(
+                  Container(
                       child: Column(children: [
                     TextField(
-                      decoration: InputDecoration(focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.black),
-                                      borderRadius: BorderRadius.circular(25)),
-                                  border: new OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.black),
-                                      borderRadius: BorderRadius.circular(25)),hintText: "Easypaisa Number"),
+                      decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black),
+                              borderRadius: BorderRadius.circular(25)),
+                          border: new OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black),
+                              borderRadius: BorderRadius.circular(25)),
+                          hintText: "Easypaisa Number"),
                     ),
                     SizedBox(
                       height: 10,
@@ -270,19 +274,21 @@ class _PaymentMethodState extends State<PaymentMethod> {
                         ]),
                   ]))
 
-                  //  //
+                //  //
 
-                  // jazz cash
+                // jazz cash
                 else if (defaultText == "Jazz Cash")
-                 Container(
+                  Container(
                       child: Column(children: [
                     TextField(
-                      decoration: InputDecoration(focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.black),
-                                      borderRadius: BorderRadius.circular(25)),
-                                  border: new OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.black),
-                                      borderRadius: BorderRadius.circular(25)),hintText: "Jazz Cash Number"),
+                      decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black),
+                              borderRadius: BorderRadius.circular(25)),
+                          border: new OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black),
+                              borderRadius: BorderRadius.circular(25)),
+                          hintText: "Jazz Cash Number"),
                     ),
                     SizedBox(
                       height: 10,
@@ -333,15 +339,15 @@ class _PaymentMethodState extends State<PaymentMethod> {
                           ),
                         ]),
                   ]))
-                  //  //
+                //  //
 
                 else
                   Container(child: Text("Please select payment method"))
               ],
             ),
-                  ),
-                ),
-          )),
+          ),
+        ),
+      )),
     );
   }
 }

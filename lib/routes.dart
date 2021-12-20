@@ -1,5 +1,6 @@
 class MyRoute {
   static String tourMate = "/";
+  // ignore: non_constant_identifier_names
   static String MainHome = "/home2";
   static String singleTravel = "/singleTravel";
   static String compTravel = "/CompanyData";

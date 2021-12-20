@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 
-import 'attribute_view.dart';
 import 'drawer.dart';
 import 'singleDistrict.dart';
 
@@ -26,7 +25,6 @@ class _resturentState extends State<resturent> {
   @override
   Widget build(BuildContext context) {
     String swatID = "VOiZdZ1cERBF8gYRQebY";
-    String kumratID = "j1jcrpBK4X44Hzpo11Eo";
     String chitralID = "snhw3PT7gayj363xtCLq";
     final Stream<QuerySnapshot> _swatRestaurantsStream = FirebaseFirestore
         .instance
@@ -187,13 +185,15 @@ class _resturentState extends State<resturent> {
                                                     Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                HotelView(
-                                                                  index: 2,
-                                                                  id: swatRestaurantsList[
-                                                                          index]
-                                                                      ['ID'],
-                                                                )));
+                                                            builder:
+                                                                (context) =>
+                                                                    HotelView(
+                                                                      index: 2,
+                                                                      id: swatRestaurantsList[
+                                                                              index]
+                                                                          [
+                                                                          'ID'],
+                                                                    )));
                                                   },
                                                   child: Card(
                                                     margin: EdgeInsets.only(
@@ -543,13 +543,15 @@ class _resturentState extends State<resturent> {
                                                     Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                HotelView(
-                                                                  index: 2,
-                                                                  id: chitralRestaurantsList[
-                                                                          index]
-                                                                      ['ID'],
-                                                                )));
+                                                            builder:
+                                                                (context) =>
+                                                                    HotelView(
+                                                                      index: 2,
+                                                                      id: chitralRestaurantsList[
+                                                                              index]
+                                                                          [
+                                                                          'ID'],
+                                                                    )));
                                                   },
                                                   child: Card(
                                                     margin: EdgeInsets.only(

@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tourmate1/home.dart';
-import 'routes.dart';
 
 class UserProfile extends StatefulWidget {
   final String userUid;

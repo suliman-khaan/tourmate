@@ -10,23 +10,23 @@ class UpdateAreasTable extends StatefulWidget {
   const UpdateAreasTable({Key? key, this.id}) : super(key: key);
 
   @override
-  State<UpdateAreasTable> createState() => _UpdateAreasTableState(hId:this.id);
+  State<UpdateAreasTable> createState() => _UpdateAreasTableState(hId: this.id);
 }
 
 class _UpdateAreasTableState extends State<UpdateAreasTable> {
   final hId;
 
-   _UpdateAreasTableState({required this.hId});
-var test;
+  _UpdateAreasTableState({required this.hId});
+  var test;
   @override
   void initState() {
     test = FirebaseFirestore.instance
-              .collection("Areas")
-              .where("ID", isEqualTo: hId)
-              .snapshots();
-    // TODO: implement initState
+        .collection("Areas")
+        .where("ID", isEqualTo: hId)
+        .snapshots();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -107,8 +107,8 @@ var test;
                         )
                       ],
                     ),
-                    // 
-                    // 
+                    //
+                    //
                     //  row
                     Row(
                       children: [
@@ -174,7 +174,7 @@ var test;
                       ],
                     ),
                     //
-                    // 
+                    //
 
                     Row(
                       children: [
@@ -190,21 +190,22 @@ var test;
                       ],
                     ),
                     //
-                    // 
-                     StatefulBuilder(builder: (BuildContext context,StateSetter setState){
-                return Row(children: [
-                Checkbox(
-                  value: bestDestination,
-                  onChanged: (value) {
-                    setState(() {
-                      bestDestination = value!;
-                    });
-                  },
-                ),
-                Text("Best Destination")
-              ]);
-              }),
-                    // 
+                    //
+                    StatefulBuilder(
+                        builder: (BuildContext context, StateSetter setState) {
+                      return Row(children: [
+                        Checkbox(
+                          value: bestDestination,
+                          onChanged: (value) {
+                            setState(() {
+                              bestDestination = value!;
+                            });
+                          },
+                        ),
+                        Text("Best Destination")
+                      ]);
+                    }),
+                    //
                     //
                     TextButton(
                         onPressed: () {
@@ -217,10 +218,13 @@ var test;
                             'description': descriptionController.text,
                             'type': typeController.text,
                             'image': imageController.text,
-                            'best_destination':bestDestination
+                            'best_destination': bestDestination
                           });
                         },
-                        child: Text("Update",style: TextStyle(color:Colors.green),))
+                        child: Text(
+                          "Update",
+                          style: TextStyle(color: Colors.green),
+                        ))
                   ],
                 ),
               ),

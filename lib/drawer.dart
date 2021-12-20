@@ -179,12 +179,12 @@ class _MyDrawerState extends State<MyDrawer> {
                               )));
                 }
               }),
-          _createDrawerItem(
-              icon: CupertinoIcons.group,
-              text: "Team Members",
-              onTap: () {
-                Navigator.pushNamed(context, MyRoute.ourTeam);
-              }),
+          // _createDrawerItem(
+          //     icon: CupertinoIcons.group,
+          //     text: "Team Members",
+          //     onTap: () {
+          //       Navigator.pushNamed(context, MyRoute.ourTeam);
+          //     }),
           _createDrawerItem(
               icon: Icons.hotel,
               text: "Hotels",

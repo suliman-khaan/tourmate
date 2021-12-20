@@ -26,7 +26,6 @@ class _UpdateTransportTableState extends State<UpdateTransportTable> {
         .collection("Transport")
         .where("ID", isEqualTo: hId)
         .snapshots();
-    // TODO: implement initState
     super.initState();
   }
 

@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:country_code_picker/country_code_picker.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
 //import 'package:international_phone_input/international_phone_input.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:tourmate1/allHotel.dart';
 import 'package:tourmate1/home.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:tourmate1/mail_sender.dart';
@@ -13,12 +11,16 @@ import 'package:tourmate1/mail_sender.dart';
 class UserDetailForBooking extends StatefulWidget {
   const UserDetailForBooking(
       {Key? key,
+      // ignore: non_constant_identifier_names
       required this.room_name,
       required this.rooms,
       required this.price,
+      // ignore: non_constant_identifier_names
       required this.hotel_name})
       : super(key: key);
+  // ignore: non_constant_identifier_names
   final String hotel_name;
+  // ignore: non_constant_identifier_names
   final String room_name;
   final int rooms;
   final dynamic price;
@@ -36,6 +38,7 @@ class _UserDetailForBookingState extends State<UserDetailForBooking> {
   late String _firstname;
   late String _lastname;
   late String _email;
+  // ignore: unused_field
   late String _country;
   late String _phonenumber;
   bool loading = false;
@@ -69,7 +72,8 @@ class _UserDetailForBookingState extends State<UserDetailForBooking> {
                       lastname: _lastname,
                       email: _email,
                       hotel_name: widget.hotel_name);
-                  String _room_name = widget.room_name;
+                  // ignore: non_constant_identifier_names
+                  String RoomName = widget.room_name;
                   int _rooms = widget.rooms;
                   int _price = widget.price;
 
@@ -78,7 +82,7 @@ class _UserDetailForBookingState extends State<UserDetailForBooking> {
                     "last_name": _lastname,
                     "email": _email,
                     "contact_no": _phonenumber,
-                    "room_name": _room_name,
+                    "room_name": RoomName,
                     "rooms": _rooms,
                     "price": _price
                   }).then((value) => print("user added" + value.toString()));

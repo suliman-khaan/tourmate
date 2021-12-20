@@ -8,7 +8,6 @@ class OnlinePayment extends StatefulWidget {
 }
 
 class _OnlinePaymentState extends State<OnlinePayment> {
-  void _pay() {}
   @override
   Widget build(BuildContext context) {
     return Container(

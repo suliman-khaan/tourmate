@@ -16,7 +16,9 @@ class _RoomTypesState extends State<RoomTypes> {
 
   var price;
 
+  // ignore: non_constant_identifier_names
   late int room_count = 1;
+  // ignore: non_constant_identifier_names
   late int incremented_index = 0;
 
   void _incrementRoom(int index) {
@@ -78,6 +80,7 @@ class _RoomTypesState extends State<RoomTypes> {
   var roomTypeStream;
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
     roomTypeStream = FirebaseFirestore.instance
@@ -420,7 +423,7 @@ class _RoomTypesState extends State<RoomTypes> {
                                                                 ? index ==
                                                                         incremented_index
                                                                     ? Text(
-                                                                        "${room_count} Room",
+                                                                        "$room_count Room",
                                                                         style: TextStyle(
                                                                             fontWeight:
                                                                                 FontWeight.bold,
@@ -436,7 +439,7 @@ class _RoomTypesState extends State<RoomTypes> {
                                                                 : incremented_index ==
                                                                         index
                                                                     ? Text(
-                                                                        "${room_count} Rooms",
+                                                                        "$room_count Rooms",
                                                                         style: TextStyle(
                                                                             fontWeight:
                                                                                 FontWeight.bold,
@@ -536,7 +539,7 @@ class _RoomTypesState extends State<RoomTypes> {
                                                                               12,
                                                                         ),
                                                                         Text(
-                                                                          "  :  ${_personcount}",
+                                                                          "  :  $_personcount",
                                                                           style: TextStyle(
                                                                               fontWeight: FontWeight.bold,
                                                                               fontSize: 12),

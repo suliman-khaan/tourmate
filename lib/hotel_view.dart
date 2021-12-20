@@ -7,16 +7,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tourmate1/Register.dart';
 import 'package:tourmate1/login.dart';
-import 'package:tourmate1/mail_sender.dart';
 import 'package:tourmate1/roomtypes.dart';
 import 'package:tourmate1/routes.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'mail_sender.dart';
 
 import 'socialLuncher.dart';
 
@@ -32,7 +29,6 @@ class HotelView extends StatefulWidget {
 }
 
 class _HotelViewState extends State<HotelView> {
-  final SendMail _mail = SendMail();
   createAlertDialog(BuildContext context) {
     return showDialog(
         context: context,

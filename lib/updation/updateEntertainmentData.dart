@@ -26,7 +26,6 @@ class _UpdateEntertainmentTableState extends State<UpdateEntertainmentTable> {
         .collection("Entertainment")
         .where("ID", isEqualTo: hId)
         .snapshots();
-    // TODO: implement initState
     super.initState();
   }
 

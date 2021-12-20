@@ -3,7 +3,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
-import 'package:flutter_elegant_number_button/flutter_elegant_number_button.dart';
 
 class RoomBooking extends StatefulWidget {
   const RoomBooking({Key? key}) : super(key: key);
@@ -53,7 +52,7 @@ class _RoomBookingState extends State<RoomBooking> {
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.black)),
                         padding: EdgeInsets.fromLTRB(20, 4, 20, 4),
-                        child: Text("${adults}")),
+                        child: Text("$adults")),
                     TextButton(
                         onPressed: () {
                           if (adults < 20) {
@@ -89,7 +88,7 @@ class _RoomBookingState extends State<RoomBooking> {
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.black)),
                         padding: EdgeInsets.fromLTRB(20, 4, 20, 4),
-                        child: Text("${childrens}")),
+                        child: Text("$childrens")),
                     TextButton(
                         onPressed: () {
                           if (childrens < 30) {
@@ -125,7 +124,7 @@ class _RoomBookingState extends State<RoomBooking> {
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.black)),
                         padding: EdgeInsets.fromLTRB(20, 4, 20, 4),
-                        child: Text("${rooms}")),
+                        child: Text("$rooms")),
                     TextButton(
                         onPressed: () {
                           if (rooms < 10) {
@@ -196,12 +195,10 @@ class _RoomBookingState extends State<RoomBooking> {
           DateFormat('E,MMMM dd, yyyy').format(args.value.startDate).toString();
       test =
           DateFormat('E,MMMM dd, yyyy').format(args.value.startDate).toString();
-      ;
       toDate =
           DateFormat('E,MMMM dd, yyyy').format(args.value.endDate).toString();
       test1 =
           DateFormat('E,MMMM dd, yyyy').format(args.value.endDate).toString();
-      ;
       setState(() {});
     });
   }
@@ -324,7 +321,7 @@ class _RoomBookingState extends State<RoomBooking> {
                                     MediaQuery.of(context).size.width / 3 - 14,
                                 color: Colors.white,
                                 child: Column(
-                                  children: [Text("Adults"), Text("${adults}")],
+                                  children: [Text("Adults"), Text("$adults")],
                                 ),
                               ),
                               Container(
@@ -334,7 +331,7 @@ class _RoomBookingState extends State<RoomBooking> {
                                 child: Column(
                                   children: [
                                     Text("Children"),
-                                    Text("${childrens}")
+                                    Text("$childrens")
                                   ],
                                 ),
                               ),
@@ -353,37 +350,41 @@ class _RoomBookingState extends State<RoomBooking> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                         child: Container(
-                          padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                          color: Colors.white,
-                          child:Row(
-                            children: [
-                              Checkbox(value: checkBoxValue, onChanged: (value){
-                                setState(() {
-                                  this.checkBoxValue = value!;
-                                });
-                              }),
-                              SizedBox(width: 20,)
-                              ,
-                              Padding(
-                                padding: const EdgeInsets.only(bottom:2.5),
-                                child: Text("I'm travelling for work",style:TextStyle(fontWeight: FontWeight.bold)),
-                              )
-                            ],
-                          )
-                        ),
+                            padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                            color: Colors.white,
+                            child: Row(
+                              children: [
+                                Checkbox(
+                                    value: checkBoxValue,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        this.checkBoxValue = value!;
+                                      });
+                                    }),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 2.5),
+                                  child: Text("I'm travelling for work",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold)),
+                                )
+                              ],
+                            )),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Container(
-                          child: MaterialButton(
-                        onPressed: () {},
-                        child:
-                            Text("Search", style: TextStyle(color: Colors.white,fontSize: 18)),
-                        color: Colors.blue[800],
-                        height: 60,
-                        minWidth: double.infinity,    
-                  )
-                        ),
+                            child: MaterialButton(
+                          onPressed: () {},
+                          child: Text("Search",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 18)),
+                          color: Colors.blue[800],
+                          height: 60,
+                          minWidth: double.infinity,
+                        )),
                       )
                     ],
                   )),

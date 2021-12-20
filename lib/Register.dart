@@ -274,6 +274,7 @@ class _registerState extends State<register> {
                             }
                             if (formkey.currentState!.validate() &&
                                 value == true) {
+                              // ignore: unused_local_variable
                               dynamic result =
                                   await _auth.RegisterWithEmailAndPassword(
                                           email, password, context)

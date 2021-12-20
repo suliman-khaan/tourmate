@@ -25,7 +25,6 @@ class _UpdateEventTableState extends State<UpdateEventTable> {
         .collection("Events")
         .where("ID", isEqualTo: hId)
         .snapshots();
-    // TODO: implement initState
     super.initState();
   }
 

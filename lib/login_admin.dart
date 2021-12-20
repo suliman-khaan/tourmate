@@ -51,14 +51,9 @@ class _LoginAdminState extends State<LoginAdmin> {
 
   String uid = "";
   final auth = FirebaseAuth.instance;
+  // ignore: non_constant_identifier_names
   login_admin() async {
     try {
-      final Stream<QuerySnapshot> _alldistinationStream = FirebaseFirestore
-          .instance
-          .collection('Areas')
-          .where("explored_area", isEqualTo: true)
-          .snapshots();
-
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
           email: email, password: password);
       final user = FirebaseAuth.instance.currentUser;

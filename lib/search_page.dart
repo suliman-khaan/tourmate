@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'basic.dart';
 import 'singleDistrict.dart';
 import 'singleTransport.dart';
 import 'package:flutter/cupertino.dart';
@@ -86,7 +87,8 @@ class _SearchPageState extends State<SearchPage> {
               size: 16,
             ),
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MainHome(index: 0)));
             },
           ),
           title: Text(

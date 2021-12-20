@@ -4,8 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tourmate1/Register.dart';
 import 'package:tourmate1/basic.dart';
 import 'package:tourmate1/login.dart';
-import 'package:tourmate1/routes.dart';
-import 'footer.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'dart:convert';

@@ -9,6 +9,7 @@ class SendMail {
       {required String firstname,
       required String lastname,
       required String email,
+      // ignore: non_constant_identifier_names
       required String hotel_name}) async {
     String username = 'tourmate111@gmail.com';
     String password = 'Friend\$77';
@@ -25,13 +26,13 @@ class SendMail {
       ..from = Address(
         username,
       )
-      ..recipients.add('${email}')
+      ..recipients.add('$email')
       // ..ccRecipients.addAll(['destCc1@example.com', 'destCc2@example.com'])
       ..bccRecipients.add(Address('tourmate111@gmail.com'))
       ..subject = 'Room Reservation ${DateTime.now()}'
       // ..text = 'This is the plain text.\nThis is line 2 of the text part.'
       ..html =
-          "<h1>Hello ${firstname + " " + lastname} </h1>\n<h2>Confirmed</h2>\n<p>Your accomodation Booked we sent your email to ${email}</p>\n<h3>Hotel :${hotel_name} </h3><p>For More Information Contact Us </p>\n<p>Contact No: 03428270869</p>\n<p>Email: tourmate111@gmail.com</p>\n<h3>Thank You!</h3>";
+          "<h1>Hello ${firstname + " " + lastname} </h1>\n<h2>Confirmed</h2>\n<p>Your accomodation Booked we sent your email to $email</p>\n<h3>Hotel :$hotel_name </h3><p>For More Information Contact Us </p>\n<p>Contact No: 03428270869</p>\n<p>Email: tourmate111@gmail.com</p>\n<h3>Thank You!</h3>";
 
     try {
       final sendReport = await send(message, smtpServer);

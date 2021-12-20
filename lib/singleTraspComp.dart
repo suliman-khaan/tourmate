@@ -127,10 +127,10 @@ class _compSingleState extends State<compSingle> {
                                     child: Row(
                                       children: [
                                         Icon(Icons.local_taxi_outlined,
-                                            color: Colors.black),
+                                            color: Colors.white),
                                         Text(name[index]['name'],
                                             style: TextStyle(
-                                                color: Colors.black,
+                                                color: Colors.white,
                                                 fontWeight: FontWeight.w500)),
                                       ],
                                     ),

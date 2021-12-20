@@ -25,7 +25,6 @@ class _UpdateExploredAreasTableState extends State<UpdateExploredAreasTable> {
         .collection("Areas")
         .where("ID", isEqualTo: hId)
         .snapshots();
-    // TODO: implement initState
     super.initState();
   }
 
